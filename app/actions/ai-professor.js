@@ -21,7 +21,7 @@ export async function generateCourse(formData) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemini-2.0-flash-001:free",
+        model: "openrouter/auto",
         messages: [
           {
             role: "system",
