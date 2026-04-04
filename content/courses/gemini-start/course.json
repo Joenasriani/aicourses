@@ -1,0 +1,42 @@
+{
+  "slug": "gemini-start",
+  "title": "Getting Started with Gemini",
+  "subtitle": "Use Gemini for research, drafting, and everyday problem solving in 3 days",
+  "level": "Beginner",
+  "duration_days": 3,
+  "price_aed": 0,
+  "modules": [
+    {
+      "title": "Meet Gemini",
+      "lessons": [
+        "What Gemini is and what it does well",
+        "How to ask Gemini clear questions",
+        "How to compare different answers and refine prompts"
+      ],
+      "quiz_topics": ["Gemini basics", "prompt clarity"],
+      "mini_task": "Ask Gemini to explain a current topic in plain language"
+    },
+    {
+      "title": "Daily Productivity with Gemini",
+      "lessons": [
+        "Using Gemini to draft messages and notes",
+        "Summarizing articles and long text",
+        "Planning tasks and simple routines"
+      ],
+      "quiz_topics": ["productivity use cases", "summaries"],
+      "mini_task": "Use Gemini to create a simple weekly checklist"
+    },
+    {
+      "title": "Better Answers from Gemini",
+      "lessons": [
+        "How to ask follow-up questions",
+        "When to give examples or context",
+        "How to evaluate if an answer is useful"
+      ],
+      "quiz_topics": ["follow-up prompting", "answer quality"],
+      "mini_task": "Improve one weak answer by rewriting your prompt and adding context"
+    }
+  ],
+  "final_project": "Use Gemini to research, organize, and present a small topic in a clear step-by-step outline.",
+  "assets": []
+}
