@@ -1,0 +1,42 @@
+{
+  "slug": "gemini-seniors",
+  "title": "Gemini for Seniors",
+  "subtitle": "Learn Gemini slowly and comfortably for everyday help",
+  "level": "Beginner",
+  "duration_days": 3,
+  "price_aed": 0,
+  "modules": [
+    {
+      "title": "Starting with Gemini",
+      "lessons": [
+        "What Gemini is in plain language",
+        "How to ask one clear question at a time",
+        "How to read and use the answer"
+      ],
+      "quiz_topics": ["Gemini basics"],
+      "mini_task": "Ask Gemini one simple everyday question"
+    },
+    {
+      "title": "Helpful Daily Tasks",
+      "lessons": [
+        "Writing short notes and messages",
+        "Getting recipe or travel help",
+        "Learning a hobby step by step"
+      ],
+      "quiz_topics": ["daily tasks"],
+      "mini_task": "Use Gemini to plan one small task for today"
+    },
+    {
+      "title": "Using Gemini with Confidence",
+      "lessons": [
+        "Trying again if the answer is unclear",
+        "Adding more detail to get better results",
+        "Making Gemini part of a daily routine"
+      ],
+      "quiz_topics": ["confidence"],
+      "mini_task": "Use Gemini for two different simple tasks today"
+    }
+  ],
+  "final_project": "Complete 3 simple everyday tasks with Gemini without outside help.",
+  "assets": []
+}
