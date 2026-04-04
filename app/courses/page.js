@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import CourseList from './CourseList'
 
 function getCourses() {
   const base = path.join(process.cwd(), 'content/courses')
@@ -32,23 +33,7 @@ export default function CoursesPage() {
 
       <section className="section-tight">
         <div className="container">
-          <div className="course-grid">
-            {courses.map((course) => (
-              <a key={course.slug} href={`/courses/${course.slug}`} className="course-card">
-                <div className="course-card-top">
-                  <span className="pill">{course.level}</span>
-                  {course.price_aed === 0 && <span className="pill pill-muted">Free</span>}
-                </div>
-                <h3>{course.title}</h3>
-                <p className="hero-text">{course.subtitle}</p>
-                <div className="course-meta">
-                  <span>{course.duration_days} days</span>
-                  <span>{course.modules?.length} modules</span>
-                </div>
-                <span className="course-cta">Learn more →</span>
-              </a>
-            ))}
-          </div>
+          <CourseList courses={courses} />
         </div>
       </section>
     </main>

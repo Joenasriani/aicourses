@@ -3,15 +3,15 @@
 @tailwind utilities;
 
 :root {
-  --bg: #0a0a0a;
-  --text: #e5e5e5;
-  --muted: #999999;
-  --border: #2a2a2a;
+  --bg: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --border: #e5e7eb;
   --accent: #0066ff;
-  --surface: #1a1a1a;
-  --surface-2: #151515;
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  --radius: 16px;
+  --surface: #f9fafb;
+  --surface-2: #f3f4f6;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --radius: 8px;
   --max: 1160px;
 }
 
@@ -47,9 +47,8 @@ button {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(10, 10, 10, 0.92);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border);
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .header-inner {
@@ -70,6 +69,7 @@ button {
   font-size: 1rem;
   font-weight: 700;
   letter-spacing: -0.02em;
+  color: #111827;
 }
 
 .brand-subtitle {
@@ -86,7 +86,11 @@ button {
 
 .site-nav a {
   font-size: 0.95rem;
-  color: var(--text);
+  color: #374151;
+}
+
+.site-nav a:hover {
+  color: #0066ff;
 }
 
 .hero {
@@ -109,6 +113,7 @@ h1 {
   line-height: 1.02;
   letter-spacing: -0.04em;
   margin: 0 0 14px;
+  color: #111827;
 }
 
 h2 {
@@ -116,6 +121,7 @@ h2 {
   line-height: 1.08;
   letter-spacing: -0.03em;
   margin: 0;
+  color: #111827;
 }
 
 h3 {
@@ -123,6 +129,7 @@ h3 {
   line-height: 1.2;
   letter-spacing: -0.02em;
   margin: 0 0 8px;
+  color: #111827;
 }
 
 p {
@@ -155,7 +162,7 @@ p {
   align-items: center;
   justify-content: center;
   padding: 0 18px;
-  border-radius: 999px;
+  border-radius: 6px;
   border: 1px solid transparent;
   font-weight: 600;
   transition: 0.18s ease;
@@ -385,4 +392,61 @@ p {
   .cta .btn {
     width: 100%;
   }
+}
+
+/* Filter & Search bar */
+.filter-search-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 200px;
+  height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #ffffff;
+  color: var(--text);
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+
+.filter-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.filter-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
 }
