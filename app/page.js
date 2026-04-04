@@ -28,7 +28,6 @@ export default function Home() {
               <p className="hero-text">Practical, structured courses that help you use AI tools in your real daily life — from beginners to seniors.</p>
               <div className="hero-actions">
                 <a href="/courses" className="btn btn-primary">Browse Courses</a>
-                <a href="/pricing" className="btn btn-secondary">View Pricing</a>
               </div>
             </div>
           </div>
@@ -91,7 +90,6 @@ export default function Home() {
             </div>
             <div className="cta">
               <a href="/courses" className="btn btn-primary full">Browse Courses</a>
-              <a href="/pricing" className="btn btn-secondary full">See Pricing</a>
             </div>
           </div>
         </div>

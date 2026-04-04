@@ -37,7 +37,6 @@ export default function CoursePage({ params }) {
                 <span>{data.price_aed === 0 ? 'Free' : `${data.price_aed} AED`}</span>
               </div>
               <div className="hero-actions">
-                <a href="/pricing" className="btn btn-primary">Enroll Now</a>
                 <a href="/courses" className="btn btn-secondary">← All Courses</a>
               </div>
             </div>
