@@ -1,0 +1,42 @@
+{
+  "slug": "chatgpt-seniors",
+  "title": "ChatGPT for Seniors",
+  "subtitle": "Learn ChatGPT step by step with simple, clear guidance",
+  "level": "Beginner",
+  "duration_days": 3,
+  "price_aed": 0,
+  "modules": [
+    {
+      "title": "Getting Comfortable",
+      "lessons": [
+        "What ChatGPT is in simple terms",
+        "How to type a basic question",
+        "Understanding the answer"
+      ],
+      "quiz_topics": ["basic usage"],
+      "mini_task": "Ask ChatGPT a simple daily question"
+    },
+    {
+      "title": "Useful Everyday Tasks",
+      "lessons": [
+        "Writing simple messages",
+        "Getting help with ideas",
+        "Learning something new slowly"
+      ],
+      "quiz_topics": ["simple tasks"],
+      "mini_task": "Use ChatGPT to write a message to a friend"
+    },
+    {
+      "title": "Building Confidence",
+      "lessons": [
+        "Asking better questions",
+        "Trying again if answer is not clear",
+        "Using ChatGPT daily"
+      ],
+      "quiz_topics": ["confidence"],
+      "mini_task": "Use ChatGPT twice in one day for different tasks"
+    }
+  ],
+  "final_project": "Use ChatGPT to complete 3 simple real-life tasks on your own.",
+  "assets": []
+}
