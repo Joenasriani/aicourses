@@ -6,12 +6,15 @@ function getCourses() {
   const base = path.join(process.cwd(), 'content/courses')
   if (!fs.existsSync(base)) return []
 
-  return fs.readdirSync(base).map((slug) => {
-    const file = path.join(base, slug, 'course.json')
-    if (!fs.existsSync(file)) return null
-    const data = JSON.parse(fs.readFileSync(file, 'utf-8'))
-    return { slug, ...data }
-  }).filter(Boolean)
+  return fs
+    .readdirSync(base)
+    .map((slug) => {
+      const file = path.join(base, slug, 'course.json')
+      if (!fs.existsSync(file)) return null
+      const data = JSON.parse(fs.readFileSync(file, 'utf-8'))
+      return { slug, ...data }
+    })
+    .filter(Boolean)
 }
 
 export default function CoursesPage() {
