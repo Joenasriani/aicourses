@@ -19,6 +19,7 @@ export default function RootLayout({ children }) {
               <nav className="site-nav">
                 <a href="/courses">Courses</a>
                 <a href="/pricing">Pricing</a>
+                <a href="/ai-professor">AI Professor</a>
                 <a href="/courses" className="btn btn-primary" style={{ minHeight: '38px', padding: '0 16px', fontSize: '0.9rem' }}>Get Started</a>
               </nav>
             </div>
