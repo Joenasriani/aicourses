@@ -1,6 +1,9 @@
 "use client"
 
 import { useState } from "react"
+import ReactMarkdown from "react-markdown"
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism"
 import { generateCourse } from "../actions/ai-professor"
 
 export default function AIProfessorPage() {
@@ -17,111 +20,109 @@ export default function AIProfessorPage() {
   }
 
   return (
-    <main>
-      <div className="hero" style={{ paddingBottom: "24px" }}>
-        <div className="container">
-          <p className="eyebrow">Robomarket Academy · AI Professor</p>
-          <h1 style={{ fontSize: "clamp(1.8rem, 5vw, 3.2rem)" }}>Your personal<br />AI Professor</h1>
-          <p className="hero-text">Enter a topic and difficulty level and let the AI Professor generate a full structured course for you — instantly.</p>
+    <main className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 py-16 px-4">
+      <div className="max-w-3xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-10">
+          <p className="text-indigo-400 text-sm font-semibold tracking-widest uppercase mb-2">
+            AI Professor
+          </p>
+          <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-3">
+            Your Personal AI Professor
+          </h1>
+          <p className="text-slate-400 text-lg max-w-xl mx-auto">
+            Enter a topic and difficulty level — get a full structured course instantly.
+          </p>
         </div>
-      </div>
 
-      <section className="section" style={{ paddingTop: "0" }}>
-        <div className="container">
-          <form onSubmit={handleSubmit} style={{ maxWidth: "600px" }}>
-            <div style={{ display: "grid", gap: "16px" }}>
-              <div style={{ display: "grid", gap: "6px" }}>
-                <label htmlFor="topic" style={{ fontWeight: "600", fontSize: "0.95rem" }}>
-                  Course Topic
-                </label>
-                <input
-                  id="topic"
-                  name="topic"
-                  type="text"
-                  required
-                  placeholder="e.g. Machine Learning, Prompt Engineering…"
-                  style={{
-                    width: "100%",
-                    padding: "12px 14px",
-                    borderRadius: "var(--radius)",
-                    border: "1px solid var(--border)",
-                    background: "var(--surface)",
-                    color: "var(--text)",
-                    fontSize: "1rem",
-                    outline: "none",
-                  }}
-                />
-              </div>
+        {/* Glass card form */}
+        <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl shadow-2xl p-8">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="space-y-2">
+              <label htmlFor="topic" className="block text-sm font-semibold text-slate-200">
+                Course Topic
+              </label>
+              <input
+                id="topic"
+                name="topic"
+                type="text"
+                required
+                placeholder="e.g. Machine Learning, Prompt Engineering…"
+                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+              />
+            </div>
 
-              <div style={{ display: "grid", gap: "6px" }}>
-                <label htmlFor="difficulty" style={{ fontWeight: "600", fontSize: "0.95rem" }}>
-                  Difficulty
-                </label>
-                <select
-                  id="difficulty"
-                  name="difficulty"
-                  defaultValue="Beginner"
-                  style={{
-                    width: "100%",
-                    padding: "12px 14px",
-                    borderRadius: "var(--radius)",
-                    border: "1px solid var(--border)",
-                    background: "var(--surface)",
-                    color: "var(--text)",
-                    fontSize: "1rem",
-                    outline: "none",
+            <div className="space-y-2">
+              <label htmlFor="difficulty" className="block text-sm font-semibold text-slate-200">
+                Difficulty
+              </label>
+              <select
+                id="difficulty"
+                name="difficulty"
+                defaultValue="Beginner"
+                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition appearance-none"
+              >
+                <option value="Beginner" className="bg-slate-800">Beginner</option>
+                <option value="Intermediate" className="bg-slate-800">Intermediate</option>
+                <option value="Advanced" className="bg-slate-800">Advanced</option>
+              </select>
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full py-4 rounded-xl font-bold text-white text-lg bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 shadow-lg hover:shadow-indigo-500/40 transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              {loading ? "Generating…" : "Generate Course"}
+            </button>
+          </form>
+        </div>
+
+        {/* Loading state */}
+        {loading && (
+          <div className="mt-8 flex items-center justify-center gap-3">
+            <span className="inline-block w-4 h-4 rounded-full bg-indigo-400 animate-pulse" />
+            <p className="text-indigo-300 text-base font-medium animate-pulse">
+              Professor is curating your custom curriculum...
+            </p>
+          </div>
+        )}
+
+        {/* Result */}
+        {result && !loading && (
+          <div className="mt-10 animate-fade-slide-up">
+            <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl shadow-2xl p-8 overflow-x-auto">
+              <div className="prose prose-invert lg:prose-xl max-w-none">
+                <ReactMarkdown
+                  components={{
+                    code({ node, inline, className, children, ...props }) {
+                      const match = /language-(\w+)/.exec(className || "")
+                      return !inline && match ? (
+                        <SyntaxHighlighter
+                          style={vscDarkPlus}
+                          language={match[1]}
+                          PreTag="div"
+                          className="rounded-lg !mt-0 !mb-0"
+                          {...props}
+                        >
+                          {String(children).replace(/\n$/, "")}
+                        </SyntaxHighlighter>
+                      ) : (
+                        <code className={className} {...props}>
+                          {children}
+                        </code>
+                      )
+                    },
                   }}
                 >
-                  <option value="Beginner">Beginner</option>
-                  <option value="Intermediate">Intermediate</option>
-                  <option value="Advanced">Advanced</option>
-                </select>
+                  {result}
+                </ReactMarkdown>
               </div>
-
-              <button
-                type="submit"
-                disabled={loading}
-                className="btn btn-primary"
-                style={{ width: "fit-content", opacity: loading ? 0.7 : 1 }}
-              >
-                {loading ? "Generating…" : "Generate Course"}
-              </button>
             </div>
-          </form>
-
-          {loading && (
-            <div style={{ marginTop: "32px", color: "var(--muted)", fontSize: "0.95rem" }}>
-              The AI Professor is preparing your lesson…
-            </div>
-          )}
-
-          {result && !loading && (
-            <div
-              className="value-card"
-              style={{
-                marginTop: "32px",
-                maxHeight: "70vh",
-                overflowY: "auto",
-                maxWidth: "800px",
-              }}
-            >
-              <pre
-                style={{
-                  whiteSpace: "pre-wrap",
-                  wordBreak: "break-word",
-                  margin: 0,
-                  fontFamily: "inherit",
-                  fontSize: "0.95rem",
-                  lineHeight: "1.7",
-                  color: "var(--text)",
-                }}
-              >
-                {result}
-              </pre>
-            </div>
-          )}
-        </div>
-      </section>
+          </div>
+        )}
+      </div>
     </main>
   )
 }
+
