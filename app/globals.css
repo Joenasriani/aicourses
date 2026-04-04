@@ -47,8 +47,10 @@ button {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
+  background: rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(229, 231, 235, 0.8);
 }
 
 .header-inner {
@@ -93,6 +95,35 @@ button {
   color: #0066ff;
 }
 
+.nav-link {
+  position: relative;
+  font-size: 0.95rem;
+  color: #374151;
+  padding-bottom: 2px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: #0066ff;
+  border-radius: 1px;
+  transition: width 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #0066ff;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
 .hero {
   padding: 72px 0 40px;
 }
@@ -132,6 +163,11 @@ h3 {
   color: #111827;
 }
 
+.course-card h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
 p {
   margin: 0;
 }
@@ -165,7 +201,11 @@ p {
   border-radius: 6px;
   border: 1px solid transparent;
   font-weight: 600;
-  transition: 0.18s ease;
+  transition: transform 0.18s ease, opacity 0.18s ease, background 0.18s ease;
+}
+
+.btn:active {
+  transform: scale(0.95);
 }
 
 .btn-primary {
@@ -175,6 +215,17 @@ p {
 
 .btn-primary:hover {
   opacity: 0.92;
+  transform: scale(1.04);
+}
+
+.btn-primary:active {
+  transform: scale(0.95);
+}
+
+.btn-get-started {
+  min-height: 38px;
+  padding: 0 16px;
+  font-size: 0.9rem;
 }
 
 .btn-secondary {
@@ -253,6 +304,12 @@ p {
   flex-direction: column;
   gap: 14px;
   min-height: 220px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.course-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
 .course-card-top {

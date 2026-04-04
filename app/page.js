@@ -23,7 +23,7 @@ export default function Home() {
         <div className="container">
           <div className="hero-inner">
             <div>
-              <p className="eyebrow">Apex Innovate · AI Academy</p>
+              <p className="eyebrow">Robomarket Academy</p>
               <h1>Learn AI the<br />right way.</h1>
               <p className="hero-text">Practical, structured courses that help you use AI tools in your real daily life — from beginners to seniors.</p>
               <div className="hero-actions">
