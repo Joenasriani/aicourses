@@ -1,0 +1,42 @@
+{
+  "slug": "claude-start",
+  "title": "Getting Started with Claude",
+  "subtitle": "Learn to use Claude for thoughtful writing, summaries, and planning in 3 days",
+  "level": "Beginner",
+  "duration_days": 3,
+  "price_aed": 0,
+  "modules": [
+    {
+      "title": "Meet Claude",
+      "lessons": [
+        "What Claude is and when to use it",
+        "How Claude differs from a search engine",
+        "How to write clear prompts for better answers"
+      ],
+      "quiz_topics": ["Claude basics", "prompt structure"],
+      "mini_task": "Ask Claude to explain a topic you care about in simple language"
+    },
+    {
+      "title": "Writing and Thinking with Claude",
+      "lessons": [
+        "Drafting messages and emails",
+        "Summarizing long text into key points",
+        "Using Claude for brainstorming and idea expansion"
+      ],
+      "quiz_topics": ["writing tasks", "summaries"],
+      "mini_task": "Use Claude to turn a rough note into a polished email"
+    },
+    {
+      "title": "Everyday Use Cases",
+      "lessons": [
+        "Planning a schedule or checklist",
+        "Learning from uploaded text or pasted content",
+        "Improving follow-up questions"
+      ],
+      "quiz_topics": ["daily workflows", "follow-up prompting"],
+      "mini_task": "Use Claude to create a 1-day action plan for a personal goal"
+    }
+  ],
+  "final_project": "Use Claude to research, outline, and write a short personal guide on a topic you care about.",
+  "assets": []
+}
