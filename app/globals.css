@@ -47,6 +47,7 @@ button {
   position: sticky;
   top: 0;
   z-index: 20;
+  /* Semi-transparent background acts as fallback for browsers without backdrop-filter support */
   background: rgba(255, 255, 255, 0.85);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
@@ -215,7 +216,7 @@ p {
 
 .btn-primary:hover {
   opacity: 0.92;
-  transform: scale(1.04);
+  transform: scale(1.02);
 }
 
 .btn-primary:active {
