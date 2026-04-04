@@ -21,11 +21,11 @@ export async function generateCourse(formData) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemini-2.0-flash-001",
+        model: "google/gemini-2.0-flash-001:free",
         messages: [
           {
             role: "system",
-            content: "You are a world-class AI Professor at Robomarket Academy. Generate a structured course in Markdown. Include: # Title, ## Lesson Overview, ## Deep Dive, ### Code Example, and a 3-question Quiz.",
+            content: "You are a world-class AI Professor. Generate a structured course in Markdown: # Title, ## Overview, ## Deep Dive, ### Code Example, and a 3-question Quiz.",
           },
           {
             role: "user",
