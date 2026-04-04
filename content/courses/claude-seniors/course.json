@@ -1,0 +1,42 @@
+{
+  "slug": "claude-seniors",
+  "title": "Claude for Seniors",
+  "subtitle": "Learn Claude in the simplest way possible for daily help",
+  "level": "Beginner",
+  "duration_days": 3,
+  "price_aed": 0,
+  "modules": [
+    {
+      "title": "Getting Started",
+      "lessons": [
+        "What Claude does in simple words",
+        "How to ask clear questions",
+        "Reading and understanding answers"
+      ],
+      "quiz_topics": ["basic use"],
+      "mini_task": "Ask Claude to explain a topic simply"
+    },
+    {
+      "title": "Daily Help",
+      "lessons": [
+        "Writing simple messages",
+        "Getting advice step by step",
+        "Understanding long answers easily"
+      ],
+      "quiz_topics": ["daily use"],
+      "mini_task": "Use Claude to write a short message"
+    },
+    {
+      "title": "Confidence",
+      "lessons": [
+        "Trying again with better questions",
+        "Fixing unclear answers",
+        "Using Claude every day"
+      ],
+      "quiz_topics": ["confidence"],
+      "mini_task": "Use Claude twice in one day"
+    }
+  ],
+  "final_project": "Use Claude for 3 real-life tasks independently.",
+  "assets": []
+}
