@@ -55,7 +55,7 @@ button {
 }
 
 .header-inner {
-  min-height: 72px;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -166,7 +166,9 @@ h3 {
 
 .course-card h3 {
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #111827;
 }
 
 p {
@@ -207,6 +209,7 @@ p {
 
 .btn:active {
   transform: scale(0.95);
+  transition: transform 0.1s ease;
 }
 
 .btn-primary {
@@ -275,7 +278,7 @@ p {
 .course-grid,
 .pricing-grid {
   display: grid;
-  gap: 16px;
+  gap: 24px;
   grid-template-columns: 1fr;
 }
 
@@ -407,7 +410,6 @@ p {
 
 @media (min-width: 720px) {
   .value-grid,
-  .course-grid,
   .pricing-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -418,17 +420,29 @@ p {
   }
 }
 
-@media (min-width: 1040px) {
+@media (min-width: 768px) {
   .course-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
+@media (min-width: 1040px) {
+  .value-grid,
+  .pricing-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 640px) {
+  .site-header {
+    height: auto;
+  }
+
   .header-inner {
+    min-height: 64px;
+    padding: 10px 0;
     align-items: flex-start;
     flex-direction: column;
-    padding: 14px 0;
   }
 
   .site-nav {
@@ -482,7 +496,8 @@ p {
 .filter-buttons {
   display: flex;
   gap: 8px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
 }
 
 .filter-btn {
@@ -495,12 +510,17 @@ p {
   font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
-  transition: 0.15s ease;
+  transition: transform 0.1s ease, border-color 0.15s ease, color 0.15s ease;
+  flex-shrink: 0;
 }
 
 .filter-btn:hover {
   border-color: var(--accent);
   color: var(--accent);
+}
+
+.filter-btn:active {
+  transform: scale(0.95);
 }
 
 .filter-btn.active {

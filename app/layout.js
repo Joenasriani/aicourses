@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </head>
       <body>
-        <header className="site-header">
+        <header className="site-header h-16">
           <div className="container">
             <div className="header-inner">
               <a href="/" className="brand">
@@ -29,7 +29,9 @@ export default function RootLayout({ children }) {
             </div>
           </div>
         </header>
-        {children}
+        <div className="max-w-7xl mx-auto px-4">
+          {children}
+        </div>
       </body>
     </html>
   )

@@ -20,26 +20,28 @@ export default function AIProfessorPage() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 py-16 px-4">
-      <div className="max-w-3xl mx-auto">
+    <main style={{ background: "#ffffff", minHeight: "100vh", paddingTop: "2rem", paddingBottom: "4rem" }}>
+      <div className="container" style={{ maxWidth: "720px" }}>
         {/* Header */}
-        <div className="text-center mb-10">
-          <p className="text-indigo-400 text-sm font-semibold tracking-widest uppercase mb-2">
-            AI Professor
-          </p>
-          <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-3">
-            Your Personal AI Professor
-          </h1>
-          <p className="text-slate-400 text-lg max-w-xl mx-auto">
+        <div className="section-head center" style={{ marginBottom: "2rem" }}>
+          <p className="eyebrow">AI Professor</p>
+          <h1 style={{ fontSize: "clamp(1.8rem, 5vw, 3rem)" }}>Your Personal AI Professor</h1>
+          <p className="hero-text" style={{ textAlign: "center", marginTop: "0.5rem" }}>
             Enter a topic and difficulty level — get a full structured course instantly.
           </p>
         </div>
 
-        {/* Glass card form */}
-        <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl shadow-2xl p-8">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="space-y-2">
-              <label htmlFor="topic" className="block text-sm font-semibold text-slate-200">
+        {/* Form card */}
+        <div style={{
+          background: "#ffffff",
+          border: "1px solid #e5e7eb",
+          borderRadius: "12px",
+          boxShadow: "0 4px 16px rgba(0,0,0,0.08)",
+          padding: "2rem",
+        }}>
+          <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+            <div>
+              <label htmlFor="topic" style={{ display: "block", fontWeight: 600, marginBottom: "0.4rem", color: "#111827" }}>
                 Course Topic
               </label>
               <input
@@ -48,34 +50,37 @@ export default function AIProfessorPage() {
                 type="text"
                 required
                 placeholder="e.g. Machine Learning, Prompt Engineering…"
-                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+                className="search-input"
+                style={{ width: "100%", height: "48px" }}
               />
             </div>
 
-            <div className="space-y-2">
-              <label htmlFor="difficulty" className="block text-sm font-semibold text-slate-200">
+            <div>
+              <label htmlFor="difficulty" style={{ display: "block", fontWeight: 600, marginBottom: "0.4rem", color: "#111827" }}>
                 Difficulty
               </label>
               <select
                 id="difficulty"
                 name="difficulty"
                 defaultValue="Beginner"
-                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition appearance-none"
+                className="search-input"
+                style={{ width: "100%", height: "48px", cursor: "pointer" }}
               >
-                <option value="Beginner" className="bg-slate-800">Beginner</option>
-                <option value="Intermediate" className="bg-slate-800">Intermediate</option>
-                <option value="Advanced" className="bg-slate-800">Advanced</option>
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
               </select>
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-4 rounded-xl font-bold text-white text-lg bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 active:scale-95 shadow-lg hover:shadow-indigo-500/40 transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+              className="btn btn-primary full"
+              style={{ height: "52px", fontSize: "1rem", gap: "0.5rem", display: "flex", alignItems: "center", justifyContent: "center" }}
             >
               {loading ? (
                 <>
-                  <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <svg className="animate-spin" style={{ width: "1.25rem", height: "1.25rem" }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                   </svg>
@@ -88,9 +93,9 @@ export default function AIProfessorPage() {
 
         {/* Loading state */}
         {loading && (
-          <div className="mt-8 flex items-center justify-center gap-3">
-            <span className="inline-block w-4 h-4 rounded-full bg-indigo-400 animate-pulse" />
-            <p className="text-indigo-300 text-base font-medium animate-pulse">
+          <div style={{ marginTop: "2rem", display: "flex", alignItems: "center", gap: "0.75rem", justifyContent: "center" }}>
+            <span style={{ display: "inline-block", width: "1rem", height: "1rem", borderRadius: "50%", background: "var(--accent)", animation: "pulse 1.5s ease-in-out infinite" }} />
+            <p style={{ color: "var(--muted)", fontWeight: 500 }}>
               Professor is curating your custom curriculum...
             </p>
           </div>
@@ -98,9 +103,16 @@ export default function AIProfessorPage() {
 
         {/* Result */}
         {result && !loading && (
-          <div className="mt-10 animate-fade-slide-up">
-            <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl shadow-2xl p-8 overflow-x-auto">
-              <div className="prose prose-invert lg:prose-xl max-w-none">
+          <div style={{ marginTop: "2.5rem" }}>
+            <div style={{
+              background: "#ffffff",
+              border: "1px solid #e5e7eb",
+              borderRadius: "12px",
+              boxShadow: "0 4px 16px rgba(0,0,0,0.08)",
+              padding: "2rem",
+              overflowX: "auto",
+            }}>
+              <div className="prose lg:prose-xl" style={{ maxWidth: "none" }}>
                 <ReactMarkdown
                   components={{
                     code({ node, inline, className, children, ...props }) {
