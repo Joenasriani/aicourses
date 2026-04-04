@@ -1,0 +1,42 @@
+{
+  "slug": "chatgpt-start",
+  "title": "Getting Started with ChatGPT",
+  "subtitle": "Learn to use ChatGPT for real daily tasks in under 3 days",
+  "level": "Beginner",
+  "duration_days": 3,
+  "price_aed": 0,
+  "modules": [
+    {
+      "title": "Understanding ChatGPT",
+      "lessons": [
+        "What ChatGPT is and how it works",
+        "How to ask better questions",
+        "Common beginner mistakes"
+      ],
+      "quiz_topics": ["basic usage", "prompt clarity"],
+      "mini_task": "Ask ChatGPT to summarize a news article"
+    },
+    {
+      "title": "Using ChatGPT in Daily Life",
+      "lessons": [
+        "Writing emails",
+        "Planning tasks",
+        "Getting quick answers"
+      ],
+      "quiz_topics": ["use cases"],
+      "mini_task": "Generate a daily plan"
+    },
+    {
+      "title": "Practical Applications",
+      "lessons": [
+        "Content ideas",
+        "Problem solving",
+        "Learning new skills"
+      ],
+      "quiz_topics": ["real scenarios"],
+      "mini_task": "Create a small content idea"
+    }
+  ],
+  "final_project": "Use ChatGPT to plan and execute a small personal project",
+  "assets": []
+}
