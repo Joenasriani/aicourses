@@ -1,0 +1,18 @@
+{
+  "courses": [
+    {"slug":"chatgpt-start","title":"Getting Started with ChatGPT","price_aed":0,"level":"Beginner","days":3},
+    {"slug":"claude-start","title":"Getting Started with Claude","price_aed":0,"level":"Beginner","days":3},
+    {"slug":"gemini-start","title":"Getting Started with Gemini","price_aed":0,"level":"Beginner","days":3},
+    {"slug":"chatgpt-seniors","title":"ChatGPT for Seniors","price_aed":0,"level":"Beginner","days":3},
+    {"slug":"claude-seniors","title":"Claude for Seniors","price_aed":0,"level":"Beginner","days":3},
+    {"slug":"gemini-seniors","title":"Gemini for Seniors","price_aed":0,"level":"Beginner","days":3},
+    {"slug":"ai-seniors-daily","title":"AI for Seniors Everyday Tasks","price_aed":0,"level":"Beginner","days":3},
+
+    {"slug":"build-ai-no-code","title":"Build AI Apps Without Coding","price_aed":399,"level":"Intermediate","days":5},
+    {"slug":"design-web-ai","title":"Design Websites with AI","price_aed":399,"level":"Intermediate","days":5},
+    {"slug":"automate-business-ai","title":"Automate Your Business with AI","price_aed":399,"level":"Intermediate","days":5},
+    {"slug":"ai-workflows","title":"AI Workflow Automation","price_aed":399,"level":"Intermediate","days":5},
+    {"slug":"figma-to-ai","title":"Figma to Website with AI","price_aed":399,"level":"Intermediate","days":5},
+    {"slug":"ai-content-systems","title":"AI Content Creation Systems","price_aed":399,"level":"Intermediate","days":5}
+  ]
+}
