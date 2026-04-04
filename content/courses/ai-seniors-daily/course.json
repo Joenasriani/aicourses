@@ -1,0 +1,42 @@
+{
+  "slug": "ai-seniors-daily",
+  "title": "AI Daily Use for Seniors",
+  "subtitle": "Use AI every day for simple life improvements",
+  "level": "Beginner",
+  "duration_days": 3,
+  "price_aed": 0,
+  "modules": [
+    {
+      "title": "Everyday AI Basics",
+      "lessons": [
+        "What AI can do for daily life",
+        "Simple questions for simple results",
+        "Understanding answers clearly"
+      ],
+      "quiz_topics": ["basics"],
+      "mini_task": "Ask AI to help with a daily question"
+    },
+    {
+      "title": "Practical Use",
+      "lessons": [
+        "Planning your day",
+        "Writing messages and reminders",
+        "Getting simple advice"
+      ],
+      "quiz_topics": ["practical use"],
+      "mini_task": "Use AI to plan your next day"
+    },
+    {
+      "title": "Confidence and Routine",
+      "lessons": [
+        "Using AI daily",
+        "Trying again when confused",
+        "Building a simple habit"
+      ],
+      "quiz_topics": ["routine"],
+      "mini_task": "Use AI 3 times in one day"
+    }
+  ],
+  "final_project": "Use AI daily for 3 consecutive days.",
+  "assets": []
+}
