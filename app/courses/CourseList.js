@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 
 const FILTERS = ['All', 'AI', 'Development', 'Marketing']
 
@@ -14,12 +14,15 @@ export default function CourseList({ courses }) {
   const [activeFilter, setActiveFilter] = useState('All')
   const [search, setSearch] = useState('')
 
-  const filtered = courses.filter((course) => {
-    const matchesSearch =
-      search.trim() === '' ||
-      `${course.title} ${course.subtitle}`.toLowerCase().includes(search.toLowerCase())
-    return matchesFilter(course, activeFilter) && matchesSearch
-  })
+  const filtered = useMemo(() => {
+    const q = search.trim().toLowerCase()
+    return courses.filter((course) => {
+      const matchesSearch =
+        q === '' ||
+        `${course.title} ${course.subtitle}`.toLowerCase().includes(q)
+      return matchesFilter(course, activeFilter) && matchesSearch
+    })
+  }, [courses, activeFilter, search])
 
   return (
     <>
@@ -46,10 +49,10 @@ export default function CourseList({ courses }) {
 
       <div className="course-grid">
         {filtered.length === 0 ? (
-          <p style={{ color: 'var(--muted)', gridColumn: '1 / -1' }}>No courses match your search.</p>
+          <p className="no-results">No courses match your search.</p>
         ) : (
           filtered.map((course) => (
-            <a key={course.slug} href={`/courses/${course.slug}`} className="course-card">
+            <a key={course.slug} href={`/courses/${encodeURIComponent(course.slug)}`} className="course-card">
               <div className="course-card-top">
                 <span className="pill">{course.level}</span>
                 {course.price_aed === 0 && <span className="pill pill-muted">Free</span>}

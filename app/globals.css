@@ -450,3 +450,8 @@ p {
   border-color: var(--accent);
   color: #ffffff;
 }
+
+.no-results {
+  color: var(--muted);
+  grid-column: 1 / -1;
+}
