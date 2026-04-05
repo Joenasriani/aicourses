@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import CourseCard from '../components/CourseCard'
 
 function getCourses() {
   const base = path.join(process.cwd(), 'content/courses')
@@ -12,6 +13,18 @@ function getCourses() {
     return { slug, ...data }
   }).filter(Boolean)
 }
+
+const TRUST_STATS = [
+  { value: '500+', label: 'Students' },
+  { value: '15+', label: 'AI Courses' },
+  { value: '4.9/5', label: 'Rating' },
+]
+
+const EASY_WAY = [
+  { icon: '⚡', title: 'Short Lessons', desc: '5 mins/day keeps the learning real and sustainable.' },
+  { icon: '🤖', title: 'AI-Powered Quizzes', desc: 'Personalised questions that adapt to your progress.' },
+  { icon: '🏆', title: 'Practical Challenges', desc: 'Finish every course with a real-world final project.' },
+]
 
 export default function Home() {
   const courses = getCourses()
@@ -42,6 +55,38 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Trust bar */}
+      <section className="trust-bar">
+        <div className="container">
+          <div className="trust-stats">
+            {TRUST_STATS.map((s) => (
+              <div key={s.label} className="trust-stat">
+                <span className="trust-stat-value">{s.value}</span>
+                <span className="trust-stat-label">{s.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* The Easy Way */}
+      <section className="section easy-way-section">
+        <div className="container">
+          <div className="section-head center">
+            <h2>The Easy Way to Learn AI</h2>
+          </div>
+          <div className="easy-way-grid">
+            {EASY_WAY.map((item) => (
+              <div key={item.title} className="easy-way-card">
+                <span className="easy-way-icon">{item.icon}</span>
+                <h3>{item.title}</h3>
+                <p className="hero-text">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="section">
         <div className="container">
           <div className="section-head">
@@ -71,19 +116,7 @@ export default function Home() {
           </div>
           <div className="course-grid">
             {featured.map((course) => (
-              <a key={course.slug} href={`/courses/${course.slug}`} className="course-card">
-                <div className="course-card-top">
-                  <span className="pill">{course.level}</span>
-                  {course.price_aed === 0 && <span className="pill pill-muted">Free</span>}
-                </div>
-                <h3>{course.title}</h3>
-                <p className="hero-text">{course.subtitle}</p>
-                <div className="course-meta">
-                  <span>{course.duration_days} days</span>
-                  <span>{course.modules?.length} modules</span>
-                </div>
-                <span className="course-cta">Learn more →</span>
-              </a>
+              <CourseCard key={course.slug} course={course} />
             ))}
           </div>
         </div>
