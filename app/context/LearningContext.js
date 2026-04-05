@@ -158,6 +158,8 @@ export function LearningProvider({ children }) {
     for (let di = 0; di < totalDays; di++) {
       const entry = state.quizAttempts[`${courseSlug}:${di}`]
       if (entry?.passed) {
+        // Each failure deducts 20 pts (first failure → 80, second → 60 …).
+        // Floor at 20 so persistent learners always earn at least some credit.
         scoreSum += Math.max(20, 100 - entry.failures * 20)
       }
     }

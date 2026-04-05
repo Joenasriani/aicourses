@@ -73,7 +73,12 @@ export default function QuizGate({
     return () => clearTimeout(mascotTimerRef.current)
   }, [])
 
-  // Load (or set) questions on mount
+  // Load (or set) questions on mount only.
+  // Dependencies are intentionally omitted: the effect must run exactly once when
+  // the quiz first appears. Re-running on prop changes would reset a quiz already
+  // in progress. `lessonContent`, `dayTitle`, `staticQuestions`, `courseSlug` and
+  // `dayIndex` are all stable for the lifetime of a single QuizGate instance.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     let cancelled = false
 
@@ -121,7 +126,7 @@ export default function QuizGate({
     return () => {
       cancelled = true
     }
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps — intentional mount-only // eslint-disable-line react-hooks/exhaustive-deps
 
   // ── Helpers ──────────────────────────────────────────────────────────────
 
