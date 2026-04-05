@@ -27,7 +27,7 @@ export default function Home() {
                 Learn anything the easy way.
               </h1>
               <p className="text-xl text-slate-500 max-w-2xl mt-4">
-                Interactive, 5-day AI courses designed for practical results. No fluff, just progress.
+                Short, interactive, 5-day AI courses designed for real-world results. No fluff, just progress.
               </p>
               <div className="hero-actions">
                 <a

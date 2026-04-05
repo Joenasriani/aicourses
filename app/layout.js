@@ -16,12 +16,15 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <Providers>
-          <header className="site-header">
+          <header
+            className="sticky top-0 z-50 h-16 border-b bg-white/70 backdrop-blur-md"
+            style={{ borderColor: "#F1F5F9" }}
+          >
             <div className="container">
               <div className="header-inner">
                 <a href="/" className="brand">
-                  <span className="brand-title">AI Academy</span>
-                  <span className="brand-subtitle">by Apex Innovate</span>
+                  <span className="text-xl font-bold leading-tight" style={{ color: "#111827" }}>AI Academy</span>
+                  <span className="text-[10px] uppercase tracking-widest text-slate-400">by Apex Innovate</span>
                 </a>
                 <nav className="site-nav">
                   <a href="/courses" className="nav-link">Courses</a>
