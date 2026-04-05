@@ -23,11 +23,19 @@ export default function Home() {
         <div className="container">
           <div className="hero-inner">
             <div>
-              <p className="eyebrow">Robomarket Academy</p>
-              <h1>Learn AI the<br />right way.</h1>
-              <p className="hero-text">Practical, structured courses that help you use AI tools in your real daily life — from beginners to seniors.</p>
+              <h1 className="text-6xl font-bold tracking-tighter leading-tight text-gray-900">
+                Learn anything the easy way.
+              </h1>
+              <p className="text-xl text-slate-500 max-w-2xl mt-4">
+                Interactive, 5-day AI courses designed for practical results. No fluff, just progress.
+              </p>
               <div className="hero-actions">
-                <a href="/courses" className="btn btn-primary">Browse Courses</a>
+                <a
+                  href="/courses"
+                  className="inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-semibold text-white shadow-sm transition active:scale-95 hover:opacity-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0066FF]/40 bg-[#0066FF]"
+                >
+                  Start Learning
+                </a>
               </div>
             </div>
           </div>

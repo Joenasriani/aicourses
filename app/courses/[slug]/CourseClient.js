@@ -22,7 +22,7 @@ function getDefaultQuiz(moduleTitle) {
       correctIndex: 0,
     },
     {
-      prompt: "What is the key benefit of learning with Robomarket Academy?",
+      prompt: "What is the key benefit of learning with AI Academy?",
       options: [
         "Expensive certifications",
         "Real, immediately applicable AI skills",
