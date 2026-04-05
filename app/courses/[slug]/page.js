@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import CourseClient from './CourseClient'
 
 export default function CoursePage({ params }) {
   const file = path.join(process.cwd(), 'content/courses', params.slug, 'course.json')
@@ -46,37 +47,13 @@ export default function CoursePage({ params }) {
 
       <section className="section-tight">
         <div className="container">
-          <div className="course-page">
-            <div>
-              <div className="section-head">
-                <h2>Course Modules</h2>
-              </div>
-              <div className="modules-list">
-                {data.modules.map((m, i) => (
-                  <div key={i} className="module-card">
-                    <h3>Module {i + 1}: {m.title}</h3>
-                    <ul className="lesson-list">
-                      {m.lessons.map((l, j) => (
-                        <li key={j}>{l}</li>
-                      ))}
-                    </ul>
-                    {m.mini_task && (
-                      <div className="module-footer">
-                        <p><strong>Mini Task:</strong> {m.mini_task}</p>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
+          {data.final_project && (
+            <div className="final-project" style={{ marginBottom: '24px' }}>
+              <h3>Final Project</h3>
+              <p className="hero-text">{data.final_project}</p>
             </div>
-
-            {data.final_project && (
-              <div className="final-project">
-                <h3>Final Project</h3>
-                <p className="hero-text">{data.final_project}</p>
-              </div>
-            )}
-          </div>
+          )}
+          <CourseClient course={{ slug: params.slug, ...data }} />
         </div>
       </section>
     </main>

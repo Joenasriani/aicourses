@@ -1,21 +1,24 @@
 "use client"
 
 import { useState } from "react"
-import ReactMarkdown from "react-markdown"
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism"
 import { generateCourse } from "../actions/ai-professor"
 
 export default function AIProfessorPage() {
-  const [result, setResult] = useState("")
+  const [result, setResult] = useState(null)
+  const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
 
   async function handleSubmit(e) {
     e.preventDefault()
     setLoading(true)
-    setResult("")
-    const content = await generateCourse(new FormData(e.target))
-    setResult(content)
+    setResult(null)
+    setError("")
+    const res = await generateCourse(new FormData(e.target))
+    if (res.ok) {
+      setResult(res.data)
+    } else {
+      setError(res.error)
+    }
     setLoading(false)
   }
 
@@ -91,7 +94,7 @@ export default function AIProfessorPage() {
           </form>
         </div>
 
-        {/* Loading state */}
+        {/* Loading indicator */}
         {loading && (
           <div style={{ marginTop: "2rem", display: "flex", alignItems: "center", gap: "0.75rem", justifyContent: "center" }}>
             <span style={{ display: "inline-block", width: "1rem", height: "1rem", borderRadius: "50%", background: "var(--accent)", animation: "pulse 1.5s ease-in-out infinite" }} />
@@ -101,43 +104,62 @@ export default function AIProfessorPage() {
           </div>
         )}
 
-        {/* Result */}
+        {/* Error */}
+        {error && (
+          <div style={{ marginTop: "1.5rem", padding: "1rem", background: "#fff1f2", border: "1px solid #fecdd3", borderRadius: "8px", color: "#be123c" }}>
+            {error}
+          </div>
+        )}
+
+        {/* Structured course result */}
         {result && !loading && (
-          <div style={{ marginTop: "2.5rem" }}>
-            <div style={{
-              background: "#ffffff",
-              border: "1px solid #e5e7eb",
-              borderRadius: "12px",
-              boxShadow: "0 4px 16px rgba(0,0,0,0.08)",
-              padding: "2rem",
-              overflowX: "auto",
-            }}>
-              <div className="prose lg:prose-xl" style={{ maxWidth: "none" }}>
-                <ReactMarkdown
-                  components={{
-                    code({ node, inline, className, children, ...props }) {
-                      const match = /language-(\w+)/.exec(className || "")
-                      return !inline && match ? (
-                        <SyntaxHighlighter
-                          style={vscDarkPlus}
-                          language={match[1]}
-                          PreTag="div"
-                          className="rounded-lg !mt-0 !mb-0"
-                          {...props}
-                        >
-                          {String(children).replace(/\n$/, "")}
-                        </SyntaxHighlighter>
-                      ) : (
-                        <code className={className} {...props}>
-                          {children}
-                        </code>
-                      )
-                    },
-                  }}
-                >
-                  {result}
-                </ReactMarkdown>
-              </div>
+          <div style={{ marginTop: "2.5rem", display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+            {/* Title */}
+            <div style={{ background: "#fff", border: "1px solid #e5e7eb", borderRadius: "12px", boxShadow: "0 4px 16px rgba(0,0,0,0.08)", padding: "2rem" }}>
+              <p className="eyebrow" style={{ marginBottom: "0.5rem" }}>Generated Course</p>
+              <h2 style={{ margin: 0 }}>{result.courseTitle}</h2>
+            </div>
+
+            {/* 5-Day Outline */}
+            <div style={{ background: "#fff", border: "1px solid #e5e7eb", borderRadius: "12px", boxShadow: "0 4px 16px rgba(0,0,0,0.08)", padding: "2rem" }}>
+              <h3 style={{ marginTop: 0, marginBottom: "1rem" }}>5-Day Outline</h3>
+              <ol style={{ paddingLeft: "1.25rem", margin: 0, display: "flex", flexDirection: "column", gap: "0.6rem" }}>
+                {result.fiveDayOutline.map((day, i) => (
+                  <li key={i} style={{ lineHeight: 1.6 }}>
+                    <strong>Day {i + 1}:</strong> {day}
+                  </li>
+                ))}
+              </ol>
+            </div>
+
+            {/* Quizzes */}
+            <div style={{ background: "#fff", border: "1px solid #e5e7eb", borderRadius: "12px", boxShadow: "0 4px 16px rgba(0,0,0,0.08)", padding: "2rem" }}>
+              <h3 style={{ marginTop: 0, marginBottom: "1rem" }}>Daily Quizzes</h3>
+              {Object.entries(result.quizzes).map(([day, questions]) => (
+                <div key={day} style={{ marginBottom: "1.5rem" }}>
+                  <p style={{ fontWeight: 600, marginBottom: "0.5rem" }}>Day {day}</p>
+                  <ol style={{ paddingLeft: "1.25rem", margin: 0, display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                    {questions.map((q, qi) => (
+                      <li key={qi}>
+                        <p style={{ margin: "0 0 0.4rem", lineHeight: 1.5 }}>{q.prompt}</p>
+                        <ul style={{ paddingLeft: "1.25rem", margin: 0 }}>
+                          {q.options.map((opt, oi) => (
+                            <li key={oi} style={{ color: oi === q.correctIndex ? "#0B5FFF" : "var(--muted)", fontWeight: oi === q.correctIndex ? 600 : 400 }}>
+                              {opt} {oi === q.correctIndex && "✓"}
+                            </li>
+                          ))}
+                        </ul>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              ))}
+            </div>
+
+            {/* Final Challenge */}
+            <div style={{ background: "#fff", border: "1px solid #e5e7eb", borderRadius: "12px", boxShadow: "0 4px 16px rgba(0,0,0,0.08)", padding: "2rem" }}>
+              <h3 style={{ marginTop: 0, marginBottom: "0.75rem" }}>Final Challenge</h3>
+              <p style={{ margin: 0, lineHeight: 1.7 }}>{result.finalChallenge}</p>
             </div>
           </div>
         )}
