@@ -2,8 +2,8 @@ import './globals.css'
 import Providers from './Providers'
 
 export const metadata = {
-  title: 'Robomarket Academy',
-  description: 'Learn AI through real, structured courses'
+  title: 'AI Academy',
+  description: 'Interactive, 5-day AI courses designed for practical results.'
 }
 
 export default function RootLayout({ children }) {
@@ -16,12 +16,12 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <Providers>
-          <header className="site-header h-16">
+          <header className="site-header">
             <div className="container">
               <div className="header-inner">
                 <a href="/" className="brand">
-                  <span className="brand-title">Robomarket Academy</span>
-                  <span className="brand-subtitle">by Robomarket</span>
+                  <span className="brand-title">AI Academy</span>
+                  <span className="brand-subtitle">by Apex Innovate</span>
                 </a>
                 <nav className="site-nav">
                   <a href="/courses" className="nav-link">Courses</a>
