@@ -4,8 +4,8 @@ import { motion } from 'framer-motion'
 
 const LEVEL_STYLES = {
   Beginner: {
-    bg: '#eff6ff',
-    color: '#1d4ed8',
+    bg: '#E0EDFF',
+    color: '#3B82F6',
     border: '#bfdbfe',
   },
   Advanced: {
