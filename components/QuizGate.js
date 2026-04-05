@@ -7,7 +7,7 @@ import Mascot from "@/components/Mascot"
 import { generateQuizQuestions } from "@/app/actions/quiz-engine"
 import { getReinforcementExplanation } from "@/app/actions/ai-assistant"
 
-/** Robomarket Blue — used for correct-answer highlight */
+/** Accent Blue — used for correct-answer highlight */
 const ROBOMARKET_BLUE = "#0B5FFF"
 
 /** Minimum correct answers required to pass */
