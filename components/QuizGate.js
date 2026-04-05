@@ -1,8 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { motion } from "framer-motion"
 import { useLearning } from "@/app/context/LearningContext"
+import Mascot from "@/components/Mascot"
 
 /** Robomarket Blue — used for correct-answer highlight */
 const ROBOMARKET_BLUE = "#0B5FFF"
@@ -24,11 +25,29 @@ export default function QuizGate({ courseSlug, dayIndex, questions, onPass }) {
   const [submitted, setSubmitted] = useState(false)
   // Index of the question whose option row should shake (wrong answer feedback)
   const [shakeQuestion, setShakeQuestion] = useState(null)
+  const [mascotState, setMascotState] = useState("idle")
+  const mascotTimerRef = useRef(null)
   const { markDayComplete } = useLearning()
+
+  // Clean up any pending mascot timer on unmount
+  useEffect(() => {
+    return () => clearTimeout(mascotTimerRef.current)
+  }, [])
+
+  function setMascotThenIdle(nextState, delay) {
+    clearTimeout(mascotTimerRef.current)
+    setMascotState(nextState)
+    mascotTimerRef.current = setTimeout(() => setMascotState("idle"), delay)
+  }
 
   function selectAnswer(qIndex, optIndex) {
     if (submitted) return
     setAnswers((prev) => ({ ...prev, [qIndex]: optIndex }))
+    if (optIndex === questions[qIndex].correctIndex) {
+      setMascotThenIdle("happy", 1200)
+    } else {
+      setMascotThenIdle("confused", 800)
+    }
   }
 
   function handleSubmit() {
@@ -38,12 +57,18 @@ export default function QuizGate({ courseSlug, dayIndex, questions, onPass }) {
     const firstWrong = questions.findIndex((q, i) => answers[i] !== q.correctIndex)
     if (firstWrong !== -1) {
       setShakeQuestion(firstWrong)
-      setTimeout(() => setShakeQuestion(null), 600)
+      clearTimeout(mascotTimerRef.current)
+      setMascotState("confused")
+      mascotTimerRef.current = setTimeout(() => {
+        setShakeQuestion(null)
+        setMascotState("idle")
+      }, 800)
       return
     }
 
     // All correct — mark day complete and award XP
     setSubmitted(true)
+    setMascotState("celebrate")
     markDayComplete(courseSlug, dayIndex, 50)
     onPass?.()
   }
@@ -117,6 +142,8 @@ export default function QuizGate({ courseSlug, dayIndex, questions, onPass }) {
           🎉 You passed! +50 XP earned. Next day unlocked!
         </div>
       )}
+
+      <Mascot state={mascotState} />
     </div>
   )
 }
