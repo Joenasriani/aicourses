@@ -13,6 +13,13 @@ import { createContext, useContext, useState, useEffect } from "react"
  *     [courseSlug]: {
  *       [dayIndex]: "locked" | "unlocked" | "completed"
  *     }
+ *   },
+ *   quizAttempts: {                        // Per-day quiz attempt history
+ *     ["courseSlug:dayIndex"]: {
+ *       attempts: number,                  // Total submit attempts
+ *       failures: number,                  // Number of failed attempts
+ *       passed: boolean                    // Whether the quiz has been passed
+ *     }
  *   }
  * }
  */
@@ -23,6 +30,7 @@ const defaultState = {
   xp: 0,
   completedCards: [],
   dayStatus: {},
+  quizAttempts: {},
 }
 
 const LearningContext = createContext(null)
@@ -103,6 +111,59 @@ export function LearningProvider({ children }) {
     return state.completedCards.filter((id) => id.startsWith(prefix)).length
   }
 
+  /**
+   * Record a quiz attempt (pass or fail) for a specific day.
+   * Persisted in state so failures survive page refreshes.
+   */
+  function recordQuizAttempt(courseSlug, dayIndex, passed) {
+    const key = `${courseSlug}:${dayIndex}`
+    setState((prev) => {
+      const existing = prev.quizAttempts[key] || { attempts: 0, failures: 0, passed: false }
+      return {
+        ...prev,
+        quizAttempts: {
+          ...prev.quizAttempts,
+          [key]: {
+            attempts: existing.attempts + 1,
+            failures: passed ? existing.failures : existing.failures + 1,
+            passed: existing.passed || passed,
+          },
+        },
+      }
+    })
+  }
+
+  /** Return the number of quiz failures for a specific day (0 if never attempted). */
+  function getQuizFailures(courseSlug, dayIndex) {
+    return state.quizAttempts[`${courseSlug}:${dayIndex}`]?.failures ?? 0
+  }
+
+  /**
+   * Calculate mastery score (0–100%) for a course.
+   *
+   * Formula: for each day in the course, the per-day score is:
+   *   - passed on 1st try  → 100 pts
+   *   - passed on 2nd try  →  80 pts  (1 failure)
+   *   - passed on 3rd try  →  60 pts  (2 failures)
+   *   - passed on 4th+ try →  min 20 pts
+   *   - not yet passed     →   0 pts
+   * masteryScore = (sum of per-day scores) / (totalDays × 100) × 100
+   *
+   * @param {string} courseSlug
+   * @param {number} totalDays  - Total number of days in the course
+   */
+  function getMasteryScore(courseSlug, totalDays) {
+    if (!totalDays) return 0
+    let scoreSum = 0
+    for (let di = 0; di < totalDays; di++) {
+      const entry = state.quizAttempts[`${courseSlug}:${di}`]
+      if (entry?.passed) {
+        scoreSum += Math.max(20, 100 - entry.failures * 20)
+      }
+    }
+    return Math.round((scoreSum / (totalDays * 100)) * 100)
+  }
+
   return (
     <LearningContext.Provider
       value={{
@@ -113,6 +174,9 @@ export function LearningProvider({ children }) {
         getDayStatus,
         isCardComplete,
         getCompletedCardCount,
+        recordQuizAttempt,
+        getQuizFailures,
+        getMasteryScore,
       }}
     >
       {children}

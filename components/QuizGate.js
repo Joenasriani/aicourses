@@ -4,35 +4,126 @@ import { useState, useEffect, useRef } from "react"
 import { motion } from "framer-motion"
 import { useLearning } from "@/app/context/LearningContext"
 import Mascot from "@/components/Mascot"
+import { generateQuizQuestions } from "@/app/actions/quiz-engine"
+import { getReinforcementExplanation } from "@/app/actions/ai-assistant"
 
 /** Robomarket Blue — used for correct-answer highlight */
 const ROBOMARKET_BLUE = "#0B5FFF"
 
-/** User must answer all questions correctly to pass */
+/** Minimum correct answers required to pass */
 const PASS_THRESHOLD = 3
+
+/** Failures before a reinforcement card is shown */
+const REINFORCE_AT = 3
+
+/** Module-level session cache: tracks used question prompts to avoid repeats */
+const _sessionPrompts = new Map()
+
+/** Human-readable labels for each question type */
+const TYPE_LABELS = {
+  multiple_choice: "Multiple Choice",
+  true_false: "True / False",
+  fix_the_prompt: "Fix the Prompt",
+}
 
 /**
  * QuizGate — presents a 3-question quiz that must be passed before the next
- * day unlocks. Integrates with LearningContext to persist day completion & XP.
+ * day unlocks. Integrates with LearningContext for persistence & mastery score.
  *
- * @param {string}   courseSlug  Course slug (for progress tracking)
- * @param {number}   dayIndex    Zero-based day index that was just completed
- * @param {Array}    questions   [{prompt, options: string[], correctIndex}]
- * @param {Function} onPass      Called after a successful quiz submission
+ * If `lessonContent` is provided the questions are generated dynamically via
+ * the quiz-engine server action; otherwise the `questions` prop is used as-is.
+ *
+ * @param {string}    courseSlug     Course slug (for progress tracking)
+ * @param {number}    dayIndex       Zero-based day index that was just completed
+ * @param {Array}     [questions]    Optional static questions (fallback)
+ * @param {string[]}  [lessonContent] Lesson texts used for dynamic generation
+ * @param {string}    [dayTitle]     Day/module title (used in generation prompts)
+ * @param {Function}  onPass         Called after a successful quiz submission
  */
-export default function QuizGate({ courseSlug, dayIndex, questions, onPass }) {
+export default function QuizGate({
+  courseSlug,
+  dayIndex,
+  questions: staticQuestions,
+  lessonContent,
+  dayTitle,
+  onPass,
+}) {
+  // ── Question loading ────────────────────────────────────────────────────
+  const [questionsStatus, setQuestionsStatus] = useState("loading") // "loading"|"ready"|"error"
+  const [currentQuestions, setCurrentQuestions] = useState([])
+  const [loadError, setLoadError] = useState("")
+
+  // ── Quiz interaction ────────────────────────────────────────────────────
   const [answers, setAnswers] = useState({})
   const [submitted, setSubmitted] = useState(false)
-  // Index of the question whose option row should shake (wrong answer feedback)
   const [shakeQuestion, setShakeQuestion] = useState(null)
   const [mascotState, setMascotState] = useState("idle")
   const mascotTimerRef = useRef(null)
-  const { markDayComplete } = useLearning()
 
-  // Clean up any pending mascot timer on unmount
+  // ── Reinforcement card ─────────────────────────────────────────────────
+  const [showReinforcement, setShowReinforcement] = useState(false)
+  const [reinforcementText, setReinforcementText] = useState("")
+  const [reinforcementLoading, setReinforcementLoading] = useState(false)
+  const [reinforcementRead, setReinforcementRead] = useState(false)
+
+  const { markDayComplete, recordQuizAttempt, getQuizFailures } = useLearning()
+
+  // Clean up mascot timer on unmount
   useEffect(() => {
     return () => clearTimeout(mascotTimerRef.current)
   }, [])
+
+  // Load (or set) questions on mount
+  useEffect(() => {
+    let cancelled = false
+
+    async function load() {
+      // If lesson content is provided, generate fresh questions
+      if (lessonContent && lessonContent.length > 0) {
+        const sessionKey = `${courseSlug}:${dayIndex}`
+        const used = _sessionPrompts.get(sessionKey) || []
+
+        const result = await generateQuizQuestions(lessonContent, dayTitle, used)
+
+        if (cancelled) return
+
+        if (result.ok) {
+          setCurrentQuestions(result.questions)
+          // Cache the prompts to avoid repetition within the session
+          const newPrompts = result.questions.map((q) => q.prompt)
+          _sessionPrompts.set(sessionKey, [...used, ...newPrompts])
+          setQuestionsStatus("ready")
+        } else {
+          // Fall back to static questions if generation fails
+          if (staticQuestions?.length) {
+            setCurrentQuestions(staticQuestions)
+            setQuestionsStatus("ready")
+          } else {
+            setLoadError(result.error)
+            setQuestionsStatus("error")
+          }
+        }
+        return
+      }
+
+      // Use static questions directly
+      if (staticQuestions?.length) {
+        setCurrentQuestions(staticQuestions)
+        setQuestionsStatus("ready")
+        return
+      }
+
+      setLoadError("No questions available for this quiz.")
+      setQuestionsStatus("error")
+    }
+
+    load()
+    return () => {
+      cancelled = true
+    }
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // ── Helpers ──────────────────────────────────────────────────────────────
 
   function setMascotThenIdle(nextState, delay) {
     clearTimeout(mascotTimerRef.current)
@@ -43,19 +134,32 @@ export default function QuizGate({ courseSlug, dayIndex, questions, onPass }) {
   function selectAnswer(qIndex, optIndex) {
     if (submitted) return
     setAnswers((prev) => ({ ...prev, [qIndex]: optIndex }))
-    if (optIndex === questions[qIndex].correctIndex) {
+    if (optIndex === currentQuestions[qIndex].correctIndex) {
       setMascotThenIdle("happy", 1200)
     } else {
       setMascotThenIdle("confused", 800)
     }
   }
 
-  function handleSubmit() {
-    if (Object.keys(answers).length < questions.length) return
+  async function loadReinforcement() {
+    setReinforcementLoading(true)
+    const lessonText = Array.isArray(lessonContent)
+      ? lessonContent.join("\n\n")
+      : lessonContent || ""
+    const result = await getReinforcementExplanation(lessonText, dayTitle)
+    setReinforcementText(
+      result.ok ? result.explanation : "Try re-reading the lesson cards above — focus on the key concepts before your next attempt.",
+    )
+    setReinforcementLoading(false)
+  }
 
-    // Find the first wrong answer
-    const firstWrong = questions.findIndex((q, i) => answers[i] !== q.correctIndex)
+  function handleSubmit() {
+    if (Object.keys(answers).length < currentQuestions.length) return
+
+    const firstWrong = currentQuestions.findIndex((q, i) => answers[i] !== q.correctIndex)
+
     if (firstWrong !== -1) {
+      // Wrong answer feedback
       setShakeQuestion(firstWrong)
       clearTimeout(mascotTimerRef.current)
       setMascotState("confused")
@@ -63,18 +167,110 @@ export default function QuizGate({ courseSlug, dayIndex, questions, onPass }) {
         setShakeQuestion(null)
         setMascotState("idle")
       }, 800)
+
+      // Record failure; check if reinforcement card should appear
+      const currentFailures = getQuizFailures(courseSlug, dayIndex)
+      recordQuizAttempt(courseSlug, dayIndex, false)
+      if (currentFailures + 1 >= REINFORCE_AT) {
+        setShowReinforcement(true)
+        loadReinforcement()
+      }
       return
     }
 
-    // All correct — mark day complete and award XP
+    // ── All correct ─────────────────────────────────────────────────────
     setSubmitted(true)
     setMascotState("celebrate")
     markDayComplete(courseSlug, dayIndex, 50)
+    recordQuizAttempt(courseSlug, dayIndex, true)
     onPass?.()
   }
 
-  const allAnswered = Object.keys(answers).length === questions.length
+  function handleRetryAfterReinforcement() {
+    setShowReinforcement(false)
+    setReinforcementRead(false)
+    setReinforcementText("")
+    setAnswers({})
+    setSubmitted(false)
+    setShakeQuestion(null)
+    setMascotState("idle")
+  }
 
+  // ── Render: loading questions ────────────────────────────────────────────
+  if (questionsStatus === "loading") {
+    return (
+      <div className="quiz-gate">
+        <div className="quiz-loading">
+          <span className="ai-spinner" aria-hidden="true" style={{ width: 28, height: 28, borderWidth: 3 }} />
+          <p>Generating your personalised quiz…</p>
+        </div>
+        <Mascot state="idle" />
+      </div>
+    )
+  }
+
+  // ── Render: error loading questions ─────────────────────────────────────
+  if (questionsStatus === "error") {
+    return (
+      <div className="quiz-gate">
+        <div className="quiz-gate-header">
+          <h3>Day {dayIndex + 1} Quiz</h3>
+          <p className="hero-text" style={{ color: "#b91c1c" }}>
+            {loadError}
+          </p>
+        </div>
+        <Mascot state="confused" />
+      </div>
+    )
+  }
+
+  // ── Render: reinforcement card ──────────────────────────────────────────
+  if (showReinforcement) {
+    return (
+      <div className="quiz-gate">
+        <div className="reinforcement-card">
+          <h4>🧠 Let&apos;s try a different angle!</h4>
+          <p>
+            You&apos;ve missed this quiz a few times — no worries! Here&apos;s another way to think about
+            it:
+          </p>
+          {reinforcementLoading ? (
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <span className="ai-spinner" aria-hidden="true" />
+              <span>Robo-Buddy is thinking…</span>
+            </div>
+          ) : (
+            <p style={{ fontStyle: "italic" }}>{reinforcementText}</p>
+          )}
+          {!reinforcementLoading && (
+            <label className="lesson-task" style={{ cursor: "pointer" }}>
+              <input
+                type="checkbox"
+                checked={reinforcementRead}
+                onChange={(e) => setReinforcementRead(e.target.checked)}
+                style={{ width: 18, height: 18, accentColor: "var(--accent)" }}
+              />
+              <span>I&apos;ve read and understood this explanation</span>
+            </label>
+          )}
+          {!reinforcementLoading && (
+            <button
+              className={`btn ${reinforcementRead ? "btn-primary" : "btn-locked"}`}
+              disabled={!reinforcementRead}
+              onClick={handleRetryAfterReinforcement}
+            >
+              Ready to retry →
+            </button>
+          )}
+        </div>
+        <Mascot state={mascotState} />
+      </div>
+    )
+  }
+
+  const allAnswered = Object.keys(answers).length === currentQuestions.length
+
+  // ── Render: quiz ─────────────────────────────────────────────────────────
   return (
     <div className="quiz-gate">
       <div className="quiz-gate-header">
@@ -84,13 +280,18 @@ export default function QuizGate({ courseSlug, dayIndex, questions, onPass }) {
         </p>
       </div>
 
-      {questions.map((q, qi) => (
+      {currentQuestions.map((q, qi) => (
         <motion.div
           key={qi}
           animate={shakeQuestion === qi ? { x: [-10, 10, -10, 10, -6, 6, 0] } : { x: 0 }}
           transition={{ duration: 0.5 }}
           className="quiz-question"
         >
+          {q.type && (
+            <span className="quiz-type-badge">
+              {TYPE_LABELS[q.type] ?? q.type}
+            </span>
+          )}
           <p className="quiz-prompt">
             <strong>Q{qi + 1}.</strong> {q.prompt}
           </p>
@@ -138,12 +339,11 @@ export default function QuizGate({ courseSlug, dayIndex, questions, onPass }) {
       )}
 
       {submitted && (
-        <div className="quiz-result">
-          🎉 You passed! +50 XP earned. Next day unlocked!
-        </div>
+        <div className="quiz-result">🎉 You passed! +50 XP earned. Next day unlocked!</div>
       )}
 
       <Mascot state={mascotState} />
     </div>
   )
 }
+

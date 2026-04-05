@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useLearning } from "@/app/context/LearningContext"
 import Mascot from "@/components/Mascot"
+import AIAssistant from "@/components/AIAssistant"
 
 /**
  * LessonCard — swipeable card deck for a single course day.
@@ -97,6 +98,8 @@ export default function LessonCard({ courseSlug, dayIndex, cards, onAllComplete 
 
           <h3 className="lesson-card-title">{card.title}</h3>
           <p className="lesson-card-body">{card.content}</p>
+
+          <AIAssistant lessonTitle={card.title} lessonContent={card.content} />
 
           {card.task && (
             <label className="lesson-task">
