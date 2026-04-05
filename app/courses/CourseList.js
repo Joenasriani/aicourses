@@ -1,6 +1,7 @@
 "use client"
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useTransition } from 'react'
+import CourseCard from '../../components/CourseCard'
 
 const FILTERS = ['All', 'AI', 'Development', 'Marketing']
 
@@ -10,9 +11,26 @@ function matchesFilter(course, filter) {
   return text.includes(filter.toLowerCase())
 }
 
+function SkeletonCard() {
+  return (
+    <div className="course-card skeleton-card" aria-hidden="true">
+      <div className="skeleton-badge" />
+      <div className="skeleton-line skeleton-title" />
+      <div className="skeleton-line skeleton-subtitle" />
+      <div className="skeleton-line skeleton-subtitle skeleton-short" />
+      <div className="skeleton-meta">
+        <div className="skeleton-line skeleton-meta-item" />
+        <div className="skeleton-line skeleton-meta-item" />
+      </div>
+      <div className="skeleton-line skeleton-cta" />
+    </div>
+  )
+}
+
 export default function CourseList({ courses }) {
   const [activeFilter, setActiveFilter] = useState('All')
   const [search, setSearch] = useState('')
+  const [isPending, startTransition] = useTransition()
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase()
@@ -23,6 +41,12 @@ export default function CourseList({ courses }) {
       return matchesFilter(course, activeFilter) && matchesSearch
     })
   }, [courses, activeFilter, search])
+
+  function handleFilter(f) {
+    startTransition(() => {
+      setActiveFilter(f)
+    })
+  }
 
   return (
     <>
@@ -38,8 +62,8 @@ export default function CourseList({ courses }) {
           {FILTERS.map((f) => (
             <button
               key={f}
-              className={`filter-btn${activeFilter === f ? ' active' : ''}`}
-              onClick={() => setActiveFilter(f)}
+              className={`filter-pill${activeFilter === f ? ' active' : ''}`}
+              onClick={() => handleFilter(f)}
             >
               {f}
             </button>
@@ -48,26 +72,17 @@ export default function CourseList({ courses }) {
       </div>
 
       <div className="course-grid">
-        {filtered.length === 0 ? (
+        {isPending ? (
+          Array.from({ length: 6 }).map((_, i) => <SkeletonCard key={i} />)
+        ) : filtered.length === 0 ? (
           <p className="no-results">No courses match your search.</p>
         ) : (
           filtered.map((course) => (
-            <a key={course.slug} href={`/courses/${encodeURIComponent(course.slug)}`} className="course-card">
-              <div className="course-card-top">
-                <span className="pill">{course.level}</span>
-                {course.price_aed === 0 && <span className="pill pill-muted">Free</span>}
-              </div>
-              <h3>{course.title}</h3>
-              <p className="hero-text">{course.subtitle}</p>
-              <div className="course-meta">
-                <span>{course.duration_days} days</span>
-                <span>{course.modules?.length} modules</span>
-              </div>
-              <span className="course-cta">Learn more →</span>
-            </a>
+            <CourseCard key={course.slug} course={course} />
           ))
         )}
       </div>
     </>
   )
 }
+
