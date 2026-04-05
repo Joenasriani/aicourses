@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
       <body>
         <Providers>
           <header
-            className="sticky top-0 z-50 h-16 border-b bg-white/70 backdrop-blur-md"
+            className="sticky top-0 z-50 min-h-[4rem] border-b bg-white/70 backdrop-blur-md"
             style={{ borderColor: "#F1F5F9" }}
           >
             <div className="container">
@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
               </div>
             </div>
           </header>
-          <div className="max-w-7xl mx-auto px-4">
+          <div className="max-w-7xl mx-auto px-4 mt-[clamp(4rem,10vh,7rem)]">
             {children}
           </div>
         </Providers>
