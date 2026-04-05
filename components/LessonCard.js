@@ -1,8 +1,9 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useLearning } from "@/app/context/LearningContext"
+import Mascot from "@/components/Mascot"
 
 /**
  * LessonCard — swipeable card deck for a single course day.
@@ -17,9 +18,20 @@ export default function LessonCard({ courseSlug, dayIndex, cards, onAllComplete 
   const [direction, setDirection] = useState(1)
   const [canAdvance, setCanAdvance] = useState(false)
   const [taskDone, setTaskDone] = useState(false)
+  const [mascotState, setMascotState] = useState("idle")
+  const celebrateTimerRef = useRef(null)
+  const taskTimerRef = useRef(null)
   const { markCardComplete, isCardComplete } = useLearning()
 
   const card = cards[currentIndex]
+
+  // Clean up any pending mascot timers when the component unmounts
+  useEffect(() => {
+    return () => {
+      clearTimeout(celebrateTimerRef.current)
+      clearTimeout(taskTimerRef.current)
+    }
+  }, [])
 
   // Reset unlock timer whenever the active card changes
   useEffect(() => {
@@ -42,7 +54,9 @@ export default function LessonCard({ courseSlug, dayIndex, cards, onAllComplete 
     markCardComplete(courseSlug, dayIndex, currentIndex)
     const next = currentIndex + dir
     if (next >= cards.length) {
-      onAllComplete?.()
+      // Show celebrate animation briefly before handing off to parent
+      setMascotState("celebrate")
+      celebrateTimerRef.current = setTimeout(() => onAllComplete?.(), 800)
       return
     }
     setDirection(dir)
@@ -91,12 +105,19 @@ export default function LessonCard({ courseSlug, dayIndex, cards, onAllComplete 
                 checked={taskDone}
                 onChange={(e) => {
                   setTaskDone(e.target.checked)
-                  if (e.target.checked) setCanAdvance(true)
+                  if (e.target.checked) {
+                    setCanAdvance(true)
+                    setMascotState("happy")
+                    clearTimeout(taskTimerRef.current)
+                    taskTimerRef.current = setTimeout(() => setMascotState("idle"), 1500)
+                  }
                 }}
               />
               <span>{card.task}</span>
             </label>
           )}
+
+          <Mascot state={mascotState} />
         </motion.div>
       </AnimatePresence>
 
