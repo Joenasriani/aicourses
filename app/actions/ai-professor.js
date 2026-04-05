@@ -7,12 +7,13 @@
  * {
  *   courseTitle:    string,
  *   fiveDayOutline: string[5],          // one sentence per day
+ *   practicalActionPrompts: string[5],  // one actionable prompt per day (e.g. "Go to ChatGPT and try…")
  *   quizzes: {                          // keyed 1-5 (day number)
  *     [1-5]: [
  *       { prompt: string, options: string[3], correctIndex: number }
  *     ]
  *   },
- *   finalChallenge: string
+ *   finalChallenge: string              // cross-day challenge combining all 5 days' skills
  * }
  *
  * On success returns { ok: true, data: <parsed object> }.
@@ -36,6 +37,13 @@ The JSON must match this exact schema:
 {
   "courseTitle": "<string>",
   "fiveDayOutline": ["<day1 summary>", "<day2 summary>", "<day3 summary>", "<day4 summary>", "<day5 summary>"],
+  "practicalActionPrompts": [
+    "<Day 1 action, e.g. 'Go to ChatGPT and try…'>",
+    "<Day 2 action>",
+    "<Day 3 action>",
+    "<Day 4 action>",
+    "<Day 5 action>"
+  ],
   "quizzes": {
     "1": [
       { "prompt": "<question>", "options": ["<A>", "<B>", "<C>"], "correctIndex": <0|1|2> },
@@ -47,13 +55,15 @@ The JSON must match this exact schema:
     "4": [ ...3 questions... ],
     "5": [ ...3 questions... ]
   },
-  "finalChallenge": "<string>"
+  "finalChallenge": "<A single capstone challenge that REQUIRES combining skills from ALL 5 days — explicitly reference each day's skill>"
 }
 
 Rules:
 - fiveDayOutline must have exactly 5 elements.
+- practicalActionPrompts must have exactly 5 elements, one per day. Each must start with an action verb (e.g. "Open", "Go to", "Try", "Create") and describe a hands-on exercise the learner can do immediately.
 - Each quiz day must have exactly 3 questions.
 - Each question must have exactly 3 options and a correctIndex of 0, 1, or 2.
+- finalChallenge must explicitly reference each of the 5 days and require learners to combine all the skills taught across the full course.
 - Output ONLY the JSON object. No code fences. No extra keys.`
 
   let response
@@ -117,6 +127,8 @@ Rules:
     typeof parsed.courseTitle !== "string" ||
     !Array.isArray(parsed.fiveDayOutline) ||
     parsed.fiveDayOutline.length !== 5 ||
+    !Array.isArray(parsed.practicalActionPrompts) ||
+    parsed.practicalActionPrompts.length !== 5 ||
     typeof parsed.quizzes !== "object" ||
     typeof parsed.finalChallenge !== "string"
   ) {

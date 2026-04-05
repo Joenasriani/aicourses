@@ -50,7 +50,7 @@ function getDefaultQuiz(moduleTitle) {
  * @param {{ slug: string, modules: Array, quizzes?: Object }} course
  */
 export default function CourseClient({ course }) {
-  const { getDayStatus, getCompletedCardCount } = useLearning()
+  const { getDayStatus, getCompletedCardCount, getMasteryScore } = useLearning()
   const [currentDay, setCurrentDay] = useState(0)
   const [showQuiz, setShowQuiz] = useState(false)
 
@@ -72,6 +72,8 @@ export default function CourseClient({ course }) {
     0
   )
 
+  const masteryScore = getMasteryScore(course.slug, days.length)
+
   const dayStatus = getDayStatus(course.slug, currentDay)
 
   // Use quizzes from AI-generated data (keyed 1-based) or fall back to defaults
@@ -91,9 +93,16 @@ export default function CourseClient({ course }) {
       <div className="course-progress">
         <div className="course-progress-label">
           <span>Course Progress</span>
-          <span>
-            {completedCount} / {totalCards} cards
-          </span>
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <span>
+              {completedCount} / {totalCards} cards
+            </span>
+            {masteryScore > 0 && (
+              <span className="mastery-score">
+                🏆 Mastery <span className="mastery-score-value">{masteryScore}%</span>
+              </span>
+            )}
+          </div>
         </div>
         <ProgressBar completed={completedCount} total={totalCards} />
       </div>
@@ -128,6 +137,8 @@ export default function CourseClient({ course }) {
           courseSlug={course.slug}
           dayIndex={currentDay}
           questions={quizQuestions}
+          lessonContent={cards.map((c) => c.content)}
+          dayTitle={day?.title}
           onPass={() => {
             setShowQuiz(false)
             // Advance to next unlocked day, if available
