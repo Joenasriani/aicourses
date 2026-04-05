@@ -17,8 +17,8 @@ export default function RootLayout({ children }) {
       <body>
         <Providers>
           <header
-            className="sticky top-0 z-50 min-h-[4rem] border-b bg-white/70 backdrop-blur-md"
-            style={{ borderColor: "#F1F5F9" }}
+            className="sticky top-0 z-50 min-h-[4rem] border-b bg-white"
+            style={{ borderColor: "#E6E8EC" }}
           >
             <div className="container">
               <div className="header-inner">
@@ -29,7 +29,6 @@ export default function RootLayout({ children }) {
                 <nav className="site-nav">
                   <a href="/courses" className="nav-link">Courses</a>
                   <a href="/ai-professor" className="nav-link">AI Professor</a>
-                  <a href="/courses" className="btn btn-primary btn-get-started">Get Started</a>
                 </nav>
               </div>
             </div>
