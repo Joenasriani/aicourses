@@ -1,16 +1,60 @@
 "use server"
 
+/**
+ * AI Professor — generates a fully structured course as strict JSON.
+ *
+ * Returned shape (parsed JSON object):
+ * {
+ *   courseTitle:    string,
+ *   fiveDayOutline: string[5],          // one sentence per day
+ *   quizzes: {                          // keyed 1-5 (day number)
+ *     [1-5]: [
+ *       { prompt: string, options: string[3], correctIndex: number }
+ *     ]
+ *   },
+ *   finalChallenge: string
+ * }
+ *
+ * On success returns { ok: true, data: <parsed object> }.
+ * On failure returns { ok: false, error: string }.
+ */
 export async function generateCourse(formData) {
   const topic = formData.get("topic")
   const difficulty = formData.get("difficulty")
 
   if (!process.env.OPENROUTER_API_KEY) {
-    return "Error: OPENROUTER_API_KEY is not configured."
+    return { ok: false, error: "OPENROUTER_API_KEY is not configured." }
   }
 
   if (!topic || !topic.trim()) {
-    return "Error: Please provide a course topic."
+    return { ok: false, error: "Please provide a course topic." }
   }
+
+  const systemPrompt = `You are a world-class AI Professor. Your ONLY output is a single valid JSON object — no markdown fences, no commentary, no trailing text.
+
+The JSON must match this exact schema:
+{
+  "courseTitle": "<string>",
+  "fiveDayOutline": ["<day1 summary>", "<day2 summary>", "<day3 summary>", "<day4 summary>", "<day5 summary>"],
+  "quizzes": {
+    "1": [
+      { "prompt": "<question>", "options": ["<A>", "<B>", "<C>"], "correctIndex": <0|1|2> },
+      { "prompt": "<question>", "options": ["<A>", "<B>", "<C>"], "correctIndex": <0|1|2> },
+      { "prompt": "<question>", "options": ["<A>", "<B>", "<C>"], "correctIndex": <0|1|2> }
+    ],
+    "2": [ ...3 questions... ],
+    "3": [ ...3 questions... ],
+    "4": [ ...3 questions... ],
+    "5": [ ...3 questions... ]
+  },
+  "finalChallenge": "<string>"
+}
+
+Rules:
+- fiveDayOutline must have exactly 5 elements.
+- Each quiz day must have exactly 3 questions.
+- Each question must have exactly 3 options and a correctIndex of 0, 1, or 2.
+- Output ONLY the JSON object. No code fences. No extra keys.`
 
   let response
   try {
@@ -23,19 +67,16 @@ export async function generateCourse(formData) {
       body: JSON.stringify({
         model: "openrouter/auto",
         messages: [
-          {
-            role: "system",
-            content: "You are a world-class AI Professor. Generate a structured course in Markdown: # Title, ## Overview, ## Deep Dive, ### Code Example, and a 3-question Quiz.",
-          },
+          { role: "system", content: systemPrompt },
           {
             role: "user",
-            content: `Create a ${difficulty} level course on the topic: "${topic}".`,
+            content: `Create a ${difficulty} level 5-day course on the topic: "${topic}".`,
           },
         ],
       }),
     })
   } catch (err) {
-    return `Error: Failed to reach the AI service. ${err.message}`
+    return { ok: false, error: `Failed to reach the AI service. ${err.message}` }
   }
 
   if (!response.ok) {
@@ -46,20 +87,41 @@ export async function generateCourse(formData) {
     } catch {
       detail = await response.text()
     }
-    return `Error: OpenRouter returned ${response.status}. ${detail}`
+    return { ok: false, error: `OpenRouter returned ${response.status}. ${detail}` }
   }
 
-  let data
+  let apiData
   try {
-    data = await response.json()
+    apiData = await response.json()
   } catch {
-    return "Error: Could not parse the AI response."
+    return { ok: false, error: "Could not parse the AI API response." }
   }
 
-  const content = data?.choices?.[0]?.message?.content
-  if (!content) {
-    return "Error: No content returned from the AI."
+  const raw = apiData?.choices?.[0]?.message?.content
+  if (!raw) {
+    return { ok: false, error: "No content returned from the AI." }
   }
 
-  return content
+  // Strip optional markdown fences the model may include despite instructions
+  const cleaned = raw.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "").trim()
+
+  let parsed
+  try {
+    parsed = JSON.parse(cleaned)
+  } catch {
+    return { ok: false, error: `AI response was not valid JSON. Raw output: ${raw.slice(0, 300)}` }
+  }
+
+  // Validate required top-level fields
+  if (
+    typeof parsed.courseTitle !== "string" ||
+    !Array.isArray(parsed.fiveDayOutline) ||
+    parsed.fiveDayOutline.length !== 5 ||
+    typeof parsed.quizzes !== "object" ||
+    typeof parsed.finalChallenge !== "string"
+  ) {
+    return { ok: false, error: "AI returned JSON with an unexpected structure." }
+  }
+
+  return { ok: true, data: parsed }
 }
