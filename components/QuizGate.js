@@ -8,7 +8,7 @@ import { generateQuizQuestions } from "@/app/actions/quiz-engine"
 import { getReinforcementExplanation } from "@/app/actions/ai-assistant"
 
 /** Accent Blue — used for correct-answer highlight */
-const ROBOMARKET_BLUE = "#0B5FFF"
+const ACCENT_BLUE = "#0B5FFF"
 
 /** Minimum correct answers required to pass */
 const PASS_THRESHOLD = 3
@@ -319,7 +319,7 @@ export default function QuizGate({
                     .join(" ")}
                   style={
                     isCorrect
-                      ? { background: ROBOMARKET_BLUE, color: "#fff", borderColor: ROBOMARKET_BLUE }
+                      ? { background: ACCENT_BLUE, color: "#fff", borderColor: ACCENT_BLUE }
                       : undefined
                   }
                   onClick={() => selectAnswer(qi, oi)}
