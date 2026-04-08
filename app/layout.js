@@ -33,9 +33,7 @@ export default function RootLayout({ children }) {
               </div>
             </div>
           </header>
-          <div className="max-w-7xl mx-auto px-4 mt-[clamp(4rem,10vh,7rem)]">
-            {children}
-          </div>
+          {children}
         </Providers>
       </body>
     </html>
