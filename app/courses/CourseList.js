@@ -3,11 +3,12 @@
 import { useState, useMemo, useTransition } from 'react'
 import CourseCard from '../../components/CourseCard'
 
-const FILTERS = ['All', 'AI', 'Development', 'Marketing']
+const FILTERS = ['All', 'Beginner', 'Intermediate', 'Seniors', 'Free']
 
 function matchesFilter(course, filter) {
   if (filter === 'All') return true
-  const text = `${course.title} ${course.subtitle} ${course.slug}`.toLowerCase()
+  if (filter === 'Free') return course.price_aed === 0
+  const text = `${course.title} ${course.subtitle} ${course.slug} ${course.level}`.toLowerCase()
   return text.includes(filter.toLowerCase())
 }
 

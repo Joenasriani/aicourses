@@ -1,5 +1,7 @@
 import './globals.css'
 import Providers from './Providers'
+import Footer from '@/components/Footer'
+import XPBadge from '@/components/XPBadge'
 
 export const metadata = {
   title: 'AI Academy',
@@ -29,11 +31,13 @@ export default function RootLayout({ children }) {
                 <nav className="site-nav">
                   <a href="/courses" className="nav-link">Courses</a>
                   <a href="/ai-professor" className="nav-link">AI Professor</a>
+                  <XPBadge />
                 </nav>
               </div>
             </div>
           </header>
           {children}
+          <Footer />
         </Providers>
       </body>
     </html>
