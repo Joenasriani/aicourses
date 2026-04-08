@@ -1,0 +1,82 @@
+{
+  "slug": "figma-to-ai",
+  "title": "Figma to Website with AI",
+  "subtitle": "Transform your Figma designs into fully functional websites using AI coding tools.",
+  "level": "Intermediate",
+  "duration_days": 5,
+  "price_aed": 399,
+  "modules": [
+    {
+      "title": "Figma Design-to-Code Overview",
+      "lessons": [
+        "Figma is the industry-standard design tool for creating website and app mockups, and the journey from a Figma file to a live website has been dramatically accelerated by AI coding tools in the last two years. Traditionally, a designer would hand off a Figma file to a developer who would manually write HTML, CSS, and JavaScript to recreate every element \u2014 a process that could take days or weeks for a complex design. Today, tools like Cursor (an AI-powered code editor), GitHub Copilot, and specialised services like Builder.io can analyse a Figma design and generate a substantial portion of the corresponding code automatically, reducing development time by 40-70% for experienced teams and making the process accessible to motivated designers who want to ship their own work.",
+        "Before exporting or converting any Figma design, it needs to be organised and structured in a way that AI tools can parse effectively. Every element should be named descriptively in the Layers panel \u2014 not 'Rectangle 1' but 'hero-background', not 'Frame 3' but 'navigation-bar'. Components should be used consistently throughout the design: if you have a button style, it should be a Figma Component with variants, not a collection of individually styled frames. Auto Layout should be applied to all container frames so that the design's spacing and alignment logic is explicit. A well-organised Figma file produces significantly better AI-generated code than an unstructured one, because the AI uses the layer names and component relationships as clues about the intended structure of the HTML.",
+        "The design-to-code workflow has several distinct stages, each with different tool requirements. The first stage is design inspection \u2014 understanding exactly what CSS properties each element needs, using Figma's Dev Mode or the Inspect panel. The second stage is code generation \u2014 using an AI tool to produce the initial HTML and CSS. The third stage is refinement \u2014 editing the generated code manually or with AI assistance to fix any issues and add interactivity. The fourth stage is responsiveness \u2014 ensuring the layout works correctly at mobile, tablet, and desktop sizes. The fifth stage is deployment \u2014 publishing the finished code to a hosting service. Each stage benefits from different AI tools, and understanding this pipeline before starting will prevent the common mistake of trying to use one tool for everything."
+      ],
+      "quiz_topics": [
+        "design-to-code pipeline",
+        "Figma organisation",
+        "AI coding tools overview"
+      ],
+      "mini_task": "Open an existing Figma file you have, or create a simple 3-section landing page design (hero section, features section, contact section). Audit your layer names: rename every layer to be descriptive and semantic. Apply Auto Layout to at least 3 container frames. Then open the Inspect panel for 5 different elements and note the exact CSS values Figma shows for font-size, color, padding, and border-radius. These values are exactly what a developer (or AI) needs to recreate your design in code."
+    },
+    {
+      "title": "Exporting Figma to HTML and CSS with AI",
+      "lessons": [
+        "Builder.io's Figma plugin is one of the most capable tools for converting Figma designs directly to HTML and CSS. Install the plugin from the Figma Community, select a frame in your design, and Builder.io will generate responsive HTML and CSS code that you can copy and paste into any project or export as files. The output is not perfect \u2014 it requires review and cleanup \u2014 but it handles the mechanical work of translating visual properties into code, which is the most time-consuming part of the process. Builder.io also has a 'Generate React component' option that produces component-based code suitable for modern React applications rather than simple static HTML.",
+        "Anima is another Figma-to-code plugin that produces HTML, CSS, and React code from Figma designs and has a particularly strong track record for producing clean, production-quality output. After exporting via Anima, you download a zip file containing the complete project structure, open it in your code editor, and use an AI tool like Cursor or GitHub Copilot to clean up and extend the generated code. The combination of Anima for initial export and Cursor for refinement is a professional workflow used by many design-to-code teams. Anima's free tier allows exports of up to 3 screens per month, which is sufficient for learning and small projects.",
+        "After generating initial code from any Figma export tool, there are predictable issues that almost always need manual correction. Absolute positioning is the most common problem \u2014 many export tools position elements using fixed pixel coordinates rather than flexible CSS layout techniques like Flexbox or Grid, which means the design breaks when the browser window is resized. Font rendering differences between Figma and browsers can cause text to appear slightly different in size or weight. Custom icons exported as SVG sometimes have incorrect viewBox dimensions. Use Cursor or ChatGPT with the code pasted in to identify and fix these issues: paste your HTML and CSS and ask 'Review this code and identify any issues that would cause layout problems on different screen sizes.'"
+      ],
+      "quiz_topics": [
+        "Builder.io plugin",
+        "Anima export",
+        "common export issues"
+      ],
+      "mini_task": "Install the Builder.io plugin in Figma (search 'Builder.io' in the Figma Community plugins panel). Select your hero section frame and run the plugin. Copy the generated HTML and CSS. Open a new file in VS Code (or any text editor), paste the code, and open the HTML file in a browser. Compare it to your Figma design and list 3 specific differences \u2014 elements that look different from the original. Note which differences are minor (colour slightly off) and which are structural (layout broken)."
+    },
+    {
+      "title": "Using Cursor and GitHub Copilot for Web Development",
+      "lessons": [
+        "Cursor is an AI-powered code editor built on the foundation of VS Code, meaning it has all the features you already know from VS Code plus a deeply integrated AI assistant that can read, write, explain, and refactor your entire codebase with full context. Unlike GitHub Copilot, which primarily suggests completions for the code you are currently typing, Cursor can answer questions about your project ('Why is this div overflowing?'), make targeted edits based on natural language instructions ('Change all the button hover states to use the brand blue colour'), and refactor entire files or multiple files at once. For design-to-code work, Cursor's ability to see the full HTML and CSS context makes it dramatically more useful than generic AI chat tools for debugging layout issues.",
+        "GitHub Copilot is integrated directly into VS Code and is particularly powerful for writing new code from scratch rather than editing existing generated code. When you have your exported HTML structure and want to add interactivity \u2014 a mobile hamburger menu, a smooth scroll animation, a form submission handler \u2014 describing what you want in a comment and letting Copilot write the JavaScript is significantly faster than writing it manually or googling for a tutorial. Copilot's suggestions are context-aware: it reads the surrounding code and produces suggestions that match your existing naming conventions, code style, and library choices. It is best thought of as an extremely fast autocomplete that understands programming intent, not just syntax.",
+        "The most effective workflow for using AI coding tools on Figma exports is to work incrementally: fix one section at a time, starting with the navigation and hero, then working down the page. For each section, use Cursor to compare your code to what the design calls for by describing the design element in natural language: 'The hero section should have a full-width background image, a centred headline in white at 64px, and a CTA button in orange below it. Look at my current hero section CSS and tell me what changes are needed to match this description.' This prompt-driven debugging approach is much faster than trying to understand the generated CSS manually and is accessible to people without deep CSS expertise."
+      ],
+      "quiz_topics": [
+        "Cursor vs GitHub Copilot",
+        "AI-assisted debugging",
+        "incremental workflow"
+      ],
+      "mini_task": "Download and install Cursor (cursor.sh) for free. Open the HTML and CSS files you generated from your Figma export. Click the Cursor AI chat button and paste this message: 'I have exported this HTML and CSS from a Figma design. Please review the code and tell me: 1) Are there any absolute positioning issues that will break on mobile? 2) Are there any missing CSS resets or font imports? 3) What are the 3 most important improvements to make before this is production-ready?' Review Cursor's analysis and implement its top suggestion."
+    },
+    {
+      "title": "Making Designs Responsive",
+      "lessons": [
+        "Responsiveness means your website looks and functions correctly at every screen size \u2014 from a 320px wide older smartphone to a 2560px wide desktop monitor. The foundation of responsive web design is CSS media queries, which allow you to apply different styles at different screen widths. The most common breakpoints used in modern web development are 375px (mobile), 768px (tablet), and 1280px (desktop). AI tools can help you add responsiveness to generated code: paste your CSS into Cursor and ask 'Add responsive CSS for mobile (375px), tablet (768px), and desktop (1280px). On mobile, the two-column feature grid should stack to a single column, and the navigation links should be hidden in favour of a hamburger menu.'",
+        "Flexbox and CSS Grid are the two layout systems that make responsive design manageable, and understanding the difference between them is essential for fixing responsiveness issues in AI-generated code. Flexbox is a one-dimensional system \u2014 it distributes space along a single row or column \u2014 and is ideal for navigation bars, button groups, and card rows. CSS Grid is a two-dimensional system \u2014 it places elements in rows and columns simultaneously \u2014 and is ideal for page layouts, image galleries, and dashboard grids. When AI-generated code uses absolute positioning or fixed pixel widths instead of these systems, replacing them with Flexbox or Grid using Cursor's assistance is the correct fix. Ask Cursor: 'Replace the absolute positioning in this nav with Flexbox so it is responsive.'",
+        "Testing responsiveness requires checking your design on actual devices, not just browser developer tools. Browser DevTools (press F12, then click the device icon) simulate different screen sizes and are useful for quick checks, but they do not perfectly replicate how real mobile browsers render pages \u2014 font sizes, tap targets, and scroll behaviour can all differ. Use BrowserStack (free trial) or simply open your site on an actual iPhone and an Android phone. The most common responsiveness issues found only on real devices are: text that is too small to read without zooming, interactive elements that are too small or too close together to tap accurately, and horizontal scrolling caused by elements that overflow the screen width."
+      ],
+      "quiz_topics": [
+        "CSS media queries",
+        "Flexbox vs Grid",
+        "real device testing"
+      ],
+      "mini_task": "Open your website in your browser and press F12 to open DevTools. Click the device icon to enter responsive mode. Switch between these screen sizes and note what breaks at each: 375px (iPhone), 768px (iPad), 1280px (laptop). Take a screenshot of the worst-looking breakpoint. Then paste your CSS into Cursor and describe the specific problem: 'At 375px width, the hero text is overflowing the container and the two-column layout is not stacking. Please add the CSS to fix both issues.' Apply the fix and retest."
+    },
+    {
+      "title": "Deploying to Vercel or Netlify",
+      "lessons": [
+        "Vercel and Netlify are the two leading platforms for deploying modern websites \u2014 both offer free tiers that are more than sufficient for personal projects, portfolios, and small business sites. Deploying to either platform takes less than 5 minutes once your code is in a GitHub repository: you connect your GitHub account, select your repository, and the platform automatically builds and deploys your site every time you push a code change. Vercel is particularly optimised for Next.js (a popular React framework) but works excellently with plain HTML, CSS, and JavaScript. Netlify is similarly versatile and has a particularly intuitive drag-and-drop deploy option \u2014 you can literally drag your project folder into the Netlify dashboard and it will be live within seconds.",
+        "Setting up a custom domain for your deployed site takes about 20 minutes and transforms it from a generic URL like mysite.vercel.app into a professional address like yourbusiness.com. Both Vercel and Netlify have detailed domain setup instructions in their dashboards \u2014 you purchase a domain from a registrar like Namecheap or Google Domains (typically 8-50 AED per year for a .com), then update the DNS settings to point to Vercel or Netlify's servers using the CNAME and A record values they provide. SSL (the 'https' secure connection) is applied automatically and for free by both platforms. Allow up to 48 hours for DNS changes to propagate globally, though it often happens within 1-2 hours.",
+        "Continuous deployment is the workflow where every code change you push to GitHub is automatically tested, built, and deployed to your live site \u2014 meaning your live site is always up to date with your latest code without any manual deployment steps. Both Vercel and Netlify enable this by default when you connect your GitHub repository. This workflow is powerful because it allows you to use AI tools to make small improvements, commit the changes, and see them live on your actual domain within about 30 seconds. For design iteration, this rapid feedback loop \u2014 design change, AI code adjustment, commit, live preview \u2014 is one of the most efficient ways to refine a website to exactly the right state."
+      ],
+      "quiz_topics": [
+        "Vercel vs Netlify",
+        "custom domain setup",
+        "continuous deployment"
+      ],
+      "mini_task": "Create a free account on Vercel (vercel.com) or Netlify (netlify.com). If you do not have a GitHub repository, create one and push your HTML and CSS files to it. Connect your GitHub account to Vercel or Netlify, select your repository, and complete the deployment. You should have a live URL within 2 minutes. Open the live URL on your phone and compare it to what you see in the browser DevTools simulator. Note any differences and use Cursor to fix them, then push the fix and watch the site redeploy automatically."
+    }
+  ],
+  "final_project": "Convert a real Figma design into a live, deployed website. The design can be one you have already created or one you design specifically for this project \u2014 it must have at least 3 distinct sections. Use the Figma export pipeline (Builder.io or Anima), refine the code using Cursor, add full responsiveness at mobile and tablet breakpoints, and deploy to Vercel or Netlify with a working custom domain or at minimum a live public URL. Share the URL and the original Figma file link together so others can compare the design to the final result.",
+  "assets": []
+}

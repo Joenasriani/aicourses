@@ -1,42 +1,54 @@
 {
   "slug": "gemini-seniors",
   "title": "Gemini for Seniors",
-  "subtitle": "Learn Gemini slowly and comfortably for everyday help",
+  "subtitle": "Use Google Gemini to stay informed, connected, and organised \u2014 simply and confidently.",
   "level": "Beginner",
   "duration_days": 3,
   "price_aed": 0,
   "modules": [
     {
-      "title": "Starting with Gemini",
+      "title": "Getting Started with Gemini",
       "lessons": [
-        "What Gemini is in plain language",
-        "How to ask one clear question at a time",
-        "How to read and use the answer"
+        "Google Gemini is an AI assistant made by Google \u2014 the same company behind the Search engine, Gmail, and YouTube. You can use it for free at gemini.google.com, and if you already have a Google account (which you need for Gmail or YouTube), you can sign in with the same details. Gemini works by reading the question or request you type and writing back a helpful, detailed response in plain English. Because it is made by Google, it has access to up-to-date information from the web, which means its answers about current events and local services tend to be more accurate than some other AI tools.",
+        "Gemini is designed to feel natural and conversational, so you do not need to use special language or commands \u2014 just write as you would in a text message or an email. If the response is too long or too complicated, you can simply type: \"Can you say that more simply?\" or \"Can you give me just the most important points?\" Gemini will not take offence at being asked to simplify or repeat itself \u2014 it is designed to adapt to whatever communication style works best for you. There is no wrong way to ask a question.",
+        "One of Gemini's most useful features for everyday life is its connection to Google Search, which means it can look things up as it answers you. This is especially helpful for finding local information \u2014 you can ask \"What are the opening hours of my local library in [your town]?\" or \"Is there a community centre near me that runs classes for over-60s?\" Gemini will search for this information and give you a summarised answer with relevant details. This makes it a more practical tool for daily life than AI assistants that can only answer based on their training data."
       ],
-      "quiz_topics": ["Gemini basics"],
-      "mini_task": "Ask Gemini one simple everyday question"
+      "quiz_topics": [
+        "Gemini basics",
+        "Google account",
+        "asking questions simply"
+      ],
+      "mini_task": "Go to gemini.google.com and sign in with your Google account. Type this in your own words: \"I am new to Gemini. I am [your age] years old. What are the 5 most useful things you could help me with in my everyday life?\" Read the answer and put a tick next to any that you think would genuinely be helpful to you."
     },
     {
-      "title": "Helpful Daily Tasks",
+      "title": "Gemini in Gmail for Everyday Communication",
       "lessons": [
-        "Writing short notes and messages",
-        "Getting recipe or travel help",
-        "Learning a hobby step by step"
+        "If you use Gmail for your email, Gemini can help you write and manage your messages directly inside your inbox \u2014 you do not need to go to a separate website. When writing a new email, look for the small pen icon or \"Help me write\" button inside the Gmail composition window. Click it, describe what you want to say in a few words, and Gemini will write the full email for you. This is especially helpful if you find writing formal emails stressful or if English is not your first language, because Gemini can produce polished, well-structured messages from even very simple instructions.",
+        "Gemini can also summarise long email conversations so you do not have to read every single message to understand what has been decided. If you open a long thread of emails, look for a Summarise button near the top of the conversation \u2014 Gemini will give you a short paragraph explaining the key points and any actions that were agreed. This is particularly useful for family group emails or correspondence with organisations where many messages have been exchanged over time and it is hard to remember where things stand.",
+        "You can also ask Gemini to help you respond to tricky emails \u2014 for example, if you receive a complaint, an awkward request, or a confusing letter, you can forward it to yourself in Gmail, open it, and use Gemini to suggest a reply. Just click \"Help me write\" in your reply box and explain: \"This person is asking me to pay a bill I think I already paid. Help me write a polite reply asking them to check their records.\" Gemini will draft the reply, and you can review, edit, and send it with confidence."
       ],
-      "quiz_topics": ["daily tasks"],
-      "mini_task": "Use Gemini to plan one small task for today"
+      "quiz_topics": [
+        "Gmail help me write",
+        "email summarisation",
+        "responding to tricky emails"
+      ],
+      "mini_task": "Open Gmail (mail.google.com) and start composing a new email. Look for the small sparkle or pen icon labelled \"Help me write\" \u2014 click it. Type: \"Write a friendly email to my friend [name] telling them I enjoyed our last visit and suggesting we meet for lunch next week.\" Let Gemini write the draft, personalise it with specific details, and send it \u2014 or save it as a draft if you prefer."
     },
     {
-      "title": "Using Gemini with Confidence",
+      "title": "Staying Informed and Connected with Gemini",
       "lessons": [
-        "Trying again if the answer is unclear",
-        "Adding more detail to get better results",
-        "Making Gemini part of a daily routine"
+        "Gemini is an excellent tool for staying up to date with news and information without feeling overwhelmed by too much content. Instead of scrolling through social media or news websites, you can ask Gemini: \"What are the most important news stories in the UK today?\" or \"What has happened in the news this week that might affect pensioners?\" Gemini will give you a concise, readable summary rather than a flood of articles. You can then ask follow-up questions about any story that interests or concerns you, getting more detail on the topics that matter most to you.",
+        "For staying connected with family, Gemini can help you with everything from planning visits to understanding the technology your grandchildren use. Ask Gemini: \"My grandson keeps talking about something called TikTok. Can you explain what it is and whether it is safe?\" or \"I want to plan a trip to visit my daughter in Edinburgh \u2014 what are the cheapest ways to travel from London?\" Gemini will explain things patiently and without jargon, and it can help you plan practical details like train times, accommodation options, or things to do together.",
+        "Gemini can also support your interests and hobbies in a personalised way. Whether you enjoy gardening, cooking, reading, local history, or any other pursuit, Gemini can be your knowledgeable companion. Ask it: \"I am interested in growing vegetables in a small garden in England. What should I be planting this month?\" or \"Can you recommend 5 books similar to ones I have enjoyed?\" (then list your favourites). The more you tell Gemini about your interests and preferences, the more relevant and helpful its suggestions become \u2014 and there is no limit to what you can explore."
       ],
-      "quiz_topics": ["confidence"],
-      "mini_task": "Use Gemini for two different simple tasks today"
+      "quiz_topics": [
+        "staying informed",
+        "family connection",
+        "hobbies and interests"
+      ],
+      "mini_task": "Ask Gemini about something you are genuinely curious about today \u2014 a news story you heard, a health question, something a family member mentioned, or a hobby you enjoy. Type your question in plain English and read the answer. If there is anything you want to know more about, ask a follow-up question. Spend at least 10 minutes exploring one topic you care about with Gemini's help."
     }
   ],
-  "final_project": "Complete 3 simple everyday tasks with Gemini without outside help.",
+  "final_project": "Use Gemini over one week to: stay informed by asking it for a news summary on three different days, write or reply to at least two emails using the Gmail Help me write feature, and explore one hobby or interest in depth by asking Gemini at least five questions about it. Keep a simple diary \u2014 even just a few sentences a day \u2014 about what you learned and found most useful.",
   "assets": []
 }

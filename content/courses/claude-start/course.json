@@ -1,7 +1,7 @@
 {
   "slug": "claude-start",
   "title": "Getting Started with Claude",
-  "subtitle": "Learn to use Claude for thoughtful writing, summaries, and planning in 3 days",
+  "subtitle": "Use Claude for thoughtful writing, deep analysis, and long-document work \u2014 in just 3 days.",
   "level": "Beginner",
   "duration_days": 3,
   "price_aed": 0,
@@ -9,34 +9,46 @@
     {
       "title": "Meet Claude",
       "lessons": [
-        "What Claude is and when to use it",
-        "How Claude differs from a search engine",
-        "How to write clear prompts for better answers"
+        "Claude is an AI assistant built by Anthropic, a company founded with a strong focus on AI safety and reliability. Unlike some AI tools, Claude is specifically designed to be honest about its limitations \u2014 it will tell you when it is uncertain rather than confidently making things up, which makes it a more trustworthy research and writing partner. Claude also has an exceptionally large context window, meaning it can read and work with very long documents, entire book chapters, or lengthy email threads in a single conversation. This makes it particularly powerful for analytical and writing-heavy tasks.",
+        "Claude differs from ChatGPT in several meaningful ways that affect how you use it. Claude tends to produce longer, more nuanced responses and is especially strong at handling complex instructions with multiple parts. It does not generate images, but its text reasoning \u2014 including legal documents, reports, academic papers, and fiction \u2014 is considered by many professionals to be among the best available. If your work involves reading, writing, editing, or analysing long-form text, Claude is often the right tool to reach for first.",
+        "Getting the most from Claude starts with giving it rich context upfront. Tell it who you are, what you are working on, and what outcome you need \u2014 for example: \"I am a marketing manager preparing a quarterly report for my executive team. Please help me write an executive summary in a professional but approachable tone.\" Claude responds especially well to prompts that explain the audience, purpose, and constraints of the task. The more you treat it like a skilled human collaborator, the better the results you will get."
       ],
-      "quiz_topics": ["Claude basics", "prompt structure"],
-      "mini_task": "Ask Claude to explain a topic you care about in simple language"
+      "quiz_topics": [
+        "Claude basics",
+        "Claude vs ChatGPT",
+        "context and prompting"
+      ],
+      "mini_task": "Go to claude.ai and type: \"I am new to AI tools. What are 3 things you are especially good at, and 2 things I should not rely on you for?\" Read the answer carefully \u2014 Claude is designed to be honest about its limitations, which most AI tools are not."
     },
     {
-      "title": "Writing and Thinking with Claude",
+      "title": "Writing and Editing with Claude",
       "lessons": [
-        "Drafting messages and emails",
-        "Summarizing long text into key points",
-        "Using Claude for brainstorming and idea expansion"
+        "Claude excels at long-form writing tasks that require consistency, nuance, and a sustained tone across many paragraphs. Whether you need a 2,000-word blog post, a detailed report, or a structured business proposal, Claude can draft the entire piece and then refine it section by section based on your feedback. Unlike shorter AI outputs that feel disconnected, Claude maintains coherent arguments and style throughout long documents \u2014 making it feel less like pasting together AI snippets and more like collaborating with a skilled writer.",
+        "One of Claude's most powerful features is tone adjustment for professional writing. Paste any rough draft, email, or document into Claude and ask it to \"make this more formal\", \"simplify the language for a general audience\", or \"rewrite this to sound more empathetic and less transactional.\" Claude understands the subtleties of register, formality, and audience \u2014 so the result is not just a synonym swap but a genuine rewrite that serves the communication goal. This makes it invaluable for anyone who writes professionally but is not a trained writer.",
+        "Claude can analyse documents you paste into the chat and give structured feedback, summaries, or rewrites. Paste in a contract, an essay, a performance review, or a research paper and ask: \"What are the 3 most important points in this document?\" or \"What is missing from this proposal?\" or \"Rewrite the introduction to be more compelling.\" Claude will engage with the actual content rather than giving generic advice, making it a powerful editing partner for anything from academic work to business communications."
       ],
-      "quiz_topics": ["writing tasks", "summaries"],
-      "mini_task": "Use Claude to turn a rough note into a polished email"
+      "quiz_topics": [
+        "long-form writing",
+        "tone adjustment",
+        "document analysis"
+      ],
+      "mini_task": "Write a rough paragraph about anything \u2014 your job, a hobby, or a project you are working on. Paste it into Claude and say: \"Please rewrite this in a more professional tone, then give me 2 suggestions for how I could improve it further.\" Compare the rewrite to your original and take note of the specific changes Claude made."
     },
     {
-      "title": "Everyday Use Cases",
+      "title": "Research and Analysis with Claude",
       "lessons": [
-        "Planning a schedule or checklist",
-        "Learning from uploaded text or pasted content",
-        "Improving follow-up questions"
+        "Claude is a powerful tool for synthesising and summarising large amounts of information. Paste in a long report, a research paper, or multiple paragraphs of notes and ask Claude to \"summarise the key findings in 5 bullet points\", \"identify any contradictions in this text\", or \"compare the arguments made in the first and second sections.\" Because Claude can hold tens of thousands of words in its memory at once, it can work with entire documents without losing context \u2014 something that makes it far more capable than tools with smaller memory windows.",
+        "For structured research tasks, Claude helps you move from raw information to a polished output quickly. Start by pasting your source material, then ask Claude to \"organise this into themes\", \"identify the strongest and weakest arguments\", or \"write a short report based on these notes.\" You can then iterate: ask it to expand on a specific section, add a counter-argument, or reformat the output for a specific audience. This workflow dramatically reduces the time it takes to go from scattered research to a coherent, professional document.",
+        "Claude is also excellent at helping you think through complex problems by structuring arguments and stress-testing your reasoning. Describe a decision you are facing, a business problem, or a strategy you are considering and ask Claude to \"list the pros and cons\", \"identify potential risks I have not considered\", or \"argue the opposite case.\" This Socratic approach \u2014 using Claude to challenge your own thinking \u2014 often reveals blind spots and leads to better decisions. It is like having a thoughtful devil's advocate available at any time."
       ],
-      "quiz_topics": ["daily workflows", "follow-up prompting"],
-      "mini_task": "Use Claude to create a 1-day action plan for a personal goal"
+      "quiz_topics": [
+        "document summarisation",
+        "research synthesis",
+        "structured analysis"
+      ],
+      "mini_task": "Find any article online that is at least 500 words long \u2014 a news story, a blog post, or a Wikipedia page. Copy the text, paste it into Claude, and ask: \"Summarise this in 3 bullet points, then tell me one important thing the author left out or did not address.\" This exercise shows how Claude handles analytical tasks, not just summarisation."
     }
   ],
-  "final_project": "Use Claude to research, outline, and write a short personal guide on a topic you care about.",
+  "final_project": "Choose a topic you genuinely want to understand better \u2014 a health question, a business decision, a historical event, or a professional skill. Use Claude over 3 separate sessions to research the topic, synthesise what you find, and write a structured 500-word personal guide or report. The final document should reflect your own thinking, refined and articulated with Claude's help.",
   "assets": []
 }

@@ -1,0 +1,82 @@
+{
+  "slug": "build-ai-no-code",
+  "title": "Build AI Apps Without Coding",
+  "subtitle": "Create powerful AI-powered tools using no-code platforms \u2014 no programming required.",
+  "level": "Intermediate",
+  "duration_days": 5,
+  "price_aed": 399,
+  "modules": [
+    {
+      "title": "Understanding No-Code AI Platforms",
+      "lessons": [
+        "No-code AI platforms allow you to build powerful, functional applications without writing a single line of code \u2014 using visual interfaces, drag-and-drop components, and pre-built AI integrations. Tools like Bubble, Make (formerly Integromat), and Zapier have transformed who can build software: what once required a development team can now be assembled by a single motivated person with a clear idea and a few hours of learning. The no-code ecosystem has exploded in the last three years, and AI integrations have made these platforms dramatically more capable \u2014 you can now build a customer support chatbot, an automated invoice processor, or a personalised recommendation engine entirely without code.",
+        "Bubble is the most powerful no-code application builder available and is best suited for building web apps with databases, user accounts, and complex logic. Make (make.com) is an automation platform that connects different apps and APIs using a visual workflow builder, allowing you to trigger actions across dozens of services automatically. Zapier is similar to Make but prioritises ease of use and has a larger library of pre-built integrations \u2014 it is particularly strong for simple automations between popular business apps like Gmail, Slack, Notion, and Airtable. Understanding which platform suits which task is the first key skill in the no-code world.",
+        "Before building anything, it is essential to plan what you are building using a simple process called a product requirements document, or PRD. Write down who will use your app, what problem it solves, the three most important features, and any data it needs to store or process. No-code platforms make it tempting to start building immediately, but apps built without a clear plan tend to become complicated and difficult to maintain. Spending 30 minutes on a one-page plan before you touch any platform will save you hours of rework later \u2014 a principle that applies to all software development, with or without code."
+      ],
+      "quiz_topics": [
+        "no-code platforms overview",
+        "Bubble vs Make vs Zapier",
+        "planning your app"
+      ],
+      "mini_task": "Sign up for free accounts on Bubble (bubble.io), Make (make.com), and Zapier (zapier.com). Spend 10 minutes exploring the dashboard of each. Then write a one-paragraph description of a simple AI-powered tool you would like to build \u2014 for example, an AI chatbot that answers questions about your business, or an automation that summarises incoming emails and sends you a daily digest. This will be your project for the course."
+    },
+    {
+      "title": "Building Your First AI Chatbot",
+      "lessons": [
+        "Building an AI chatbot on a no-code platform typically involves three components: a user interface where people type their messages, a connection to an AI model (usually the OpenAI API) that processes the messages and generates responses, and a database or conversation history that maintains context across the chat. In Bubble, you can drag a text input and a repeating group onto a page, then configure a workflow that sends the user's message to the OpenAI API and displays the response \u2014 all through point-and-click configuration. The entire basic version of this chatbot can be built in under two hours on your first attempt.",
+        "Connecting to the OpenAI API from a no-code platform requires an API key, which you get from platform.openai.com \u2014 think of it as a password that gives your app permission to use OpenAI's AI models. In Bubble, you add this key in the API Connector plugin, configure your endpoint, and then reference it in your workflows. In Make and Zapier, there are pre-built OpenAI modules that handle the connection for you \u2014 you just paste in your API key and select the model you want to use (GPT-4o is the best general-purpose choice as of 2024). Always store your API key securely and never expose it in your app's front end.",
+        "The quality of your chatbot depends heavily on the system prompt \u2014 the hidden instruction you give the AI before the conversation begins. A system prompt like 'You are a helpful customer service agent for a coffee shop called Brew & Bean. Answer questions about our menu, opening hours, and loyalty programme. If you do not know the answer, say so politely and offer to take a message.' dramatically shapes the chatbot's personality and usefulness. Experimenting with different system prompts is the fastest way to improve your chatbot's behaviour \u2014 small changes in wording can have a large impact on how the AI responds to edge cases and unusual questions."
+      ],
+      "quiz_topics": [
+        "chatbot architecture",
+        "OpenAI API setup",
+        "system prompts"
+      ],
+      "mini_task": "Go to Make (make.com) and create a new scenario. Add an OpenAI module and connect it with your API key. Set a system prompt that describes a simple assistant \u2014 for example, 'You are a helpful assistant for a gym. You answer questions about membership, classes, and opening hours.' Then run the scenario manually with a test question like 'What time do you open on Saturday?' and review the AI's response. Adjust your system prompt and run it again to see how the answer changes."
+    },
+    {
+      "title": "Automating Workflows with AI",
+      "lessons": [
+        "Workflow automation with AI means setting up a sequence of steps that run automatically when a specific event occurs \u2014 called a trigger \u2014 and each step can involve reading data, processing it with AI, and then taking an action. For example: when a new form submission arrives (trigger), send the text to OpenAI for sentiment analysis (AI step), then if the sentiment is negative, create a task in your project management tool and send a Slack alert to your team (actions). This kind of workflow, which might take an employee 10 minutes to handle manually, happens in seconds and never requires human attention for straightforward cases.",
+        "Make is particularly powerful for building multi-step AI workflows because it supports conditional logic, loops, error handling, and data transformation \u2014 things that Zapier handles less elegantly in its free and mid-tier plans. A typical Make scenario for an AI-powered lead qualification workflow might look like: watch for new rows in a Google Sheet (leads from your website form), send each lead's description to GPT-4 asking it to score the lead from 1-10 and explain why, then write the score and reasoning back to the sheet, and finally send a formatted summary email to your sales team. This entire workflow takes about 45 minutes to build and runs automatically every hour.",
+        "When designing AI automation workflows, it is important to include a human review step for high-stakes decisions rather than letting AI act completely autonomously. A workflow that automatically sends a personalised email to every lead based on AI-generated content, for example, should have a step where a human can approve or edit the email before it sends \u2014 at least until you have tested the workflow thoroughly and trust its outputs. Build in checkpoints by routing uncertain or low-confidence AI outputs to a human queue, while allowing clearly routine cases to pass through automatically. This hybrid approach combines AI speed with human judgement."
+      ],
+      "quiz_topics": [
+        "triggers and actions",
+        "Make.com workflows",
+        "human-in-the-loop design"
+      ],
+      "mini_task": "In Make, build a simple 3-step automation: Step 1 \u2014 manually trigger the scenario with a piece of text (a fake customer complaint). Step 2 \u2014 send that text to the OpenAI module with a prompt that asks: 'Classify this customer message as: Urgent Complaint, General Enquiry, or Positive Feedback. Reply with just the category and one sentence explanation.' Step 3 \u2014 use a Make Router to send Urgent Complaints to one path and everything else to another. Run it with three different test messages."
+    },
+    {
+      "title": "Connecting APIs Without Code",
+      "lessons": [
+        "An API (Application Programming Interface) is a way for two software applications to talk to each other, and connecting APIs is at the heart of most powerful no-code automations. When you use Make or Zapier to send data from a Google Form to an OpenAI model and then post the result to Slack, you are chaining together three APIs without writing any code. Understanding the basic structure of an API call \u2014 a URL endpoint, a method (GET to retrieve data or POST to send data), headers for authentication, and a body containing the data you are sending \u2014 will make you significantly more capable on any no-code platform.",
+        "Most modern apps and services offer APIs that you can connect to through no-code platforms, but some require custom HTTP requests rather than pre-built modules. In Make, the HTTP module allows you to make any API call to any service, even if there is no dedicated Make integration. You configure the URL, method, headers (including your API key), and body (the data you want to send), and the module returns the response. This means Make can connect to virtually any modern web service \u2014 payment processors, CRM systems, weather APIs, government data sources, and more \u2014 without any coding.",
+        "Webhooks are a particularly important concept in no-code API work \u2014 they allow an external service to push data to your automation the moment something happens, rather than your workflow having to check repeatedly whether anything has changed. For example, a payment processor like Stripe can send a webhook to your Make scenario the instant a payment succeeds, triggering your fulfilment workflow immediately. Setting up a webhook in Make takes about two minutes: you create a webhook trigger, copy the URL Make provides, and paste it into the external service's webhook settings. This real-time communication pattern is the foundation of most professional-grade no-code systems."
+      ],
+      "quiz_topics": [
+        "API basics",
+        "HTTP module in Make",
+        "webhooks"
+      ],
+      "mini_task": "In Make, create a new scenario that uses the HTTP module to call a free public API. Go to open-meteo.com/en/docs to find the API URL for current weather in your city, paste it into a Make HTTP GET module, and run the scenario. You will see raw weather data returned as JSON. Add a second step using the OpenAI module to transform that raw data into a friendly one-sentence weather summary in plain English. This is your first custom API integration."
+    },
+    {
+      "title": "Launching and Monetising Your AI App",
+      "lessons": [
+        "Before launching any AI-powered app, you need to test it thoroughly with realistic scenarios including edge cases and unusual inputs. Edge cases are inputs your app was not designed for \u2014 a chatbot for a coffee shop might receive a question about competitor pricing, or your AI classifier might receive text in a different language. Document at least 20 test cases covering normal use, unusual inputs, and potential misuse, then run through each one manually. Fix any failure modes before you invite real users \u2014 a broken or embarrassing AI response in a live product can damage trust very quickly.",
+        "Monetising no-code AI apps typically follows one of three models: a subscription (users pay monthly for access), a per-use fee (users pay each time they use the AI feature), or a freemium model (basic features are free, advanced AI features require payment). Stripe is the standard payment processor for no-code apps and integrates directly with Bubble and can be triggered via Make or Zapier. For subscription billing, Stripe Billing handles recurring payments automatically. When setting your pricing, remember to factor in your OpenAI API costs \u2014 GPT-4o costs roughly $0.005 per 1,000 tokens, so a chatbot that handles 1,000 conversations per month will cost approximately $5-50 in API fees depending on conversation length.",
+        "Marketing and distribution are just as important as the app itself \u2014 a well-built product with no users generates no value or revenue. Start by sharing your app with a small group of 10-20 people who represent your target user and gather honest feedback before a wider launch. Post about your build process on LinkedIn or in relevant online communities (many no-code communities like Makerpad, Bubble Forum, and the Make community are active and supportive). Product Hunt is a popular platform for launching new tools and can drive significant early traffic. The no-code and AI communities reward transparency \u2014 sharing what you built, how you built it, and what you learned is often more effective than traditional advertising."
+      ],
+      "quiz_topics": [
+        "testing and edge cases",
+        "monetisation models",
+        "launch strategy"
+      ],
+      "mini_task": "Write a simple one-page launch plan for the AI app you have been building throughout this course. Include: the problem it solves (one sentence), who it is for (one sentence), your three most important features, your pricing model (free, paid, or freemium), and the first three places you will share it when it is ready. Use ChatGPT or Claude to help you sharpen the language. This document will guide you through your actual launch."
+    }
+  ],
+  "final_project": "Build and launch a working AI-powered app that solves a real problem for real people. Your app must include at least one AI integration (using the OpenAI API or similar), at least one automation workflow (using Make or Zapier), and a way for users to interact with it (a Bubble front end, a form, or a direct chat interface). Share the live link with at least 5 people outside your immediate network and collect their feedback in writing.",
+  "assets": []
+}

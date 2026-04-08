@@ -1,0 +1,82 @@
+{
+  "slug": "ai-content-systems",
+  "title": "AI Content Creation Systems",
+  "subtitle": "Build a scalable content engine powered by AI \u2014 blog posts, social media, and videos.",
+  "level": "Intermediate",
+  "duration_days": 5,
+  "price_aed": 399,
+  "modules": [
+    {
+      "title": "Content Strategy with AI",
+      "lessons": [
+        "A content strategy is the foundation of any sustainable content operation \u2014 it defines what you will publish, who it is for, why they should care, and how it serves your business goals. Without a clear strategy, even the most productive AI content system will generate content that is inconsistent, misaligned with your audience's needs, and invisible to search engines. The starting point is defining your content pillars: 3-5 core topic areas that sit at the intersection of your audience's interests and your business expertise. For example, a personal finance coach might have pillars of budgeting, investing for beginners, side income, and financial psychology. Every piece of content you create should belong to one of these pillars.",
+        "AI tools are exceptionally good at the research-intensive early stages of content strategy: identifying audience questions, analysing competitor content, and generating topic ideas at scale. Ask ChatGPT or Claude: 'I run a [describe your business]. My target audience is [describe them]. What are the 20 most common questions they search for online that I could create content to answer?' Then ask: 'For each question, tell me whether it is a top-of-funnel awareness question, a mid-funnel consideration question, or a bottom-of-funnel decision question.' This categorisation helps you build a balanced content mix rather than accidentally creating all awareness content with no content that drives conversions.",
+        "A content audit \u2014 reviewing all the content you have already published \u2014 is an essential first step before building any new content system. Many businesses waste effort creating new content while their existing content sits unoptimised, unfindable, and out of date. Use Claude to help with the audit: copy and paste a list of your existing content titles and URLs, and ask 'Identify which of these topics overlap significantly, which appear to be outdated, and which could be updated to be more comprehensive rather than replaced with new content.' AI-assisted auditing can turn a week of manual work into an hour of productive analysis, and the insights often reveal that your best opportunity is improving existing content rather than creating new content from scratch."
+      ],
+      "quiz_topics": [
+        "content pillars",
+        "audience question research",
+        "content audit"
+      ],
+      "mini_task": "Define your 3-5 content pillars right now. Open Claude and paste this prompt: 'I run [describe your business in 2 sentences]. My target audience is [describe them]. Please suggest 5 content pillar topics that would be valuable to this audience and relevant to my business. For each pillar, give me 5 specific content ideas.' Review the output and select the pillar and 3 ideas that feel most aligned with your goals. These become your starting point for everything in this course."
+    },
+    {
+      "title": "Blog and Long-Form Content with AI",
+      "lessons": [
+        "A reliable AI-assisted blog post process has five stages: research, outline, draft, refinement, and SEO optimisation \u2014 and AI tools contribute meaningfully to every stage while human judgement guides the overall direction. Start by asking Claude or ChatGPT to research the topic by identifying the top 5-10 subtopics any comprehensive article on this subject should cover and any common misconceptions the article should address. From this research, ask the AI to generate a detailed outline with H2 and H3 headings. Only then write the actual content \u2014 either by drafting it yourself with AI assistance for specific sections, or by asking AI to draft each section individually and then editing heavily to add your expertise and voice.",
+        "AI drafts are starting points, not finished products \u2014 and the skill of AI-assisted writing lies in knowing what to keep, what to rewrite, and what to add from your own knowledge. The most common failure mode is publishing AI-generated content without significant editing: it tends to be generic, lack specific examples, overuse certain phrases, and miss the kind of counterintuitive insights that make expert content genuinely valuable. Develop the habit of asking 'What does this section say that only someone with real expertise in this topic would know?' \u2014 anything that fails that test should be rewritten or deleted. Your authentic perspective, specific examples from your experience, and contrarian points of view are things AI cannot generate for you.",
+        "Long-form content (2,000+ words) performs better in search results because it tends to cover topics more comprehensively, attract more backlinks, and keep readers on the page longer \u2014 all signals that search engines reward. To build long-form content efficiently with AI, work section by section: generate and refine each H2 section independently before moving to the next, rather than trying to write the entire article in one prompt. This produces more consistent quality and allows you to integrate your own knowledge naturally at each step. For articles targeting competitive search terms, analyse the top 3-5 existing articles that rank for your target keyword and ask AI to identify what they cover that your draft is missing \u2014 then add those elements to outperform the existing competition."
+      ],
+      "quiz_topics": [
+        "5-stage blog process",
+        "editing AI drafts",
+        "long-form SEO"
+      ],
+      "mini_task": "Choose one content idea from your content pillars. Open Claude and work through the first three stages of the blog process: 1) Ask Claude to research the topic and identify the 7 most important subtopics. 2) Ask it to create a detailed outline with H2 and H3 headings. 3) Ask it to draft the introduction section only. Review the draft introduction \u2014 mark every sentence that feels generic and would be improved by adding a specific example, statistic, or personal insight from your own experience. Rewrite those sentences."
+    },
+    {
+      "title": "Social Media Content at Scale",
+      "lessons": [
+        "Social media content at scale means producing a consistent volume of high-quality, platform-appropriate posts without spending the majority of your working week on content creation. The key to scale is batching: instead of writing one post per day (which interrupts your focus daily), dedicate 2-3 hours once per week to creating 7-14 posts using an AI-assisted production process. In a single batching session, you use AI to generate ideas, write drafts for each post, select and refine the best ones, and upload them to a scheduling tool. This approach reduces the mental overhead of daily content decisions and produces more consistent quality because you are in 'creation mode' for a focused period rather than switching in and out of it.",
+        "Each social media platform has different content formats, character limits, algorithmic preferences, and audience expectations \u2014 and AI tools can help you adapt the same core idea for each platform simultaneously. Paste a blog post or key idea into ChatGPT and ask: 'Adapt this content into: 1) a 280-character Twitter/X post with a strong hook, 2) a LinkedIn post of 150-200 words with a professional tone and 3 key takeaways, 3) a 5-slide Instagram carousel with a hook slide and one key point per content slide, and 4) a Facebook post of 100 words in a conversational tone.' You get four platform-optimised posts from a single prompt, and each can be refined further if needed.",
+        "Hooks are the most important element of any social media post \u2014 the first 1-2 sentences that determine whether a reader stops scrolling or continues past your content. Research consistently shows that strong hooks can increase engagement by 3-5x compared to weak openings, even when the rest of the content is identical. The most effective hook formulas are: the bold claim ('Most people are wrong about [topic]'), the direct question ('Have you ever wondered why [relevant question]?'), the counterintuitive statement ('The less you [expected action], the more [positive result] you get'), and the specific number ('The 3 things I learned from [relevant experience that changed my approach]'). Ask ChatGPT to generate 10 different hook variations for any post and choose the one that feels most genuine and likely to resonate with your specific audience."
+      ],
+      "quiz_topics": [
+        "content batching",
+        "platform adaptation",
+        "hook writing"
+      ],
+      "mini_task": "Take the blog post introduction you wrote in the previous lesson's mini task and open ChatGPT. Ask it to adapt the core idea into: one LinkedIn post (150 words, professional tone), one Twitter/X thread (5 tweets building on each other), and one Instagram caption with relevant hashtags. For each, ask ChatGPT to write 3 alternative hooks and choose the strongest one. Schedule the LinkedIn post using Buffer's free tier (buffer.com) to publish at 9am on a weekday."
+    },
+    {
+      "title": "Video Scripts and Content Repurposing",
+      "lessons": [
+        "Video is the highest-engagement content format across almost every platform in 2024, but the barrier to creating video content consistently is the script \u2014 most people freeze in front of a camera because they do not know what to say. AI can solve this by generating complete video scripts from a topic, a blog post, or a collection of bullet points. Ask ChatGPT: 'Write a 3-minute YouTube script on [topic] for [target audience]. Use conversational language, include one personal story or example, and end with a clear call to action to subscribe and comment. Format it with [PAUSE], [EMPHASISE], and [VISUAL CUE: show X] markers throughout.' The resulting script gives you complete confidence about what to say and how to pace it.",
+        "Content repurposing is the practice of transforming one piece of content into multiple formats, multiplying your reach without multiplying your creation effort. A single 10-minute YouTube video can be repurposed into: a full blog post transcript (edited for readability), a 60-second Reels or TikTok highlight, a LinkedIn article based on the key insights, 5-7 social media posts pulling individual quotes or tips, an email newsletter summarising the video, and a podcast episode if you record audio separately. The repurposing workflow is straightforward with AI: paste the video transcript into Claude and ask 'Identify the 5 most shareable insights from this transcript and write a social media post for each one.' What once required a content team can now be done by one person with an AI assistant.",
+        "Transcription tools like Otter.ai, Descript, and AssemblyAI automatically convert your spoken video content into text, which then becomes the raw material for all your repurposed content. Record your video, upload it to Descript, and within minutes you have a complete transcript that you can paste into Claude for repurposing. Descript also allows you to edit your video by editing the transcript \u2014 deleting a word from the text removes it from the video \u2014 making video editing significantly more accessible to non-editors. This transcript-first workflow means every video you record produces not just a video but a complete content library: blog post, social posts, email, and potentially a short-form video highlight, all generated from a single recording session."
+      ],
+      "quiz_topics": [
+        "video script writing",
+        "repurposing workflow",
+        "transcription tools"
+      ],
+      "mini_task": "Choose one of your content pillar topics. Ask ChatGPT to write a 2-minute video script on that topic \u2014 specify your target audience and request a conversational tone. Read the script aloud and time it. Then ask ChatGPT: 'Based on this script, create: 1) a 3-sentence email newsletter teaser that links to the full video, 2) a LinkedIn post summarising the key insight, and 3) a hook for a 30-second Reels version focused only on the most interesting point.' You now have a full repurposing plan from a single script."
+    },
+    {
+      "title": "Building an Automated Content Calendar",
+      "lessons": [
+        "A content calendar is the operational backbone of a content system \u2014 it tells you what to publish, where, when, and for whom, eliminating daily decision-making and ensuring a consistent mix of content types across your pillars. A well-structured content calendar includes: the content title or topic, the content type (blog, social post, video, email), the platform, the scheduled publish date, the content pillar it belongs to, and the current status (idea, in progress, drafted, scheduled, published). Notion, Airtable, and Trello are all popular tools for building content calendars \u2014 Airtable is particularly powerful because it supports multiple views (calendar, list, kanban) of the same data, making it easy to see your full month at a glance and your current in-progress work as a task board.",
+        "Automating the content calendar workflow means connecting your idea generation, content creation, review, and scheduling into a system that moves content forward with minimal manual intervention. A basic version of this system works as follows: every Monday morning, a Make automation pulls your upcoming 'Ideas' from Airtable, sends each idea to the OpenAI API to generate a first draft, and adds the drafts back to Airtable with status 'AI Draft Ready'. You review and edit the drafts during a weekly 2-hour content session, update the status to 'Approved', and a second automation takes approved content and schedules it in Buffer at optimal times for each platform. The system handles the mechanical work; you handle the creative judgement.",
+        "Measuring content performance and feeding the data back into your strategy is what transforms a content operation from a production machine into a learning machine. Set up a monthly reporting automation in Make that pulls engagement metrics from each platform (using their APIs), feeds the data to GPT-4 with a prompt asking it to identify the 3 best-performing pieces and the 3 worst-performing pieces and suggest why, then emails you a formatted report with specific recommendations for next month's content plan. Over time, this feedback loop produces a content strategy that is increasingly aligned with what your specific audience actually responds to \u2014 not what you or AI assume they want, but what the data proves they engage with."
+      ],
+      "quiz_topics": [
+        "content calendar structure",
+        "workflow automation",
+        "performance measurement"
+      ],
+      "mini_task": "Create a content calendar in Notion or Airtable (both free). Add these fields: Title, Content Type, Platform, Content Pillar, Publish Date, Status (Idea/Drafting/Approved/Scheduled/Published), and Notes. Then populate it with the content you have created during this course \u2014 the blog outline, the social posts, and the video script. Schedule them across the next 2 weeks with realistic publish dates. This is your live content calendar; maintain it throughout the final project."
+    }
+  ],
+  "final_project": "Build a full month of content for one channel using AI tools \u2014 choose either a blog (4 posts), a LinkedIn profile (20 posts), an Instagram account (20 posts), or a YouTube channel (4 videos with scripts). The content must be organised in a Notion or Airtable content calendar, aligned with 2-3 content pillars, include a mix of content formats, and be written with AI assistance but edited to include your authentic voice and specific expertise. Publish at least 50% of the content during the course period and document what you learned from the engagement data.",
+  "assets": []
+}

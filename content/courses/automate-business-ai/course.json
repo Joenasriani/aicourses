@@ -1,0 +1,82 @@
+{
+  "slug": "automate-business-ai",
+  "title": "Automate Your Business with AI",
+  "subtitle": "Eliminate repetitive tasks and build AI-powered systems that run your business for you.",
+  "level": "Intermediate",
+  "duration_days": 5,
+  "price_aed": 399,
+  "modules": [
+    {
+      "title": "Business Automation Fundamentals",
+      "lessons": [
+        "Business automation is the process of identifying tasks that are done repeatedly, follow predictable rules, and do not require unique human judgement \u2014 and then setting up systems to perform those tasks automatically. The best candidates for automation are tasks that are high-frequency (done daily or weekly), time-consuming, prone to human error, and frustrating for the person doing them. Common examples include manually transferring data from one system to another, sending the same type of email repeatedly, generating weekly reports from spreadsheet data, and routing customer enquiries to the right team member. Before automating anything, the first step is simply to list all the repetitive tasks you or your team do in a typical week.",
+        "Calculating the return on investment (ROI) of automation helps you prioritise which tasks to automate first. The formula is simple: estimate how many minutes the task takes per occurrence, multiply by how many times it happens per month, convert to hours, and multiply by the hourly cost of the person doing it. A task that takes 15 minutes and happens 40 times per month costs 10 hours of labour monthly \u2014 if that person earns the equivalent of 100 AED per hour, the task costs 1,000 AED per month. An automation that takes 8 hours to build and runs for free thereafter pays for itself in under two weeks. Focusing on high-frequency, high-cost tasks first maximises the business impact of your automation efforts.",
+        "Modern AI adds a new dimension to automation that goes beyond simple rule-based systems. Traditional automation tools like older versions of Zapier could only move data and trigger pre-defined actions \u2014 if X happens, do Y. AI-powered automation can now make judgements: classify incoming emails by type, prioritise customer support tickets by urgency, summarise long documents, generate personalised responses, and flag unusual patterns in data. This means you can now automate tasks that previously required a human to read, understand, and decide \u2014 dramatically expanding the range of business processes that can run without manual intervention."
+      ],
+      "quiz_topics": [
+        "identifying automation candidates",
+        "ROI calculation",
+        "AI vs rule-based automation"
+      ],
+      "mini_task": "Write down every repetitive task you or your team do in a typical week. For each task, estimate: how long it takes, how many times per week it happens, and whether it involves any judgment (reading, deciding, writing) or is purely mechanical (copy-paste, data transfer). Highlight the top 3 tasks that are both high-frequency and mechanical \u2014 these are your best automation candidates and will become the focus of your work in this course."
+    },
+    {
+      "title": "Email and Calendar Automation",
+      "lessons": [
+        "Email is the single highest-value automation target for most businesses because it is both high-frequency and highly repetitive. The most impactful email automations are: auto-categorising incoming emails by type (invoice, customer enquiry, support request, newsletter) and routing them to the right folder or person; auto-generating draft replies to common types of enquiries using AI; sending automated follow-up sequences when a prospect has not replied; and generating and sending regular reports to stakeholders. All of these can be built using Make or Zapier connected to your email provider and the OpenAI API, without any coding.",
+        "Gmail has a feature called Google Apps Script that allows simple automations without leaving Google's ecosystem, but for more powerful email automation, connecting Gmail to Make is the professional standard. A typical Make scenario for AI email management works like this: when a new email arrives in a specific Gmail label, send the email body to GPT-4 with a prompt asking it to classify the email type and generate a suggested reply, then save both to a Google Sheet for review, and optionally create a draft reply in Gmail automatically. You review and send \u2014 the AI writes, you approve. This workflow alone typically saves 1-2 hours per day for anyone who deals with high email volume.",
+        "Calendar automation is often overlooked but can save significant time for any business that schedules appointments, meetings, or consultations. Calendly and Cal.com are dedicated scheduling tools that allow clients to book available slots automatically based on your real-time availability \u2014 eliminating the back-and-forth of scheduling emails entirely. Connect either tool to Make and you can automatically send personalised confirmation emails, add Zoom or Google Meet links, create tasks in your project management system when a call is booked, and send reminder messages 24 hours and 1 hour before each appointment. The entire onboarding sequence for a new client meeting can run automatically from the moment they click 'book.'"
+      ],
+      "quiz_topics": [
+        "email categorisation",
+        "AI draft replies",
+        "calendar scheduling automation"
+      ],
+      "mini_task": "Sign up for a free Calendly account (calendly.com) and set up a 30-minute meeting type with your real availability. Then connect Calendly to Make: create a scenario that triggers when a new meeting is booked and sends a personalised confirmation email using Gmail or your email tool. The email should address the person by name and include the meeting date, time, and a Google Meet link. Test it by booking a meeting with yourself using your Calendly link."
+    },
+    {
+      "title": "Customer Service Automation with AI",
+      "lessons": [
+        "AI-powered customer service automation can handle a significant proportion of incoming enquiries without any human involvement \u2014 typically the 60-80% of questions that are variations of the same few common topics. The starting point is to analyse your last 3 months of customer enquiries and identify the top 10-15 most frequently asked questions. These become the foundation of your AI knowledge base \u2014 a document or structured dataset that your AI chatbot uses to generate accurate, specific answers. The quality of your knowledge base directly determines the quality of your chatbot's answers, so invest time in writing clear, comprehensive answers to each question before building anything.",
+        "Tidio, Intercom, and Freshdesk all offer AI chatbot features that can be deployed on your website without coding. For a more customisable solution, you can build your own using the OpenAI Assistants API connected to a knowledge base of your own documents, then deploy it as a widget on your site using a pre-built integration. The key technical decision is whether to use retrieval-augmented generation (RAG) \u2014 where the AI searches your documents for relevant information before answering \u2014 or a simpler prompt-based approach where you paste your FAQ content directly into the system prompt. RAG is more scalable for large knowledge bases; the direct system prompt approach is simpler and often sufficient for businesses with fewer than 20 unique question types.",
+        "Every AI customer service system needs a graceful escalation path \u2014 a clear mechanism for handing off conversations to a human when the AI cannot confidently answer. The escalation triggers should be defined precisely: if the AI cannot find a relevant answer in its knowledge base, if the customer uses escalation keywords like 'speak to a human', 'this is urgent', or 'I want a refund', or if the conversation sentiment becomes negative, the system should immediately notify a human and offer to connect them. Never let an AI system give a wrong answer confidently when a human handoff would serve the customer better. The metric to track is not 'how many conversations did the AI handle?' but 'how many customers left the conversation satisfied?'"
+      ],
+      "quiz_topics": [
+        "knowledge base design",
+        "chatbot deployment",
+        "escalation design"
+      ],
+      "mini_task": "Write a customer service knowledge base for a real or hypothetical business. List the 10 most common questions customers ask, and write a clear, specific answer to each one. Then open ChatGPT and paste this as a system prompt: 'You are a customer service assistant for [your business]. Here is your knowledge base: [paste your Q&A list]. Answer questions based only on this information. If you cannot find the answer, say so and offer to connect the customer with the team.' Test it with 5 questions \u2014 3 that your knowledge base covers and 2 that it does not."
+    },
+    {
+      "title": "Social Media and Content Automation",
+      "lessons": [
+        "Consistent social media presence is one of the most powerful business-building activities available, but it is also one of the most time-consuming when done manually. The solution is a content production pipeline \u2014 a repeatable system where AI generates ideas and drafts, a human reviews and refines, and a scheduling tool publishes at optimal times without manual intervention. The pipeline typically looks like: once a week, use ChatGPT or Claude to generate 7-14 post ideas based on your content pillars; batch-write the full posts in one sitting using AI drafts as a starting point; upload the approved posts to a scheduling tool like Buffer, Hootsuite, or Publer; and let the scheduler post them automatically throughout the week.",
+        "Repurposing content across multiple platforms multiplies your output without multiplying your effort. A single 1,500-word blog post can be repurposed into: a Twitter/X thread of 8 tweets, a LinkedIn article, 5 Instagram carousel slides, 3 Facebook posts, and a YouTube video script \u2014 all with slightly different formats suited to each platform. AI tools make this repurposing dramatically faster: paste your blog post into ChatGPT and ask 'Repurpose this into 5 Instagram carousel slides with a hook slide, 3 content slides, and a call-to-action slide.' You can build a Make automation that takes a new blog post URL, scrapes the content, sends it to the OpenAI API with repurposing instructions, and deposits the results into a Notion database for review.",
+        "Analytics automation closes the loop between your content performance and your content strategy. Most businesses post content and rarely look at the data to understand what actually worked. Set up a weekly Make automation that pulls your social media analytics from each platform using their APIs, sends the data to GPT-4 with a prompt asking it to identify patterns and generate 3 content recommendations for next week, and emails you a formatted report every Monday morning. This turns raw engagement numbers into actionable strategy automatically, ensuring your content improves every week based on evidence rather than intuition."
+      ],
+      "quiz_topics": [
+        "content pipeline",
+        "content repurposing",
+        "analytics automation"
+      ],
+      "mini_task": "Choose one social media platform relevant to your business. Use ChatGPT to generate a 2-week content calendar with 14 post ideas based on your business topic. For each idea, include the post hook (first sentence), the core message, and a call-to-action. Then pick the 3 posts you like best, ask ChatGPT to write the full post copy for each, and schedule them using the free tier of Buffer (buffer.com). Set them to publish over the next week."
+    },
+    {
+      "title": "Building Your Full Automation Stack",
+      "lessons": [
+        "An automation stack is the complete set of tools, workflows, and systems that run your business automatically. A well-designed stack typically includes: a CRM for customer data (HubSpot free or Airtable), an email tool (Gmail with Make or ActiveCampaign), a scheduling tool (Calendly), a social media scheduler (Buffer or Publer), a project management tool (Notion or ClickUp), an AI layer (OpenAI API via Make), and a central automation hub (Make.com) that connects all of these together. The goal is not to have the most tools, but to have the right tools connected so that data flows automatically between them without manual copying and pasting.",
+        "Documenting your automation stack is as important as building it. For each automation you build, create a simple one-page record that describes: what triggers it, what it does step by step, what happens when it fails, and how to test it. Store these records in a shared Notion page or Google Doc. Documentation serves two purposes: it allows someone else to maintain your automations if you are unavailable, and it forces you to think clearly about each workflow \u2014 teams that document their automations tend to build more reliable ones because the documentation process reveals logical gaps before they cause problems in production.",
+        "Automation maintenance is an ongoing responsibility, not a one-time task. APIs change, services update their pricing or features, and business processes evolve \u2014 any of these can break a working automation silently, causing tasks to fail without anyone noticing. Set up error notifications in Make (it has a built-in error handler that can email you when a scenario fails) and schedule a monthly audit of all your active automations to verify they are still working correctly. The most professional automation stacks include test scenarios that run automatically on a regular schedule, simulating real inputs and verifying the outputs are correct \u2014 this is called automated monitoring, and it is what separates hobbyist automations from production-grade systems."
+      ],
+      "quiz_topics": [
+        "automation stack design",
+        "documentation",
+        "monitoring and maintenance"
+      ],
+      "mini_task": "Map out your ideal automation stack for your business using a simple diagram or list. Include the tools you already use and identify the 3 gaps where you are currently doing things manually that could be automated. Then prioritise those 3 automations by ROI (using the calculation from Day 1) and commit to building the highest-priority one this week. Create a simple one-page documentation template for it before you start building."
+    }
+  ],
+  "final_project": "Automate one complete business workflow end-to-end using AI tools. The workflow must: start with a real trigger (a form submission, a new email, a calendar booking, or a scheduled time), include at least one AI processing step using the OpenAI API, and end with a useful output (a sent email, an updated spreadsheet, a created task, or a posted social update). Document the workflow using the template you created, test it with at least 10 real or simulated inputs, and calculate the monthly time saving it delivers.",
+  "assets": []
+}

@@ -1,0 +1,82 @@
+{
+  "slug": "design-web-ai",
+  "title": "Design Websites with AI",
+  "subtitle": "Go from idea to live website using AI design tools \u2014 no designer needed.",
+  "level": "Intermediate",
+  "duration_days": 5,
+  "price_aed": 399,
+  "modules": [
+    {
+      "title": "AI Design Tools Overview",
+      "lessons": [
+        "AI design tools have fundamentally changed how websites are built, compressing what once took weeks of back-and-forth between designers and clients into hours of collaborative generation. Framer AI can generate an entire website layout from a text prompt \u2014 you describe your business and style, and it produces a responsive, visually polished site that you can then customise. Wix ADI (Artificial Design Intelligence) asks you a series of questions about your business and automatically builds a complete site with relevant images, text placeholders, and a colour scheme. Relume is specifically designed for professional web designers and generates complete site sitemaps and wireframes from a brief, dramatically speeding up the early stages of any web project.",
+        "Understanding which tool to use for which situation will save you significant time and frustration. Framer AI is best for visually striking, modern sites \u2014 especially for startups, personal brands, and portfolios \u2014 and its output is production-quality without much additional work. Wix ADI is ideal for small businesses that need a straightforward site quickly and want everything hosted and managed in one place without technical complexity. Relume is a planning and wireframing tool rather than a builder \u2014 it generates site structure and component layouts that you then build in Webflow or Figma, making it more relevant for professional designers than for beginners. Most projects benefit from starting with Relume or a simple outline, then moving to Framer or Wix to build.",
+        "Before using any AI design tool, you need to be clear about three things: your audience, your goal, and your brand. Your audience determines the tone, complexity, and visual style of the site \u2014 a children's activity centre needs something very different from a law firm. Your goal determines the structure \u2014 are you selling a product, generating leads, showcasing work, or providing information? Your brand includes your colours, fonts, and the feeling you want visitors to have. Having clear answers to these three questions before you open any AI design tool means the AI's output will require far less correction and will feel genuinely aligned with your vision."
+      ],
+      "quiz_topics": [
+        "Framer vs Wix ADI vs Relume",
+        "choosing the right tool",
+        "brand and audience"
+      ],
+      "mini_task": "Go to framer.com and click 'Start for free.' Use the AI generation feature to create a website by typing a one-sentence description of a business \u2014 real or imaginary. For example: 'A boutique yoga studio in Dubai that specialises in morning classes for busy professionals.' Review what Framer generates and note three things you like and two things you would change. Do not edit anything yet \u2014 just observe and analyse."
+    },
+    {
+      "title": "Generating Wireframes and Layouts with AI",
+      "lessons": [
+        "A wireframe is a simple visual blueprint of a web page that shows where different elements will be placed \u2014 the header, navigation, hero section, content blocks, and footer \u2014 without any colour, imagery, or final copy. Starting with wireframes before jumping into visual design is a professional discipline that prevents you from falling in love with a look before you have confirmed the structure makes sense. Relume's AI can generate a complete site sitemap and wireframes for each page from a single paragraph description of your business, giving you a professional-quality planning document in minutes rather than days.",
+        "When generating layouts with AI tools, the key is to be specific about the sections and content hierarchy you need. Rather than just saying 'create a homepage', tell the AI: 'Create a homepage for a personal finance coaching service. The page should include: a hero with a headline and call-to-action button, a section showing 3 key benefits, a section with client testimonials, a pricing section with 2 plans, and a contact form.' The more specific your instruction, the more useful the AI output \u2014 vague prompts produce generic layouts, while detailed prompts produce layouts that actually fit your content strategy.",
+        "After generating an initial layout, your job is to evaluate it with a critical eye using established design principles. The most important principle is visual hierarchy \u2014 does the page guide the visitor's eye naturally from the most important element (usually a headline or call-to-action) to supporting content? Check that there is adequate white space between sections, that the navigation is intuitive, and that the call-to-action button is prominent and appears at least twice on the page. AI tools are excellent at generating starting points but sometimes produce layouts that are visually busy or structurally illogical \u2014 your role is to recognise these issues and know how to fix them."
+      ],
+      "quiz_topics": [
+        "wireframing basics",
+        "content hierarchy",
+        "layout critique"
+      ],
+      "mini_task": "Go to relume.io and sign up for a free account. In the Site Builder, enter a description of a business \u2014 for example: 'A small bakery in London that sells custom cakes and offers baking classes.' Let Relume generate a sitemap and wireframes. Review the suggested pages and component layout. Then click into the homepage wireframe and identify: where the main call-to-action is, whether the content hierarchy makes sense, and which section you would remove or change. Write your observations in a note."
+    },
+    {
+      "title": "Writing Website Copy with AI",
+      "lessons": [
+        "Website copy is the written content of your site \u2014 headlines, subheadings, body paragraphs, button labels, and calls to action \u2014 and it is often more important than the visual design in determining whether visitors take action. The best website copy speaks directly to the visitor's problem, offers a clear solution, and makes a compelling case for why they should choose you over the alternatives. AI tools like ChatGPT, Claude, and the built-in copy tools in Framer can generate professional-quality first drafts of all your website copy, but the most effective copy combines AI-generated structure with your own specific knowledge of your audience and business.",
+        "The most important piece of copy on any website is the hero headline \u2014 the first thing visitors see. A strong hero headline answers three questions in one sentence: what you do, who it is for, and what makes you different. For example, instead of 'Welcome to our website', a headline like 'Custom Birthday Cakes Delivered in Dubai \u2014 Made to Your Design in 48 Hours' tells a visitor everything they need to know instantly. Ask ChatGPT to generate 10 headline options for your business by providing this prompt: 'Write 10 website hero headlines for [describe your business]. Each headline should be under 12 words and immediately communicate the core value to [describe your target customer].'",
+        "Search engine optimisation (SEO) starts with your copy, and AI can help you integrate it naturally. Ask ChatGPT: 'What are the top 5 search terms someone would use to find [your business or service] online?' Then ask it to write your homepage copy using those terms naturally \u2014 not stuffed awkwardly into every sentence, but woven in where they fit contextually. Google rewards pages where the copy reads naturally while still containing relevant terms. AI is particularly good at this balance because it understands both the semantic meaning of words and the natural way humans write \u2014 use it to generate SEO-optimised drafts and then read them aloud to check they still sound human."
+      ],
+      "quiz_topics": [
+        "hero headline formula",
+        "SEO basics",
+        "copy review process"
+      ],
+      "mini_task": "Choose one page of your website \u2014 the homepage or a key service page. Open ChatGPT and give it this prompt: 'You are a professional website copywriter. Write the complete copy for a homepage for [describe your business in 2 sentences]. Include: a hero headline and subheadline, a 3-point benefits section with headings and brief descriptions, a social proof section (you can use placeholder testimonials), and a call-to-action section. The tone should be [professional/friendly/energetic \u2014 choose one].' Review the output and mark which sections you would keep, which you would edit, and which you would rewrite."
+    },
+    {
+      "title": "Optimising for Mobile and SEO",
+      "lessons": [
+        "More than 60% of web traffic now comes from mobile devices, which means your website must look and function perfectly on a smartphone screen \u2014 not just on a desktop. When using AI design tools like Framer, always switch to the mobile preview after generating any layout and check every section carefully. Common mobile problems include text that is too small to read comfortably, buttons that are too close together to tap accurately, images that are cropped or misaligned, and navigation menus that do not collapse properly. Fix these issues by using the responsive settings in your design tool, setting minimum font sizes of 16px for body text, and ensuring all tappable elements are at least 44x44 pixels.",
+        "Technical SEO is the practice of structuring your website so that search engines can read, understand, and index it correctly. The most important technical SEO elements are: a descriptive page title (shown in the browser tab and search results), a meta description (the short summary that appears under your link in search results), proper heading structure (one H1 per page, logical H2 and H3 subheadings), and alt text on all images (a short description that tells search engines and screen readers what each image shows). Most no-code builders like Framer and Wix have settings where you can fill in these fields without any code \u2014 AI tools can help you write them.",
+        "Page speed is a critical ranking factor for both SEO and user experience \u2014 research consistently shows that visitors leave sites that take more than 3 seconds to load. The most common causes of slow AI-designed websites are uncompressed images, unnecessary animations, and third-party scripts (like chat widgets or analytics tools) that load slowly. Use Google PageSpeed Insights (pagespeed.web.dev) to test your page and get a specific list of improvements \u2014 it is free and takes 30 seconds to use. Most AI site builders automatically optimise images, but you should always run a speed test before launch and address any issues that score below 70 on mobile."
+      ],
+      "quiz_topics": [
+        "mobile responsiveness",
+        "technical SEO elements",
+        "page speed"
+      ],
+      "mini_task": "Take the website you have been building and open it on your actual smartphone \u2014 not just a preview in the builder. Go through every section and note any elements that look wrong, are hard to read, or are difficult to tap. Then go to pagespeed.web.dev, enter your site URL (or a similar site as a benchmark), and read the mobile score. Identify the top 2 issues flagged and look up how to fix them in your specific website builder's help documentation."
+    },
+    {
+      "title": "Launching and Iterating Your Website",
+      "lessons": [
+        "Launching a website is not the end of the process \u2014 it is the beginning of a cycle of testing, feedback, and improvement. Before you publish, do a pre-launch checklist: test every link and button, check all forms submit correctly, review all copy for spelling errors (AI-generated copy sometimes contains subtle mistakes), ensure your contact details are accurate, and confirm that the site looks correct in at least three different browsers (Chrome, Safari, and Firefox). Framer and Wix both have one-click publish features that deploy your site to their CDN instantly \u2014 but always do a final review on the live URL after publishing, because live sites sometimes look slightly different from the builder preview.",
+        "After launch, use free tools to understand how visitors interact with your site and where they drop off. Google Analytics 4 is free and shows you how many visitors you have, where they come from, and which pages they visit most. Hotjar (free tier available) shows heatmaps of where visitors click and scroll, revealing which sections are attracting attention and which are being ignored. Microsoft Clarity is another free tool that records visitor sessions so you can watch how real people navigate your site \u2014 this is often the fastest way to discover usability problems that you never would have found by testing yourself.",
+        "Website iteration means making small, evidence-based improvements regularly rather than doing occasional large redesigns. When your data shows that visitors are dropping off before reaching your pricing section, that is a signal to either move the pricing section higher on the page or to add more persuasive content before it. When your heatmaps show that nobody is clicking your main call-to-action button, try changing the button text, colour, or size and test the new version. AI tools can help you generate alternative headlines, copy, or layout ideas to test \u2014 treat your website as a living product that improves continuously based on real user behaviour, not guesswork."
+      ],
+      "quiz_topics": [
+        "pre-launch checklist",
+        "analytics and heatmaps",
+        "data-driven iteration"
+      ],
+      "mini_task": "Publish your website using your chosen platform's free hosting (Framer, Wix, or any builder). Share the live URL with 3 people who represent your target audience \u2014 not close friends or family who might be overly positive. Ask each of them two specific questions: 'Within 5 seconds of looking at the homepage, can you tell me what this website is for?' and 'What is the one thing you would change?' Write down their answers and use them to make at least one concrete improvement to your site before the end of the day."
+    }
+  ],
+  "final_project": "Design and publish a complete landing page for a real business or product \u2014 it can be your own business, a friend's, or a hypothetical one you would genuinely want to exist. The page must include: a compelling hero section with AI-generated and human-refined copy, at least three distinct content sections, a working contact form or clear call-to-action, full mobile optimisation, and basic SEO fields completed. Share the live URL publicly and document three pieces of feedback you received and how you responded to them.",
+  "assets": []
+}

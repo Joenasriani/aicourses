@@ -1,42 +1,54 @@
 {
   "slug": "gemini-start",
   "title": "Getting Started with Gemini",
-  "subtitle": "Use Gemini for research, drafting, and everyday problem solving in 3 days",
+  "subtitle": "Harness Google Gemini for research, productivity, and real-time information \u2014 in 3 days.",
   "level": "Beginner",
   "duration_days": 3,
   "price_aed": 0,
   "modules": [
     {
-      "title": "Meet Gemini",
+      "title": "What is Gemini and How Does it Fit into Google",
       "lessons": [
-        "What Gemini is and what it does well",
-        "How to ask Gemini clear questions",
-        "How to compare different answers and refine prompts"
+        "Google Gemini is Google's flagship AI assistant, and it is uniquely positioned among AI tools because of its deep integration with the Google ecosystem. Unlike ChatGPT or Claude, Gemini can draw on real-time Google Search results, which means its answers are not limited to training data from a fixed point in time \u2014 it can tell you what happened yesterday. If you already use Gmail, Google Docs, Google Drive, or Google Calendar, Gemini is designed to work directly inside those tools, making it the most immediately practical AI for many people's existing workflows.",
+        "Gemini comes in two main tiers: the free version available at gemini.google.com, and Gemini Advanced, which is part of Google One AI Premium and unlocks access to Google's most powerful models. The free tier is genuinely capable for everyday tasks like drafting emails, answering questions, and summarising content. Gemini Advanced adds longer context windows, the ability to analyse complex documents, and deeper integration with Gmail, Docs, and other Google Workspace tools. For most beginners, starting with the free tier is the right move \u2014 you can upgrade once you know exactly what you need.",
+        "One of Gemini's biggest strengths is that it understands multimodal input \u2014 meaning you can give it text, images, and even audio as part of your prompt. You can upload a photo and ask \"What is in this image and how might I use it in a presentation?\", or paste a screenshot of a spreadsheet and ask \"What trends do you see in this data?\" This goes beyond what purely text-based AI tools can do and opens up a wide range of practical use cases for visual thinkers, designers, and anyone who works with images or mixed media."
       ],
-      "quiz_topics": ["Gemini basics", "prompt clarity"],
-      "mini_task": "Ask Gemini to explain a current topic in plain language"
+      "quiz_topics": [
+        "Gemini basics",
+        "Google integration",
+        "free vs advanced"
+      ],
+      "mini_task": "Go to gemini.google.com and ask: \"What are 3 things you can do that other AI assistants cannot, because you are connected to Google?\" Then ask a follow-up: \"Show me an example of how you would help someone using Gmail.\" This will give you a practical sense of what makes Gemini different from the other tools you may have tried."
     },
     {
-      "title": "Daily Productivity with Gemini",
+      "title": "Gemini in Gmail and Google Docs",
       "lessons": [
-        "Using Gemini to draft messages and notes",
-        "Summarizing articles and long text",
-        "Planning tasks and simple routines"
+        "Inside Gmail, Gemini offers a feature called Help me write that can draft entire emails from a short description you provide. Open a new email, click the Gemini icon, and type something like \"Write a polite follow-up to a supplier who has not delivered my order after two weeks.\" Gemini will produce a complete, professionally worded email that you can edit, shorten, or adjust before sending. It can also summarise long email threads into a few sentences, saving you from reading through dozens of messages to understand the current state of a conversation.",
+        "In Google Docs, Gemini acts as a writing assistant that can generate first drafts, suggest improvements, and reformat content on request. Open a Google Doc, click the Gemini icon in the sidebar, and ask it to \"Write an introduction for a report on remote working trends\" or \"Summarise the document I have written and suggest a stronger conclusion.\" Because Gemini has access to the actual document content, its suggestions are based on what you have already written rather than generic advice. This makes the editing process significantly faster for anyone producing regular reports, articles, or proposals.",
+        "Google Docs with Gemini is also powerful for turning rough notes into structured documents. Paste your unformatted notes or bullet points into a Doc, then ask Gemini to \"reorganise these notes into a clear outline with headings and subheadings\" or \"turn these bullet points into full paragraphs in a professional tone.\" The transition from messy thinking to polished document takes minutes rather than hours. You can then ask Gemini to review the result and flag any sections that need more detail or clarity."
       ],
-      "quiz_topics": ["productivity use cases", "summaries"],
-      "mini_task": "Use Gemini to create a simple weekly checklist"
+      "quiz_topics": [
+        "Gmail AI features",
+        "Google Docs drafting",
+        "document summarisation"
+      ],
+      "mini_task": "Open Google Docs (docs.google.com) and create a new blank document. Click the Gemini icon in the top right corner (or use the Help me write feature if prompted). Ask Gemini: \"Write a one-page proposal for a team away day for 20 people in a city of my choice.\" Specify the city and review the output. Then ask: \"Add a budget estimate section at the end.\""
     },
     {
-      "title": "Better Answers from Gemini",
+      "title": "Gemini for Research and Real-Time Information",
       "lessons": [
-        "How to ask follow-up questions",
-        "When to give examples or context",
-        "How to evaluate if an answer is useful"
+        "Because Gemini is connected to Google Search, it can provide information about current events, recent product releases, live sports scores, and breaking news \u2014 making it fundamentally different from AI tools that only know about the world up to a training cutoff date. When you ask Gemini a question about something recent, it pulls from live web results and synthesises them into a coherent answer rather than just giving you a list of links. This makes it the go-to AI tool for research tasks where recency matters, such as market research, competitor analysis, or staying up to date on industry trends.",
+        "For structured research, Gemini can help you build a research brief, generate questions to investigate, and then answer those questions using live information. Start with a prompt like: \"I am researching the electric vehicle market in the UAE. What are the 5 most important questions I should be trying to answer?\" Then use each question as a follow-up prompt to get detailed, sourced answers. This question-first approach helps you think more clearly about what you actually need to know, rather than just accepting whatever the AI happens to produce.",
+        "Gemini Advanced, with its extended context window, can read and analyse entire research papers, long PDFs, or extensive web articles and then answer specific questions about them. Upload a document and ask: \"What methodology does this study use?\", \"Are there any limitations the authors acknowledge?\", or \"How does this compare to the report I uploaded yesterday?\" For students, researchers, professionals, and anyone who regularly reads dense documents, this capability alone can save hours of reading and note-taking every week."
       ],
-      "quiz_topics": ["follow-up prompting", "answer quality"],
-      "mini_task": "Improve one weak answer by rewriting your prompt and adding context"
+      "quiz_topics": [
+        "real-time search",
+        "research workflows",
+        "Gemini Advanced"
+      ],
+      "mini_task": "Ask Gemini: \"What are the 3 most significant AI news stories from this week?\" Notice how it references recent events, then ask: \"For each story, explain why it matters to someone who works in marketing.\" This exercise shows you both how Gemini uses live data and how you can layer additional context to make the answers more relevant to your specific situation."
     }
   ],
-  "final_project": "Use Gemini to research, organize, and present a small topic in a clear step-by-step outline.",
+  "final_project": "Use Gemini to research a topic that directly affects your work or life \u2014 a new technology, a market trend, a health topic, or a local issue. Spend 30 minutes using Gemini to gather information, ask follow-up questions, and then produce a clear one-page summary in Google Docs with Gemini's help. Share the document with one colleague or friend and get their feedback.",
   "assets": []
 }

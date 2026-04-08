@@ -1,0 +1,82 @@
+{
+  "slug": "ai-workflows",
+  "title": "AI Workflow Automation",
+  "subtitle": "Build intelligent workflows that connect your apps and automate complex tasks.",
+  "level": "Intermediate",
+  "duration_days": 5,
+  "price_aed": 399,
+  "modules": [
+    {
+      "title": "Workflow Automation Concepts",
+      "lessons": [
+        "A workflow is a sequence of steps that transforms an input into an output \u2014 and automation means those steps happen without a human initiating each one. Every automated workflow has three fundamental components: a trigger (the event that starts the workflow), one or more actions (the steps that happen in response), and conditions (optional rules that determine which path the workflow takes based on the data it encounters). A simple example: when a new row is added to a Google Sheet (trigger), check if the 'Status' column says 'Approved' (condition), and if so, send a formatted email to the address in the 'Email' column (action). Understanding these three components allows you to analyse and design any workflow, no matter how complex.",
+        "Conditions and branching logic are what separate powerful, intelligent workflows from simple single-step automations. A condition is a rule that evaluates to true or false \u2014 for example, 'Does the email contain the word urgent?' or 'Is the order value greater than 1,000 AED?' Based on the answer, the workflow takes a different path: the urgent email goes to a priority queue, the high-value order triggers a manager notification. Nested conditions allow you to handle multiple scenarios within a single workflow, creating decision trees that mirror how a thoughtful human employee would handle different situations. Mapping out these decision trees before building anything is essential \u2014 draw them on paper or in a tool like Miro before you open Make or Zapier.",
+        "Data transformation is the often-overlooked skill that makes complex workflows possible. When data moves between applications, it rarely arrives in exactly the format the next step needs \u2014 dates might be formatted differently, names might be split or combined, currencies might need conversion, and text might need to be cleaned or truncated. Make has a powerful set of built-in functions for transforming data (formatDate, toString, split, replace, and many more) that work without code. Learning to use these functions is what allows you to connect any two apps reliably, even when they do not natively speak the same data format \u2014 it is the glue that holds complex automation stacks together."
+      ],
+      "quiz_topics": [
+        "triggers, actions, conditions",
+        "branching logic",
+        "data transformation"
+      ],
+      "mini_task": "Design a workflow on paper before touching any tool. Choose a process from your work or life that happens repeatedly \u2014 receiving job applications, processing orders, scheduling social posts, or anything similar. Draw a flowchart with: one trigger, at least two branches based on a condition, and a different action in each branch. Label every step clearly. This diagram will become your blueprint when you build the actual workflow in Make later in the course."
+    },
+    {
+      "title": "Make.com and Zapier with AI",
+      "lessons": [
+        "Make (make.com) uses a visual canvas where you drag and connect modules in sequence, making the flow of data visible at a glance. Each module represents a connection to an app or a data transformation step, and you connect them with lines that show how data moves from one step to the next. The OpenAI module in Make allows you to send text to any GPT model and receive the response as a variable you can use in subsequent steps \u2014 for example, sending a customer email to GPT-4 for sentiment classification, then using the classification to route the data to different subsequent modules. Make's free tier allows 1,000 operations per month, which is enough for learning and building small-scale workflows.",
+        "Zapier follows a simpler linear structure \u2014 one trigger, then a series of actions in sequence \u2014 which makes it easier to learn but less flexible for complex branching logic. Zapier's AI features include a built-in ChatGPT integration that can summarise, classify, translate, or transform text as one step in a Zap. For example: when a new form response arrives, send the response text to ChatGPT with a prompt, use the output to fill a template, and send the template as an email \u2014 all in one Zap. Zapier is the right choice for straightforward linear automations and has the largest library of pre-built integrations (over 6,000 apps), which matters when you need to connect a niche or specialised tool.",
+        "Choosing between Make and Zapier for an AI workflow comes down to complexity and budget. Make is better for workflows that involve branching logic, loops, complex data transformation, or working with arrays of data \u2014 and its pricing is generally lower for high-volume use. Zapier is better for simple trigger-action workflows with popular apps, where ease of setup and a large integration library matter more than flexibility. For most AI-enhanced workflows that involve routing, classification, or generating content, Make is the more capable platform \u2014 but if you are connecting Gmail to Slack with a simple AI summarisation step, Zapier will get you there faster with less configuration."
+      ],
+      "quiz_topics": [
+        "Make vs Zapier",
+        "OpenAI module setup",
+        "choosing the right platform"
+      ],
+      "mini_task": "Build your first AI-powered workflow in Make. Create a new scenario with these steps: Step 1 \u2014 Use the Gmail module to watch for new emails in a specific label (create a test label called 'AI-Test' in your Gmail and send yourself a few test emails). Step 2 \u2014 Send the email subject and body to the OpenAI module with this prompt: 'Classify this email as one of: Urgent, Action Required, For Information, or Low Priority. Reply with just the category.' Step 3 \u2014 Add the classification to a Google Sheet with the date, sender, and original subject. Run it with 5 test emails."
+    },
+    {
+      "title": "Multi-Step Workflows",
+      "lessons": [
+        "Multi-step workflows chain together many actions into a single automated sequence, allowing complex business processes to run end-to-end without human intervention. A sophisticated lead processing workflow might include 8 or more steps: receive a form submission, enrich the lead data using a data enrichment API, classify the lead quality using GPT-4, add the lead to a CRM, send a personalised welcome email using AI-generated copy, create a follow-up task in your project management tool, notify the relevant sales team member in Slack, and add the lead to a reporting dashboard. Each step is straightforward on its own \u2014 the skill is in orchestrating them reliably and handling the variations that occur in real data.",
+        "Iterators and aggregators are Make-specific tools that unlock the ability to process lists of items within a single workflow run. An iterator takes a list (called an array) \u2014 for example, a list of 50 customer email addresses \u2014 and runs subsequent steps once for each item in the list. An aggregator does the opposite: it collects the outputs of repeated steps and combines them into a single result. A workflow that fetches all new orders from a WooCommerce store, sends each product description to GPT-4 for improvement, and then creates a compiled report of all the improved descriptions needs both an iterator (to process each order) and an aggregator (to compile the results). Understanding these tools transforms what you can automate.",
+        "Testing multi-step workflows requires a methodical approach because failures can occur at any step, and diagnosing the problem requires understanding exactly what data was present at the point of failure. Make's built-in history log shows the exact input and output of every module in every scenario run \u2014 use this log to debug any unexpected behaviour. When building a multi-step workflow, add steps incrementally rather than all at once: build and test steps 1-3 before adding steps 4-6. This incremental approach means you always know exactly which step introduced a problem, and you are never debugging 10 steps simultaneously. Enable the 'Run once' mode in Make during testing so that your scenario processes only one item at a time, giving you full control."
+      ],
+      "quiz_topics": [
+        "multi-step orchestration",
+        "iterators and aggregators",
+        "incremental testing"
+      ],
+      "mini_task": "Extend your email classification workflow from the previous lesson. Add these steps after the Google Sheet entry: Step 4 \u2014 Use a Make Router to check if the classification was 'Urgent'. Step 5 \u2014 If Urgent, use the Slack module (or Gmail) to send yourself an immediate notification with the email subject, sender, and a link to the original email. Step 6 \u2014 If not Urgent, use the Gmail module to create a draft reply using OpenAI to generate a short acknowledgement email. Run the workflow with at least 3 'Urgent' and 3 non-urgent test emails and verify all branches work correctly."
+    },
+    {
+      "title": "Error Handling and Reliability",
+      "lessons": [
+        "Errors in automated workflows fall into three categories: connection errors (the app API is temporarily unavailable or returns an unexpected response), data errors (the incoming data is missing a field your workflow expects or is in an unexpected format), and logic errors (the workflow produces a technically successful result but the output is wrong because the logic has a flaw). Make handles connection errors with automatic retry logic \u2014 you can configure it to retry a failed module up to 3 times before marking the scenario run as failed and sending you an alert. Data errors require defensive design: always validate that expected fields exist before using them, and use Make's error handler (the right-click 'Add error handler' option on any module) to define what should happen when a specific step fails.",
+        "Make's error handler routes allow you to define an alternative path when a module fails, rather than stopping the entire workflow. There are three main options: Resume (continue from the failed module as if it succeeded, skipping it), Ignore (log the error and continue to the next step), and Rollback (undo all changes made in the current run, used for transactional workflows where partial completion is worse than no completion). The most useful pattern for AI workflows is the Ignore handler combined with a notification step \u2014 if the OpenAI API returns an error, log the failed item details to a Google Sheet and send yourself a Slack notification, then continue processing the rest of the batch. This way, a single failed API call does not halt your entire workflow.",
+        "Production-grade reliability requires testing your workflows not just with perfect data, but with realistic data that includes edge cases, missing fields, unusual characters, and unexpected values. Create a dedicated test dataset that covers at least 20 scenarios including: the normal case, a missing required field, a field with an empty string, a very long text input, a non-English input, and any domain-specific edge cases relevant to your business. Run your complete workflow against this test dataset before switching to live data. Schedule a monthly review of your Make scenario history to look for patterns in failures \u2014 a module that fails 5% of the time in testing will fail thousands of times per month in a high-volume production workflow."
+      ],
+      "quiz_topics": [
+        "error categories",
+        "Make error handlers",
+        "production testing"
+      ],
+      "mini_task": "Add error handling to your existing Make workflow. Right-click the OpenAI module and add an error handler with the 'Ignore' option. Then add a step inside the error handler that writes the failed email details (subject, sender, timestamp, and error message) to a separate Google Sheet tab called 'Errors'. Send yourself a test email that is too long for the OpenAI API to process efficiently, or temporarily set an invalid API key to trigger the error handler. Verify that the error is logged correctly and the rest of the workflow continues."
+    },
+    {
+      "title": "Advanced Patterns and Optimisation",
+      "lessons": [
+        "Webhook-based workflows are fundamentally different from scheduled polling workflows and are essential for building real-time responsive systems. A scheduled workflow checks for new data every 15 minutes or every hour \u2014 meaning there is always a delay between something happening and your automation responding. A webhook-based workflow responds instantly because the external service notifies your automation the moment the event occurs. For customer-facing applications \u2014 order confirmations, instant chatbot replies, immediate lead notifications \u2014 the real-time responsiveness of webhooks is not just convenient, it is expected. Any automation that touches customers should use webhooks rather than polling whenever the external service supports them.",
+        "Optimising workflow performance means reducing the number of operations your scenarios consume (which affects your Make billing) and the time each run takes to complete. Common optimisation strategies include: using Make's built-in filtering to stop a scenario early if the incoming data does not meet your criteria (avoiding unnecessary processing of irrelevant events), batching multiple items together and processing them in a single API call where the API supports it, caching frequently used data in a Google Sheet or Airtable rather than fetching it from an API on every run, and using Make's Data Store for temporary data storage between scenario runs. A well-optimised workflow that does the same work in 50 operations instead of 200 will be significantly cheaper and faster at scale.",
+        "Advanced AI workflow patterns include multi-agent systems \u2014 where different AI instances handle different parts of a complex task and pass results to each other. For example, a content production workflow might use one GPT-4 call to generate an article outline, pass that outline to a second call to write a full draft section by section, pass the draft to a third call for SEO optimisation, and finally pass the SEO-optimised version to a fourth call for a final quality check. Each call has a specialised system prompt focused on its specific task, and the outputs are more reliable than a single mega-prompt trying to do everything at once. This chained prompting pattern \u2014 sometimes called prompt chaining \u2014 is one of the most powerful techniques for complex AI automation."
+      ],
+      "quiz_topics": [
+        "webhooks vs polling",
+        "workflow optimisation",
+        "prompt chaining"
+      ],
+      "mini_task": "Redesign your email workflow to use a webhook instead of polling. In Gmail, set up Google Apps Script to send a webhook to Make whenever a new email arrives in your test label (Google has documentation for this). Update your Make scenario to use a Custom Webhook trigger instead of the Gmail polling trigger. Test the difference in response time \u2014 the webhook-based version should classify and log your test emails within seconds of arrival rather than waiting for the next polling cycle."
+    }
+  ],
+  "final_project": "Build a 10-step automated workflow that solves a real business problem end-to-end. The workflow must include: a real-time or near-real-time trigger (webhook preferred), at least two AI processing steps using the OpenAI API with different purposes (for example, classification and then generation), conditional branching based on the AI's output, error handling on every AI module, and a clear, measurable output. Document the workflow completely (trigger, steps, conditions, error handling, expected outputs) and run it with 20 real or simulated inputs to verify reliability.",
+  "assets": []
+}
