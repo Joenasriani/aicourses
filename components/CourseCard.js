@@ -1,6 +1,8 @@
 "use client"
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
+import courseImages from '@/content/courseImages'
 
 const LEVEL_STYLES = {
   Beginner: {
@@ -23,6 +25,10 @@ const LEVEL_STYLES = {
 export default function CourseCard({ course }) {
   const level = course.level || 'Beginner'
   const levelStyle = LEVEL_STYLES[level] || LEVEL_STYLES.Beginner
+  const imageSrc = courseImages[course.slug]
+
+  // Hard-block: do not render courses without a mapped local image
+  if (!imageSrc) return null
 
   return (
     <motion.a
@@ -31,7 +37,20 @@ export default function CourseCard({ course }) {
       whileHover={{ y: -4, boxShadow: '0 8px 24px rgba(0,0,0,0.12)' }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
     >
-      {/* Level badge — top right */}
+      {/* Course hero image */}
+      <div className="course-card-image">
+        <Image
+          src={imageSrc}
+          alt={course.title}
+          width={640}
+          height={360}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="course-card-img"
+          loading="lazy"
+        />
+      </div>
+
+      {/* Level badge */}
       <span
         className="course-level-badge"
         style={{
