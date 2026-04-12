@@ -1,5 +1,7 @@
 "use server"
 
+import { logger } from "@/app/lib/logger"
+
 /**
  * AI Professor — generates a fully structured course as strict JSON.
  *
@@ -31,6 +33,9 @@ export async function generateCourse(formData) {
     return { ok: false, error: "Please provide a course topic." }
   }
 
+  logger.info("ai.professor.start", { topic, difficulty })
+
+  const start = Date.now()
   const systemPrompt = `You are a world-class AI Professor. Your ONLY output is a single valid JSON object — no markdown fences, no commentary, no trailing text.
 
 The JSON must match this exact schema:
@@ -86,6 +91,7 @@ Rules:
       }),
     })
   } catch (err) {
+    logger.error("ai.professor.fetch_failed", { topic, durationMs: Date.now() - start, error: err.message })
     return { ok: false, error: `Failed to reach the AI service. ${err.message}` }
   }
 
@@ -97,6 +103,7 @@ Rules:
     } catch {
       detail = await response.text()
     }
+    logger.warn("ai.professor.api_error", { topic, durationMs: Date.now() - start, status: response.status })
     return { ok: false, error: `OpenRouter returned ${response.status}. ${detail}` }
   }
 
@@ -104,11 +111,13 @@ Rules:
   try {
     apiData = await response.json()
   } catch {
+    logger.error("ai.professor.parse_error", { topic, durationMs: Date.now() - start })
     return { ok: false, error: "Could not parse the AI API response." }
   }
 
   const raw = apiData?.choices?.[0]?.message?.content
   if (!raw) {
+    logger.warn("ai.professor.no_content", { topic, durationMs: Date.now() - start })
     return { ok: false, error: "No content returned from the AI." }
   }
 
@@ -119,6 +128,7 @@ Rules:
   try {
     parsed = JSON.parse(cleaned)
   } catch {
+    logger.warn("ai.professor.invalid_json", { topic, durationMs: Date.now() - start })
     return { ok: false, error: `AI response was not valid JSON. Raw output: ${raw.slice(0, 300)}` }
   }
 
@@ -132,8 +142,10 @@ Rules:
     typeof parsed.quizzes !== "object" ||
     typeof parsed.finalChallenge !== "string"
   ) {
+    logger.warn("ai.professor.invalid_structure", { topic, durationMs: Date.now() - start })
     return { ok: false, error: "AI returned JSON with an unexpected structure." }
   }
 
+  logger.info("ai.professor.success", { topic, difficulty, durationMs: Date.now() - start })
   return { ok: true, data: parsed }
 }

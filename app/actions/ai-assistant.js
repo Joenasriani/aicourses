@@ -1,5 +1,7 @@
 "use server"
 
+import { logger } from "@/app/lib/logger"
+
 /**
  * Shared helper — makes a single OpenRouter chat completion call.
  * Returns { ok: true, content } or { ok: false, error }.
@@ -9,6 +11,7 @@ async function callOpenRouter(messages, maxTokens = 150) {
     return { ok: false, error: "OPENROUTER_API_KEY is not configured." }
   }
 
+  const start = Date.now()
   let response
   try {
     response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
@@ -24,10 +27,12 @@ async function callOpenRouter(messages, maxTokens = 150) {
       }),
     })
   } catch (err) {
+    logger.error("ai.assistant.fetch_failed", { durationMs: Date.now() - start, error: err.message })
     return { ok: false, error: `Failed to reach the AI service. ${err.message}` }
   }
 
   if (!response.ok) {
+    logger.warn("ai.assistant.api_error", { durationMs: Date.now() - start, status: response.status })
     return { ok: false, error: `AI service returned ${response.status}.` }
   }
 
@@ -35,14 +40,17 @@ async function callOpenRouter(messages, maxTokens = 150) {
   try {
     apiData = await response.json()
   } catch {
+    logger.error("ai.assistant.parse_error", { durationMs: Date.now() - start })
     return { ok: false, error: "Could not parse the AI response." }
   }
 
   const content = apiData?.choices?.[0]?.message?.content?.trim()
   if (!content) {
+    logger.warn("ai.assistant.no_content", { durationMs: Date.now() - start })
     return { ok: false, error: "No content returned from the AI." }
   }
 
+  logger.info("ai.assistant.success", { durationMs: Date.now() - start })
   return { ok: true, content }
 }
 
@@ -58,6 +66,7 @@ export async function getELI5Explanation(lessonText) {
     return { ok: false, error: "No lesson text provided." }
   }
 
+  logger.info("ai.assistant.eli5.start", { lessonLength: lessonText.length })
   const result = await callOpenRouter(
     [
       {
@@ -90,6 +99,7 @@ export async function getReinforcementExplanation(lessonText, dayTitle) {
     return { ok: false, error: "No lesson text provided." }
   }
 
+  logger.info("ai.assistant.reinforcement.start", { dayTitle, lessonLength: lessonText.length })
   const result = await callOpenRouter(
     [
       {

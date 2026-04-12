@@ -1,5 +1,7 @@
 "use server"
 
+import { logger } from "@/app/lib/logger"
+
 /**
  * Quiz Engine — generates 3 dynamic quiz questions from lesson content.
  *
@@ -26,6 +28,9 @@ export async function generateQuizQuestions(lessonContent, dayTitle, usedPrompts
   if (!text.trim()) {
     return { ok: false, error: "No lesson content provided." }
   }
+
+  logger.info("ai.quiz.start", { dayTitle, textLength: text.length, usedPrompts: usedPrompts.length })
+  const start = Date.now()
 
   const avoidClause =
     usedPrompts.length > 0
@@ -74,6 +79,7 @@ Rules:
       }),
     })
   } catch (err) {
+    logger.error("ai.quiz.fetch_failed", { dayTitle, durationMs: Date.now() - start, error: err.message })
     return { ok: false, error: `Failed to reach the AI service. ${err.message}` }
   }
 
@@ -85,6 +91,7 @@ Rules:
     } catch {
       // ignore
     }
+    logger.warn("ai.quiz.api_error", { dayTitle, durationMs: Date.now() - start, status: response.status })
     return { ok: false, error: `AI service returned ${response.status}. ${detail}` }
   }
 
@@ -92,11 +99,13 @@ Rules:
   try {
     apiData = await response.json()
   } catch {
+    logger.error("ai.quiz.parse_error", { dayTitle, durationMs: Date.now() - start })
     return { ok: false, error: "Could not parse the AI API response." }
   }
 
   const raw = apiData?.choices?.[0]?.message?.content
   if (!raw) {
+    logger.warn("ai.quiz.no_content", { dayTitle, durationMs: Date.now() - start })
     return { ok: false, error: "No content returned from the AI." }
   }
 
@@ -107,10 +116,12 @@ Rules:
   try {
     questions = JSON.parse(cleaned)
   } catch {
+    logger.warn("ai.quiz.invalid_json", { dayTitle, durationMs: Date.now() - start })
     return { ok: false, error: `AI response was not valid JSON. Raw: ${raw.slice(0, 200)}` }
   }
 
   if (!Array.isArray(questions) || questions.length < 1) {
+    logger.warn("ai.quiz.invalid_array", { dayTitle, durationMs: Date.now() - start })
     return { ok: false, error: "AI did not return a valid question array." }
   }
 
@@ -122,9 +133,11 @@ Rules:
       q.options.length < 2 ||
       typeof q.correctIndex !== "number"
     ) {
+      logger.warn("ai.quiz.malformed_question", { dayTitle, durationMs: Date.now() - start })
       return { ok: false, error: "AI returned a malformed question object." }
     }
   }
 
+  logger.info("ai.quiz.success", { dayTitle, questionCount: questions.slice(0, 3).length, durationMs: Date.now() - start })
   return { ok: true, questions: questions.slice(0, 3) }
 }
