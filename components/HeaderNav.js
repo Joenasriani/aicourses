@@ -50,7 +50,7 @@ export default function HeaderNav() {
           {/* XP / Streak badge — only shown after hydration */}
           {hydrated && (
             <div className="header-xp-group">
-              {streakDays > 1 && (
+              {streakDays > 0 && (
                 <span className="streak-badge" title={`${streakDays}-day streak`}>
                   🔥 {streakDays}
                 </span>

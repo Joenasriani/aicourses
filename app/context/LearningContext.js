@@ -66,20 +66,26 @@ export function LearningProvider({ children }) {
     }
   }, [state, hydrated])
 
-  /** Return today's date as "YYYY-MM-DD" (local time) */
-  function todayISO() {
-    const d = new Date()
-    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`
+  /** Format a Date object as "YYYY-MM-DD" (local time). */
+  function formatDateISO(date) {
+    return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`
   }
 
-  /** Update streak: call on any learning activity. */
+  /** Return today's date as "YYYY-MM-DD" (local time). */
+  function getTodayISO() {
+    return formatDateISO(new Date())
+  }
+
+  /** Update streak: call on any learning activity. Skips setState when already updated today. */
   function touchStreak() {
-    const today = todayISO()
+    const today = getTodayISO()
+    // Fast path: already updated today — avoid unnecessary state update
+    if (state.lastActiveDate === today) return
+    const yesterday = new Date()
+    yesterday.setDate(yesterday.getDate() - 1)
+    const yISO = formatDateISO(yesterday)
     setState((prev) => {
-      if (prev.lastActiveDate === today) return prev // already updated today
-      const yesterday = new Date()
-      yesterday.setDate(yesterday.getDate() - 1)
-      const yISO = `${yesterday.getFullYear()}-${String(yesterday.getMonth() + 1).padStart(2, "0")}-${String(yesterday.getDate()).padStart(2, "0")}`
+      if (prev.lastActiveDate === today) return prev // double-check inside updater
       const consecutive = prev.lastActiveDate === yISO
       return {
         ...prev,
