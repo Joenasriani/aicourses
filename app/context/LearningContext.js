@@ -31,6 +31,9 @@ const defaultState = {
   completedCards: [],
   dayStatus: {},
   quizAttempts: {},
+  streakDays: 0,
+  lastActiveDate: null, // ISO "YYYY-MM-DD"
+  coursePositions: {}, // { [courseSlug]: dayIndex }
 }
 
 const LearningContext = createContext(null)
@@ -63,15 +66,52 @@ export function LearningProvider({ children }) {
     }
   }, [state, hydrated])
 
+  /** Return today's date as "YYYY-MM-DD" (local time) */
+  function todayISO() {
+    const d = new Date()
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`
+  }
+
+  /** Update streak: call on any learning activity. */
+  function touchStreak() {
+    const today = todayISO()
+    setState((prev) => {
+      if (prev.lastActiveDate === today) return prev // already updated today
+      const yesterday = new Date()
+      yesterday.setDate(yesterday.getDate() - 1)
+      const yISO = `${yesterday.getFullYear()}-${String(yesterday.getMonth() + 1).padStart(2, "0")}-${String(yesterday.getDate()).padStart(2, "0")}`
+      const consecutive = prev.lastActiveDate === yISO
+      return {
+        ...prev,
+        lastActiveDate: today,
+        streakDays: consecutive ? prev.streakDays + 1 : 1,
+      }
+    })
+  }
+
   /** Mark a single card as complete. */
   function markCardComplete(courseSlug, dayIndex, cardIndex) {
     const id = `${courseSlug}:${dayIndex}:${cardIndex}`
+    touchStreak()
     setState((prev) => ({
       ...prev,
       completedCards: prev.completedCards.includes(id)
         ? prev.completedCards
         : [...prev.completedCards, id],
     }))
+  }
+
+  /** Save the learner's current day position within a course (for resume). */
+  function saveCoursePosition(courseSlug, dayIndex) {
+    setState((prev) => ({
+      ...prev,
+      coursePositions: { ...prev.coursePositions, [courseSlug]: dayIndex },
+    }))
+  }
+
+  /** Get the saved day position for a course (defaults to 0). */
+  function getCoursePosition(courseSlug) {
+    return state.coursePositions?.[courseSlug] ?? 0
   }
 
   /** Mark an entire day as completed, award XP, and unlock the next day. */
@@ -179,6 +219,8 @@ export function LearningProvider({ children }) {
         recordQuizAttempt,
         getQuizFailures,
         getMasteryScore,
+        saveCoursePosition,
+        getCoursePosition,
       }}
     >
       {children}

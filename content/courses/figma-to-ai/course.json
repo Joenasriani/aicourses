@@ -1,0 +1,72 @@
+{
+  "slug": "figma-to-ai",
+  "title": "Figma to Website with AI",
+  "subtitle": "Turn your Figma designs into fully functional websites using AI-powered export tools",
+  "level": "Intermediate",
+  "duration_days": 5,
+  "price_aed": 399,
+  "modules": [
+    {
+      "title": "Figma for AI-Ready Design",
+      "lessons": [
+        "How AI export tools read Figma files",
+        "Setting up Figma with correct auto-layout",
+        "Naming layers and components for AI compatibility",
+        "Using Figma variables for theming",
+        "Preparing assets: images, icons, and fonts"
+      ],
+      "quiz_topics": ["Figma setup", "auto-layout"],
+      "mini_task": "Open a Figma template and rename all layers using a clear naming convention"
+    },
+    {
+      "title": "AI Export Plugins and Tools",
+      "lessons": [
+        "Overview: Anima, TeleportHQ, Builder.io, and Locofy",
+        "Exporting a Figma component to HTML/CSS with Anima",
+        "Using Builder.io to turn designs into React components",
+        "Reviewing and cleaning AI-generated code",
+        "Understanding when AI export works best"
+      ],
+      "quiz_topics": ["export tools", "code quality"],
+      "mini_task": "Export a hero section from Figma to HTML using an AI plugin"
+    },
+    {
+      "title": "Framer: Design to Live Website",
+      "lessons": [
+        "Importing Figma frames into Framer",
+        "Using Framer AI to enhance and animate",
+        "Adding interactions without code",
+        "Setting up breakpoints for mobile",
+        "Publishing from Framer in one click"
+      ],
+      "quiz_topics": ["Framer", "animations"],
+      "mini_task": "Import a Figma frame into Framer and publish it as a live page"
+    },
+    {
+      "title": "Webflow with AI Assistance",
+      "lessons": [
+        "Recreating a Figma design in Webflow",
+        "Using AI copywriting tools inside Webflow",
+        "Building a CMS for dynamic content",
+        "Connecting forms and interactions",
+        "SEO settings in Webflow"
+      ],
+      "quiz_topics": ["Webflow CMS", "SEO"],
+      "mini_task": "Build a 2-section page in Webflow matching a provided Figma screenshot"
+    },
+    {
+      "title": "Polish, Test, and Launch",
+      "lessons": [
+        "Cross-browser testing your converted design",
+        "Fixing spacing and font rendering differences",
+        "Performance optimisation: image compression and lazy loading",
+        "Setting up a custom domain",
+        "Gathering client or stakeholder feedback"
+      ],
+      "quiz_topics": ["testing", "performance"],
+      "mini_task": "Publish your final website and share it with one person for feedback"
+    }
+  ],
+  "final_project": "Convert a complete 5-section Figma design into a live, responsive website using AI-powered export tools, with a working contact form and a custom domain.",
+  "assets": []
+}

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useLearning } from "@/app/context/LearningContext"
 import LessonCard from "@/components/LessonCard"
 import QuizGate from "@/components/QuizGate"
@@ -50,11 +50,21 @@ function getDefaultQuiz(moduleTitle) {
  * @param {{ slug: string, modules: Array, quizzes?: Object }} course
  */
 export default function CourseClient({ course }) {
-  const { getDayStatus, getCompletedCardCount, getMasteryScore } = useLearning()
+  const { getDayStatus, getCompletedCardCount, getMasteryScore, getCoursePosition, saveCoursePosition, hydrated } = useLearning()
   const [currentDay, setCurrentDay] = useState(0)
   const [showQuiz, setShowQuiz] = useState(false)
 
   const days = course.modules || []
+
+  // Restore saved position after localStorage has hydrated
+  useEffect(() => {
+    if (!hydrated) return
+    const saved = getCoursePosition(course.slug)
+    if (saved > 0 && saved < days.length) {
+      setCurrentDay(saved)
+    }
+  }, [hydrated]) // eslint-disable-line react-hooks/exhaustive-deps
+
   const day = days[currentDay]
 
   // Build card objects from the flat lessons array of the active module
@@ -83,6 +93,7 @@ export default function CourseClient({ course }) {
   function switchDay(di) {
     setCurrentDay(di)
     setShowQuiz(false)
+    saveCoursePosition(course.slug, di)
   }
 
   if (!day) return null

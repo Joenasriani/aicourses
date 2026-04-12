@@ -1,0 +1,72 @@
+{
+  "slug": "ai-content-systems",
+  "title": "AI Content Creation Systems",
+  "subtitle": "Build a repeatable AI-powered content engine that produces quality content at scale",
+  "level": "Intermediate",
+  "duration_days": 5,
+  "price_aed": 399,
+  "modules": [
+    {
+      "title": "Content Strategy with AI",
+      "lessons": [
+        "What a content system is and why it beats one-off posts",
+        "Using AI to research your audience and find content gaps",
+        "Building a content calendar with AI assistance",
+        "Defining your brand voice and feeding it to AI",
+        "Choosing the right content formats for your goals"
+      ],
+      "quiz_topics": ["content strategy", "brand voice"],
+      "mini_task": "Use AI to generate a 30-day content calendar for a chosen niche"
+    },
+    {
+      "title": "The AI Writing Pipeline",
+      "lessons": [
+        "Writing high-quality blog posts with AI in 20 minutes",
+        "Creating LinkedIn and social media posts from long-form content",
+        "Email newsletter generation from a topic brief",
+        "Repurposing one piece into five formats automatically",
+        "Using AI to write content that sounds human"
+      ],
+      "quiz_topics": ["content repurposing", "AI writing"],
+      "mini_task": "Take one blog post idea and generate 5 different content formats using AI"
+    },
+    {
+      "title": "Visual Content with AI",
+      "lessons": [
+        "Generating on-brand images with Midjourney or DALL-E",
+        "AI-powered Canva templates for social media",
+        "Creating short video scripts with AI",
+        "Turning blog posts into carousel posts with AI",
+        "Stock photos vs. AI images: when to use each"
+      ],
+      "quiz_topics": ["visual content", "AI image generation"],
+      "mini_task": "Create 3 on-brand social media graphics using an AI image tool"
+    },
+    {
+      "title": "Automating Content Distribution",
+      "lessons": [
+        "Connecting your content workflow with Buffer, Hootsuite, or Zapier",
+        "Auto-posting approved content to multiple platforms",
+        "Scheduling content batches a week in advance",
+        "AI-powered hashtag and SEO optimisation",
+        "Tracking content performance automatically"
+      ],
+      "quiz_topics": ["distribution", "scheduling"],
+      "mini_task": "Connect an AI content pipeline to auto-schedule 5 posts using Zapier or Buffer"
+    },
+    {
+      "title": "Scaling and Refining Your System",
+      "lessons": [
+        "Reviewing content performance and feeding insights back to AI",
+        "A/B testing AI-generated headlines",
+        "Building a content template library",
+        "Delegating content tasks to AI assistants",
+        "Scaling from 1 brand to multiple clients or channels"
+      ],
+      "quiz_topics": ["scaling", "performance analysis"],
+      "mini_task": "Review last week's content performance and refine your AI prompts based on results"
+    }
+  ],
+  "final_project": "Build and document a complete AI content system: from strategy and writing to visuals and automated distribution — producing at least 10 pieces of content ready to publish.",
+  "assets": []
+}
