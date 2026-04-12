@@ -1,5 +1,6 @@
 import './globals.css'
 import Providers from './Providers'
+import HeaderNav from '@/components/HeaderNav'
 
 export const metadata = {
   title: 'AI Academy',
@@ -16,20 +17,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <Providers>
-          <header className="site-header">
-            <div className="container">
-              <div className="header-inner">
-                <a href="/" className="brand">
-                  <span className="brand-title">AI Academy</span>
-                  <span className="brand-subtitle">by Apex Innovate</span>
-                </a>
-                <nav className="site-nav">
-                  <a href="/courses" className="nav-link">Courses</a>
-                  <a href="/ai-professor" className="nav-link">AI Professor</a>
-                </nav>
-              </div>
-            </div>
-          </header>
+          <HeaderNav />
           <div className="page-body">
             {children}
           </div>

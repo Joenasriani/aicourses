@@ -1,0 +1,72 @@
+{
+  "slug": "ai-workflows",
+  "title": "AI Workflow Automation",
+  "subtitle": "Design and deploy end-to-end AI workflows that run your processes on autopilot",
+  "level": "Intermediate",
+  "duration_days": 5,
+  "price_aed": 399,
+  "modules": [
+    {
+      "title": "Workflow Thinking with AI",
+      "lessons": [
+        "What makes a good AI workflow vs. a bad one",
+        "The five stages of any effective workflow",
+        "Mapping a workflow from trigger to outcome",
+        "Choosing between automation and AI augmentation",
+        "Real-world workflow examples: content, sales, support"
+      ],
+      "quiz_topics": ["workflow design", "AI vs. automation"],
+      "mini_task": "Map a 5-step workflow for a task you do every week"
+    },
+    {
+      "title": "AI Inputs and Triggers",
+      "lessons": [
+        "Webhook triggers and what they are",
+        "Scheduling workflows to run at specific times",
+        "Using form submissions to start AI workflows",
+        "Email and Slack triggers for AI processing",
+        "Manual vs. automatic workflow triggers"
+      ],
+      "quiz_topics": ["triggers", "webhooks"],
+      "mini_task": "Create a workflow that is triggered by a form submission in Make or n8n"
+    },
+    {
+      "title": "AI Processing Steps",
+      "lessons": [
+        "Sending data to an AI model as part of a workflow",
+        "Chaining multiple AI calls in sequence",
+        "Conditional logic: if/else branches in workflows",
+        "Transforming AI output before the next step",
+        "Error handling and retry logic"
+      ],
+      "quiz_topics": ["AI processing", "conditional logic"],
+      "mini_task": "Add an AI step to your workflow that processes text and returns a result"
+    },
+    {
+      "title": "Outputs and Actions",
+      "lessons": [
+        "Sending AI results to a Google Sheet or Airtable",
+        "Posting AI-generated content to social media",
+        "Sending personalised emails from AI output",
+        "Creating documents or PDFs from workflow results",
+        "Notifying a team via Slack or email"
+      ],
+      "quiz_topics": ["workflow outputs", "integrations"],
+      "mini_task": "Connect your workflow output to a Google Sheet and verify the data appears"
+    },
+    {
+      "title": "Production Workflows",
+      "lessons": [
+        "Testing a workflow end-to-end before going live",
+        "Monitoring and logging workflow runs",
+        "Handling rate limits and AI API quotas",
+        "Versioning and documenting your workflows",
+        "Sharing workflows with your team"
+      ],
+      "quiz_topics": ["production readiness", "monitoring"],
+      "mini_task": "Run your complete workflow 3 times with different inputs and verify all outputs"
+    }
+  ],
+  "final_project": "Design, build, and deploy a multi-step AI workflow that automatically processes real data and delivers a useful output to a destination of your choice.",
+  "assets": []
+}

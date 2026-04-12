@@ -1,0 +1,72 @@
+{
+  "slug": "build-ai-no-code",
+  "title": "Build AI Apps Without Coding",
+  "subtitle": "Create powerful AI-powered apps using no-code tools — no programming required",
+  "level": "Intermediate",
+  "duration_days": 5,
+  "price_aed": 399,
+  "modules": [
+    {
+      "title": "No-Code AI Foundations",
+      "lessons": [
+        "What no-code AI tools can do today",
+        "Overview of the top platforms: Bubble, Glide, Softr, and Make",
+        "How AI APIs connect to no-code apps",
+        "Choosing the right tool for your project",
+        "Setting up your first no-code workspace"
+      ],
+      "quiz_topics": ["no-code tools", "AI APIs"],
+      "mini_task": "Sign up for Bubble or Glide and explore the dashboard"
+    },
+    {
+      "title": "Connecting AI to Your App",
+      "lessons": [
+        "What is an API and why it matters",
+        "Getting your OpenAI or Claude API key safely",
+        "Making your first API call without code using Make or Zapier",
+        "Displaying AI responses inside your app",
+        "Handling errors and empty responses gracefully"
+      ],
+      "quiz_topics": ["API basics", "error handling"],
+      "mini_task": "Connect an AI API to a Zapier or Make workflow and test it"
+    },
+    {
+      "title": "Building Your First AI Feature",
+      "lessons": [
+        "Designing a text input form in Bubble",
+        "Sending user input to an AI API",
+        "Rendering the AI response back to the user",
+        "Saving results to a database",
+        "Adding a loading spinner for better UX"
+      ],
+      "quiz_topics": ["UI design", "data flow"],
+      "mini_task": "Build a simple AI Q&A form that shows an answer when submitted"
+    },
+    {
+      "title": "Adding AI Features to Real Apps",
+      "lessons": [
+        "AI writing assistant inside a notes app",
+        "AI product description generator for an e-commerce template",
+        "AI-powered FAQ chatbot with no code",
+        "Image caption generator using AI vision APIs",
+        "Storing and displaying AI history"
+      ],
+      "quiz_topics": ["AI use cases", "data storage"],
+      "mini_task": "Add an AI writing assistant button to a notes app template"
+    },
+    {
+      "title": "Launch and Iterate",
+      "lessons": [
+        "Testing your app on mobile",
+        "Sharing your app with a public link",
+        "Collecting user feedback on AI quality",
+        "Iterating on AI prompts to improve results",
+        "Planning your next AI feature"
+      ],
+      "quiz_topics": ["launch checklist", "iteration"],
+      "mini_task": "Share your app link with one person and note their feedback"
+    }
+  ],
+  "final_project": "Build and publish a fully functional AI-powered no-code app that takes user input, sends it to an AI API, and displays a meaningful result.",
+  "assets": []
+}

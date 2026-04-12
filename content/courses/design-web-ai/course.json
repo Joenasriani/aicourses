@@ -1,0 +1,72 @@
+{
+  "slug": "design-web-ai",
+  "title": "Design Websites with AI",
+  "subtitle": "Go from idea to polished website using AI design tools and no-code builders",
+  "level": "Intermediate",
+  "duration_days": 5,
+  "price_aed": 399,
+  "modules": [
+    {
+      "title": "AI-Assisted Design Thinking",
+      "lessons": [
+        "How AI is changing web design",
+        "Generating website layouts with ChatGPT prompts",
+        "Using AI image generators for hero visuals",
+        "Choosing colour palettes with AI assistance",
+        "Building a design brief in 10 minutes with AI"
+      ],
+      "quiz_topics": ["design thinking", "AI tools"],
+      "mini_task": "Generate a website concept brief using ChatGPT for your chosen niche"
+    },
+    {
+      "title": "Wireframing and Structure",
+      "lessons": [
+        "What wireframes are and why they matter",
+        "Using AI to generate wireframe ideas",
+        "Turning prompts into Figma or Canva layouts",
+        "Responsive design principles for mobile",
+        "Planning navigation and information hierarchy"
+      ],
+      "quiz_topics": ["wireframing", "responsive design"],
+      "mini_task": "Create a 3-section wireframe in Figma or Canva using AI suggestions"
+    },
+    {
+      "title": "Building with AI Website Builders",
+      "lessons": [
+        "Overview: Framer, Webflow, Wix, and Squarespace AI",
+        "Using Framer AI to generate a landing page from a prompt",
+        "Editing AI-generated sections to match your brand",
+        "Adding animations and hover effects without code",
+        "Optimising for mobile view"
+      ],
+      "quiz_topics": ["website builders", "AI generation"],
+      "mini_task": "Generate a landing page in Framer AI and edit the hero section"
+    },
+    {
+      "title": "Content and Copy with AI",
+      "lessons": [
+        "Writing high-converting headlines with AI",
+        "Generating service descriptions and CTAs",
+        "SEO-friendly meta descriptions from AI",
+        "Creating FAQ sections automatically",
+        "Repurposing existing content into web copy"
+      ],
+      "quiz_topics": ["copywriting", "SEO"],
+      "mini_task": "Generate homepage copy for 3 sections using AI and paste into your builder"
+    },
+    {
+      "title": "Launch-Ready Polish",
+      "lessons": [
+        "Checking site speed and performance",
+        "Adding a custom domain",
+        "Testing on different screen sizes",
+        "Connecting a simple contact form",
+        "Sharing and getting feedback on your site"
+      ],
+      "quiz_topics": ["launch checklist", "performance"],
+      "mini_task": "Publish your website and run a Lighthouse or PageSpeed check"
+    }
+  ],
+  "final_project": "Design, build, and publish a complete website for a real or fictional brand using AI tools at every stage — from concept to copy to launch.",
+  "assets": []
+}

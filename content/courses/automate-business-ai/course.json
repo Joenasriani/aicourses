@@ -1,0 +1,72 @@
+{
+  "slug": "automate-business-ai",
+  "title": "Automate Your Business with AI",
+  "subtitle": "Eliminate repetitive tasks and reclaim hours every week using AI automation",
+  "level": "Intermediate",
+  "duration_days": 5,
+  "price_aed": 399,
+  "modules": [
+    {
+      "title": "Automation Fundamentals",
+      "lessons": [
+        "What business automation actually means",
+        "Identifying tasks worth automating in your business",
+        "The automation ROI mindset: time vs. setup cost",
+        "Overview of top tools: Zapier, Make, n8n",
+        "Connecting apps without code using triggers and actions"
+      ],
+      "quiz_topics": ["automation basics", "tool selection"],
+      "mini_task": "List 5 repetitive tasks in your business that could be automated"
+    },
+    {
+      "title": "Email and Communication Automation",
+      "lessons": [
+        "Automating email responses with AI drafts",
+        "Setting up AI-powered email categorisation",
+        "Creating follow-up sequences with AI-generated content",
+        "Slack and Teams notifications triggered by business events",
+        "Building an AI inbox assistant"
+      ],
+      "quiz_topics": ["email automation", "communication tools"],
+      "mini_task": "Set up an automated AI email reply draft in Gmail using Make or Zapier"
+    },
+    {
+      "title": "Document and Data Automation",
+      "lessons": [
+        "Auto-generating reports from spreadsheet data",
+        "AI-summarised meeting notes from transcripts",
+        "Automating invoice generation with AI",
+        "Extracting data from PDFs and forms automatically",
+        "Syncing data between tools with no code"
+      ],
+      "quiz_topics": ["document automation", "data extraction"],
+      "mini_task": "Create an automated workflow that generates a summary from a form submission"
+    },
+    {
+      "title": "Customer and Sales Automation",
+      "lessons": [
+        "AI chatbot for customer support on your website",
+        "Lead qualification automation with AI scoring",
+        "Automated CRM updates from email or chat",
+        "Scheduling and booking automation",
+        "Personalised AI follow-up messages at scale"
+      ],
+      "quiz_topics": ["CRM automation", "customer experience"],
+      "mini_task": "Set up a basic AI chatbot or lead capture form with an automated response"
+    },
+    {
+      "title": "Build Your Automation Stack",
+      "lessons": [
+        "Designing your full automation workflow map",
+        "Chaining multiple automations together",
+        "Testing and debugging common automation errors",
+        "Monitoring automation health and failure alerts",
+        "Documenting your automations for your team"
+      ],
+      "quiz_topics": ["workflow design", "debugging"],
+      "mini_task": "Draw and describe your business automation map with at least 3 connected flows"
+    }
+  ],
+  "final_project": "Build and document a complete business automation system that saves at least 3 hours per week, covering email, data, and customer communication.",
+  "assets": []
+}
