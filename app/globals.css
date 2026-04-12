@@ -1105,15 +1105,15 @@ p {
 }
 
 /* ── Page body (flex column so footer stays at bottom) ───────────────── */
-.page-body {
-  flex: 1;
-  min-width: 0;
-}
-
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+.page-body {
+  flex: 1;
+  min-width: 0;
 }
 
 /* ── Footer ──────────────────────────────────────────────────────────── */
