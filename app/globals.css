@@ -1151,3 +1151,53 @@ body {
     gap: 4px;
   }
 }
+
+/* ── Course Card Image ───────────────────────────────────────────────── */
+.course-card-image {
+  /* Fixed aspect-ratio container prevents CLS */
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--surface-2);
+  margin-bottom: 4px;
+}
+
+.course-card-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Course Hero Image ───────────────────────────────────────────────── */
+.course-hero-text {
+  min-width: 0;
+}
+
+.course-hero-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--surface-2);
+  box-shadow: var(--shadow);
+}
+
+.course-hero-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  display: block;
+}
+
+/* On mobile, image goes below text */
+@media (max-width: 719px) {
+  .course-hero {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+}
