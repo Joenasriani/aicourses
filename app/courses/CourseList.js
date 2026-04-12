@@ -3,7 +3,7 @@
 import { useState, useMemo, useTransition } from 'react'
 import CourseCard from '../../components/CourseCard'
 
-const FILTERS = ['All', 'AI', 'Development', 'Marketing']
+const FILTERS = ['All', 'ChatGPT', 'Claude', 'Gemini', 'Seniors']
 
 function matchesFilter(course, filter) {
   if (filter === 'All') return true

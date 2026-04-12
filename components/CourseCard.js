@@ -8,6 +8,11 @@ const LEVEL_STYLES = {
     color: '#3B82F6',
     border: '#bfdbfe',
   },
+  Intermediate: {
+    bg: '#ECFDF5',
+    color: '#059669',
+    border: '#A7F3D0',
+  },
   Advanced: {
     bg: '#f5f3ff',
     color: '#7c3aed',
