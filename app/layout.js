@@ -16,15 +16,12 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <Providers>
-          <header
-            className="sticky top-0 z-50 min-h-[4rem] border-b bg-white"
-            style={{ borderColor: "#E6E8EC" }}
-          >
+          <header className="site-header">
             <div className="container">
               <div className="header-inner">
                 <a href="/" className="brand">
-                  <span className="text-xl font-bold leading-tight" style={{ color: "#111827" }}>AI Academy</span>
-                  <span className="text-[10px] uppercase tracking-widest text-slate-400">by Apex Innovate</span>
+                  <span className="brand-title">AI Academy</span>
+                  <span className="brand-subtitle">by Apex Innovate</span>
                 </a>
                 <nav className="site-nav">
                   <a href="/courses" className="nav-link">Courses</a>
@@ -33,9 +30,17 @@ export default function RootLayout({ children }) {
               </div>
             </div>
           </header>
-          <div className="max-w-7xl mx-auto px-4 mt-[clamp(4rem,10vh,7rem)]">
+          <div className="page-body">
             {children}
           </div>
+          <footer className="site-footer">
+            <div className="container">
+              <div className="footer-inner">
+                <span className="footer-brand">AI Academy</span>
+                <span className="footer-copy">© 2025 Apex Innovate. All rights reserved.</span>
+              </div>
+            </div>
+          </footer>
         </Providers>
       </body>
     </html>
