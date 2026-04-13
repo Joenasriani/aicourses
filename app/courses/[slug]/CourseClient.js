@@ -44,15 +44,16 @@ function getDefaultQuiz(moduleTitle) {
 
 /**
  * CourseClient — client-side interactive course view.
- * Converts modules → card decks, shows a progress bar, manages day navigation,
- * and gates day transitions behind a QuizGate.
+ * Renders a two-column layout: left sidebar (course outline) + right main area
+ * (sticky progress header + lesson cards / quiz gate).
  *
- * @param {{ slug: string, modules: Array, quizzes?: Object }} course
+ * @param {{ slug: string, title: string, modules: Array, quizzes?: Object }} course
  */
 export default function CourseClient({ course }) {
   const { getDayStatus, getCompletedCardCount, getMasteryScore, getCoursePosition, saveCoursePosition, hydrated } = useLearning()
   const [currentDay, setCurrentDay] = useState(0)
   const [showQuiz, setShowQuiz] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   const days = course.modules || []
 
@@ -81,6 +82,7 @@ export default function CourseClient({ course }) {
     (sum, _, di) => sum + getCompletedCardCount(course.slug, di),
     0
   )
+  const progressPct = totalCards > 0 ? Math.round((completedCount / totalCards) * 100) : 0
 
   const masteryScore = getMasteryScore(course.slug, days.length)
 
@@ -94,83 +96,134 @@ export default function CourseClient({ course }) {
     setCurrentDay(di)
     setShowQuiz(false)
     saveCoursePosition(course.slug, di)
+    setSidebarOpen(false)
   }
 
   if (!day) return null
 
   return (
     <div>
-      {/* ── Progress Bar ─────────────────────────────────────────────── */}
-      <div className="course-progress">
-        <div className="course-progress-label">
-          <span>Course Progress</span>
-          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            <span>
-              {completedCount} / {totalCards} cards
+      {/* ── Sticky course header ──────────────────────────────────────── */}
+      <div className="course-sticky-header">
+        <div className="container">
+          <div className="course-sticky-inner">
+            <span className="course-sticky-title">
+              {course.title || "Course"}
             </span>
-            {masteryScore > 0 && (
-              <span className="mastery-score">
-                🏆 Mastery <span className="mastery-score-value">{masteryScore}%</span>
-              </span>
-            )}
+
+            <div className="course-sticky-progress">
+              <div className="course-sticky-bar">
+                <ProgressBar completed={completedCount} total={totalCards} />
+              </div>
+              <span className="course-sticky-pct">{progressPct}%</span>
+              {masteryScore > 0 && (
+                <span className="mastery-score">
+                  🏆 <span className="mastery-score-value">{masteryScore}%</span>
+                </span>
+              )}
+            </div>
+
+            <div className="course-sticky-actions">
+              <button
+                className="btn-nav"
+                disabled={currentDay === 0}
+                onClick={() => switchDay(currentDay - 1)}
+                title="Previous day"
+              >
+                ← Prev
+              </button>
+              <button
+                className="btn-nav"
+                disabled={currentDay >= days.length - 1 || getDayStatus(course.slug, currentDay + 1) === "locked"}
+                onClick={() => switchDay(currentDay + 1)}
+                title="Next day"
+              >
+                Next →
+              </button>
+            </div>
           </div>
         </div>
-        <ProgressBar completed={completedCount} total={totalCards} />
       </div>
 
-      {/* ── Day Tabs ──────────────────────────────────────────────────── */}
-      <div className="day-tabs">
-        {days.map((m, di) => {
-          const st = getDayStatus(course.slug, di)
-          return (
-            <button
-              key={di}
-              disabled={st === "locked"}
-              className={`filter-btn${currentDay === di ? " active" : ""}`}
-              onClick={() => switchDay(di)}
-            >
-              Day {di + 1}
-              {st === "completed" && " ✓"}
-              {st === "locked" && " 🔒"}
-            </button>
-          )
-        })}
-      </div>
-
-      {/* ── Day Content ───────────────────────────────────────────────── */}
-      {dayStatus === "locked" ? (
-        <div className="module-card locked-day">
-          <p className="locked-icon">🔒</p>
-          <p>Complete the previous day&apos;s quiz to unlock this day.</p>
-        </div>
-      ) : showQuiz ? (
-        <QuizGate
-          courseSlug={course.slug}
-          dayIndex={currentDay}
-          questions={quizQuestions}
-          lessonContent={cards.map((c) => c.content)}
-          dayTitle={day?.title}
-          onPass={() => {
-            setShowQuiz(false)
-            // Advance to next unlocked day, if available
-            if (currentDay + 1 < days.length) switchDay(currentDay + 1)
-          }}
-        />
-      ) : (
-        <div className="module-card">
-          <div className="section-head">
-            <h3>
-              Day {currentDay + 1}: {day.title}
-            </h3>
+      {/* ── Main two-column layout ────────────────────────────────────── */}
+      <div className="course-layout">
+        {/* ── Left Sidebar — Course Outline ── */}
+        <aside className="course-sidebar">
+          <div className="course-sidebar-header">
+            <p className="course-sidebar-title">Course outline</p>
+            <div className="course-sidebar-progress">
+              <div style={{ flex: 1 }}>
+                <ProgressBar completed={completedCount} total={totalCards} />
+              </div>
+              <span>{completedCount}/{totalCards}</span>
+            </div>
           </div>
-          <LessonCard
-            courseSlug={course.slug}
-            dayIndex={currentDay}
-            cards={cards}
-            onAllComplete={() => setShowQuiz(true)}
-          />
+          <nav className="course-sidebar-nav" aria-label="Course modules">
+            {days.map((m, di) => {
+              const st = getDayStatus(course.slug, di)
+              const dayCompleted = st === "completed"
+              const dayLocked = st === "locked"
+              return (
+                <button
+                  key={di}
+                  disabled={dayLocked}
+                  className={[
+                    "sidebar-day-btn",
+                    currentDay === di ? "active" : "",
+                    dayCompleted ? "completed" : "",
+                  ].filter(Boolean).join(" ")}
+                  onClick={() => switchDay(di)}
+                >
+                  <span className="sidebar-day-num">{di + 1}</span>
+                  <span style={{ flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    {m.title || `Day ${di + 1}`}
+                  </span>
+                  <span className="sidebar-day-status">
+                    {dayLocked ? "🔒" : dayCompleted ? "✓" : null}
+                  </span>
+                </button>
+              )
+            })}
+          </nav>
+        </aside>
+
+        {/* ── Right Main content ── */}
+        <div>
+          {dayStatus === "locked" ? (
+            <div className="module-card locked-day">
+              <p className="locked-icon">🔒</p>
+              <p>Complete the previous day&apos;s quiz to unlock this day.</p>
+            </div>
+          ) : showQuiz ? (
+            <QuizGate
+              courseSlug={course.slug}
+              dayIndex={currentDay}
+              questions={quizQuestions}
+              lessonContent={cards.map((c) => c.content)}
+              dayTitle={day?.title}
+              onPass={() => {
+                setShowQuiz(false)
+                // Advance to next unlocked day, if available
+                if (currentDay + 1 < days.length) switchDay(currentDay + 1)
+              }}
+            />
+          ) : (
+            <div className="module-card">
+              <div className="section-head">
+                <h3>
+                  Day {currentDay + 1}: {day.title}
+                </h3>
+              </div>
+              <LessonCard
+                courseSlug={course.slug}
+                dayIndex={currentDay}
+                cards={cards}
+                onAllComplete={() => setShowQuiz(true)}
+              />
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   )
 }
