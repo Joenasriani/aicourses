@@ -1877,9 +1877,11 @@ body {
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.quiz-question:has(.quiz-option.selected) {
-  border-color: var(--accent-glow);
-  box-shadow: 0 0 12px var(--accent-glow);
+@supports selector(:has(.quiz-option.selected)) {
+  .quiz-question:has(.quiz-option.selected) {
+    border-color: var(--accent-glow);
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
 }
 
 /* ── Lesson card subtle border glow on hover ─────────────────────────── */
