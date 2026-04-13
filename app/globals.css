@@ -1878,14 +1878,14 @@ body {
 }
 
 .quiz-question:has(.quiz-option.selected) {
-  border-color: rgba(11, 95, 255, 0.35);
+  border-color: var(--accent-glow);
   box-shadow: 0 0 12px var(--accent-glow);
 }
 
 /* ── Lesson card subtle border glow on hover ─────────────────────────── */
 .lesson-card:hover {
-  border-color: rgba(11, 95, 255, 0.3);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(11, 95, 255, 0.12);
+  border-color: var(--accent-glow);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--accent-dim);
 }
 
 /* ── Module card (lesson/quiz wrapper) ───────────────────────────────── */
