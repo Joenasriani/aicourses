@@ -124,6 +124,16 @@ export default function CourseClient({ course }) {
             </div>
 
             <div className="course-sticky-actions">
+              {/* Mobile sidebar toggle */}
+              <button
+                className="btn-nav sidebar-toggle"
+                onClick={() => setSidebarOpen((o) => !o)}
+                title={sidebarOpen ? "Hide outline" : "Show outline"}
+                aria-expanded={sidebarOpen}
+                aria-label="Toggle course outline"
+              >
+                {sidebarOpen ? "✕ Outline" : "☰ Outline"}
+              </button>
               <button
                 className="btn-nav"
                 disabled={currentDay === 0}
@@ -148,7 +158,7 @@ export default function CourseClient({ course }) {
       {/* ── Main two-column layout ────────────────────────────────────── */}
       <div className="course-layout">
         {/* ── Left Sidebar — Course Outline ── */}
-        <aside className="course-sidebar">
+        <aside className={`course-sidebar${sidebarOpen ? " sidebar-mobile-open" : ""}`}>
           <div className="course-sidebar-header">
             <p className="course-sidebar-title">Course outline</p>
             <div className="course-sidebar-progress">
@@ -167,15 +177,11 @@ export default function CourseClient({ course }) {
                 <button
                   key={di}
                   disabled={dayLocked}
-                  className={[
-                    "sidebar-day-btn",
-                    currentDay === di ? "active" : "",
-                    dayCompleted ? "completed" : "",
-                  ].filter(Boolean).join(" ")}
+                  className={`sidebar-day-btn${currentDay === di ? " active" : ""}${dayCompleted ? " completed" : ""}`}
                   onClick={() => switchDay(di)}
                 >
                   <span className="sidebar-day-num">{di + 1}</span>
-                  <span style={{ flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  <span className="sidebar-day-label">
                     {m.title || `Day ${di + 1}`}
                   </span>
                   <span className="sidebar-day-status">

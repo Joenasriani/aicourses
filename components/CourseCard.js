@@ -1,5 +1,6 @@
 "use client"
 
+import { useMemo } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import courseImages from '@/content/courseImages'
@@ -30,15 +31,22 @@ export default function CourseCard({ course }) {
 
   const { getCompletedCardCount, hydrated } = useLearning()
 
+  // All hooks must run unconditionally before the early return
+  const days = course.modules || []
+  const totalCards = useMemo(
+    () => days.reduce((sum, m) => sum + (m.lessons?.length || 0), 0),
+    [days]
+  )
+  const completedCards = useMemo(
+    () => hydrated
+      ? days.reduce((sum, _m, di) => sum + getCompletedCardCount(course.slug, di), 0)
+      : 0,
+    [hydrated, course.slug, days, getCompletedCardCount]
+  )
+
   // Hard-block: do not render courses without a mapped local image
   if (!imageSrc) return null
 
-  // Compute overall progress across all modules
-  const days = course.modules || []
-  const totalCards = days.reduce((sum, m) => sum + (m.lessons?.length || 0), 0)
-  const completedCards = hydrated
-    ? days.reduce((sum, _, di) => sum + getCompletedCardCount(course.slug, di), 0)
-    : 0
   const progressPct = totalCards > 0 ? Math.round((completedCards / totalCards) * 100) : 0
   const started = completedCards > 0
 

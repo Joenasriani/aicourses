@@ -1797,3 +1797,37 @@ body {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
+
+/* ── Mobile sidebar toggle ───────────────────────────────────────────── */
+/* On desktop the sidebar-toggle button is hidden */
+.sidebar-toggle {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .sidebar-toggle {
+    display: inline-flex;
+  }
+
+  /* Sidebar is hidden by default on mobile; toggled via JS state */
+  .course-sidebar {
+    display: none;
+    position: static;
+    max-height: none;
+  }
+
+  .course-sidebar.sidebar-mobile-open {
+    display: block;
+    grid-column: 1 / -1;
+    order: -1;
+  }
+}
+
+/* ── Sidebar day label (truncated text) ─────────────────────────────── */
+.sidebar-day-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
