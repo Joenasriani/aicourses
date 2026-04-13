@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { useLearning } from "@/app/context/LearningContext"
 import LessonCard from "@/components/LessonCard"
 import QuizGate from "@/components/QuizGate"
@@ -92,6 +92,18 @@ export default function CourseClient({ course }) {
   const quizQuestions =
     course.quizzes?.[currentDay + 1] ?? getDefaultQuiz(day?.title ?? "this module")
 
+  // Lock body scroll when mobile sidebar is open
+  useEffect(() => {
+    if (sidebarOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    return () => { document.body.style.overflow = "" }
+  }, [sidebarOpen])
+
+  const closeSidebar = useCallback(() => setSidebarOpen(false), [])
+
   function switchDay(di) {
     setCurrentDay(di)
     setShowQuiz(false)
@@ -107,6 +119,18 @@ export default function CourseClient({ course }) {
       <div className="course-sticky-header">
         <div className="container">
           <div className="course-sticky-inner">
+            {/* Mobile sidebar toggle */}
+            <button
+              className="btn-sidebar-toggle"
+              aria-label={sidebarOpen ? "Close course outline" : "Open course outline"}
+              aria-expanded={sidebarOpen}
+              onClick={() => setSidebarOpen((v) => !v)}
+            >
+              <span className="sidebar-toggle-icon" aria-hidden="true">
+                {sidebarOpen ? "✕" : "☰"}
+              </span>
+            </button>
+
             <span className="course-sticky-title">
               {course.title || "Course"}
             </span>
@@ -145,10 +169,19 @@ export default function CourseClient({ course }) {
         </div>
       </div>
 
+      {/* ── Mobile sidebar backdrop ───────────────────────────────────── */}
+      {sidebarOpen && (
+        <div
+          className="sidebar-backdrop"
+          aria-hidden="true"
+          onClick={closeSidebar}
+        />
+      )}
+
       {/* ── Main two-column layout ────────────────────────────────────── */}
       <div className="course-layout">
         {/* ── Left Sidebar — Course Outline ── */}
-        <aside className="course-sidebar">
+        <aside className={sidebarOpen ? "course-sidebar sidebar-open" : "course-sidebar"}>
           <div className="course-sidebar-header">
             <p className="course-sidebar-title">Course outline</p>
             <div className="course-sidebar-progress">

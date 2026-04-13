@@ -725,16 +725,17 @@ p {
 .progress-bar-track {
   width: 100%;
   height: 6px;
-  background: #e5e7eb;
+  background: var(--surface-2);
   border-radius: 999px;
   overflow: hidden;
 }
 
 .progress-bar-fill {
   height: 100%;
-  background: var(--accent, #0B5FFF);
+  background: linear-gradient(90deg, var(--accent), #38BDF8);
   border-radius: 999px;
   transition: width 0.4s ease;
+  box-shadow: 0 0 8px var(--accent-glow);
 }
 
 /* ── Course progress row ─────────────────────────────────────────────── */
@@ -762,6 +763,7 @@ p {
 .locked-day {
   text-align: center;
   padding: 2rem;
+  color: var(--muted);
 }
 
 .locked-icon {
@@ -927,8 +929,8 @@ p {
 
 .quiz-option.wrong {
   border-color: #f87171;
-  background: #fff1f2;
-  color: #be123c;
+  background: rgba(248, 113, 113, 0.12);
+  color: #fca5a5;
 }
 
 .quiz-option:disabled {
@@ -1704,23 +1706,6 @@ body {
   opacity: 0.4;
 }
 
-/* ── Course progress bar (enhanced) ─────────────────────────────────── */
-.progress-bar-track {
-  width: 100%;
-  height: 6px;
-  background: var(--surface-2);
-  border-radius: 999px;
-  overflow: hidden;
-}
-
-.progress-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--accent), #38BDF8);
-  border-radius: 999px;
-  transition: width 0.4s ease;
-  box-shadow: 0 0 8px var(--accent-glow);
-}
-
 /* ── Hero enhancements ───────────────────────────────────────────────── */
 .hero {
   padding: clamp(32px, 6vw, 72px) 0;
@@ -1785,15 +1770,153 @@ body {
   opacity: 0.65;
 }
 
-/* ── locked-day dark ─────────────────────────────────────────────────── */
-.locked-day {
-  text-align: center;
-  padding: 2rem;
-  color: var(--muted);
-}
-
 /* ── Focus ring accessibility ────────────────────────────────────────── */
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+
+/* ── Sidebar toggle button (mobile) ─────────────────────────────────── */
+.btn-sidebar-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 1rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.btn-sidebar-toggle:hover {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+
+.sidebar-toggle-icon {
+  line-height: 1;
+}
+
+@media (max-width: 900px) {
+  .btn-sidebar-toggle {
+    display: inline-flex;
+  }
+}
+
+/* ── Sidebar backdrop (mobile drawer) ───────────────────────────────── */
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 39;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  animation: fadeIn 0.2s ease;
+}
+
+@media (max-width: 900px) {
+  .sidebar-backdrop {
+    display: block;
+  }
+
+  /* On mobile the sidebar becomes a fixed drawer */
+  .course-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 40;
+    width: min(280px, 85vw);
+    max-height: 100dvh;
+    border-radius: 0;
+    border-right: 1px solid var(--border);
+    border-top: none;
+    border-bottom: none;
+    border-left: none;
+    transform: translateX(-100%);
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+  }
+
+  .course-sidebar.sidebar-open {
+    transform: translateX(0);
+    box-shadow: 4px 0 32px rgba(0, 0, 0, 0.6);
+  }
+
+  /* On mobile the main content takes full width */
+  .course-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Quiz option enhanced dark hover/focus ───────────────────────────── */
+.quiz-option:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-color: var(--accent);
+}
+
+/* ── Quiz question card subtle glow ─────────────────────────────────── */
+.quiz-question {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+@supports selector(:has(.quiz-option.selected)) {
+  .quiz-question:has(.quiz-option.selected) {
+    border-color: var(--accent-glow);
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+}
+
+/* ── Lesson card subtle border glow on hover ─────────────────────────── */
+.lesson-card:hover {
+  border-color: var(--accent-glow);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--accent-dim);
+}
+
+/* ── Module card (lesson/quiz wrapper) ───────────────────────────────── */
+.module-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+/* ── Section head inside module card ────────────────────────────────── */
+.section-head h3 {
+  margin: 0 0 1.25rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* ── Sticky header responsive bar width ─────────────────────────────── */
+@media (max-width: 600px) {
+  .course-sticky-bar {
+    width: 80px;
+  }
+
+  .course-sticky-title {
+    font-size: 0.82rem;
+  }
+
+  .mastery-score {
+    display: none;
+  }
 }
